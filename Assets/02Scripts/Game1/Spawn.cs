@@ -7,28 +7,23 @@ public class Spawn : MonoBehaviour
     public GameObject Bomb;
 
     public Vector3[] pos;
-
     int maxPos = 15;
     int ran;
-    void Awake()
-    {
-    }
+
 
     void Start()
     {
-        for(int i = 0; i < 1; i++)
-        {
-            Instantiate(Bomb, pos[i], Quaternion.identity);
-        }
+        InvokeRepeating("Create", 2, 1f);
     }
 
     void Update()
     {
-
+        
     }
 
     void Create()
     {
+        ran = Random.Range(0, maxPos);
         Instantiate(Bomb, pos[ran], Quaternion.identity);
     }
 }
