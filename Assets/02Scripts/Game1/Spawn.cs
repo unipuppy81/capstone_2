@@ -7,7 +7,7 @@ public class Spawn : MonoBehaviour
     public GameObject Bomb;
 
     public Vector3[] pos;
-    int maxPos = 15;
+    int maxPos = 63;
     int ran;
 
 
