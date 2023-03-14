@@ -10,18 +10,27 @@ public class PlayerController : MonoBehaviour
     public float jumpSpeed = 0;
 
     Vector2 startPosition; //캐릭터 시작위치
-    // Start is called before the first frame update
+    Animator animator; //애니메이션 변수
+
     void Start()
     {
         startPosition = transform.position;
+        animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
+
     void Update()
     {
+        animator.SetBool("run", true);
         if(Input.GetMouseButtonDown(0))
         {
             isJump = true;
+        }
+        else if(transform.position.y <= startPosition.y)
+        {
+            isJump = false;
+            isTop = false;
+            transform.position = startPosition;
         }
         if(isJump ) 
         {
@@ -32,6 +41,10 @@ public class PlayerController : MonoBehaviour
             else
             {
                 isTop = true;
+            }
+            if(transform.position.y > startPosition.y && isTop)
+            {
+                transform.position = Vector2.MoveTowards(transform.position,startPosition,jumpSpeed * Time.deltaTime);
             }
         }
     }
