@@ -13,17 +13,21 @@ public class ObBase : MonoBehaviour
     }
     void Start()
     {
-        
+
     }
 
 
     void Update()
     {
-        transform.Translate(Vector2.left * Time.deltaTime * GameManager.instance.gameSpeed);
-
-        if(transform.position.x < -6)
+        if(GameManager.instance.isPlay)
         {
-            gameObject.SetActive(false);
+            transform.Translate(Vector2.left * Time.deltaTime * GameManager.instance.gameSpeed);
+
+            if (transform.position.x < -6)
+            {
+                gameObject.SetActive(false);
+            }
         }
+        
     }
 }

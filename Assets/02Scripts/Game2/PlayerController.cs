@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
 
     Vector2 startPosition; //캐릭터 시작위치
     Animator animator; //애니메이션 변수
+    ButtonManager btnMangaer;
 
     void Start()
     {
@@ -21,8 +22,16 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        animator.SetBool("run", true);
-        if(Input.GetMouseButtonDown(0))
+        if(GameManager.instance.isPlay)
+        {
+            animator.SetBool("run", true);
+        }
+        else
+        {
+            animator.SetBool("run", false);
+        }
+
+        if (Input.GetMouseButtonDown(0)&& GameManager.instance.isPlay)
         {
             isJump = true;
         }
@@ -46,6 +55,14 @@ public class PlayerController : MonoBehaviour
             {
                 transform.position = Vector2.MoveTowards(transform.position,startPosition,jumpSpeed * Time.deltaTime);
             }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Ob"))
+        {
+            GameManager.instance.GameOver();
         }
     }
 }

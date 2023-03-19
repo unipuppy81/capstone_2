@@ -20,11 +20,28 @@ public class RespawnManager : MonoBehaviour
     }
     private void Start()
     {
-        StartCoroutine(CreateOb());
+        GameManager.instance.onPlay += PlayGame;
+    }
+    void PlayGame(bool isplay)
+    {
+        if (isplay) 
+        {
+            for(int i = 0; i<ObPool.Count; i++)
+            {
+                if (ObPool[i].activeSelf)
+                    ObPool[i].SetActive(false);
+            }
+            StartCoroutine(CreateOb());
+        }
+        else
+        {
+            StopAllCoroutines();
+        }
     }
     IEnumerator CreateOb()
     {
-        while(true)
+        yield return new WaitForSeconds(0.5f);
+        while(GameManager.instance.isPlay)
         {
             ObPool[DeactiveOb()].SetActive(true);
             yield return new WaitForSeconds(Random.Range(1f, 3f));
