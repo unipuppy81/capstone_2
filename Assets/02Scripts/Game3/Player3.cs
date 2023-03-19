@@ -31,8 +31,8 @@ public class Player3 : MonoBehaviour
 
         if (GameManager3.instance.stopTrigger)
         {
-            PlayerMove();
             animator.SetTrigger("start");
+            PlayerMove();
         }
 
         if (!GameManager3.instance.stopTrigger)

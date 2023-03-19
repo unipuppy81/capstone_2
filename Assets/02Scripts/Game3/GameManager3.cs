@@ -31,6 +31,7 @@ public class GameManager3 : MonoBehaviour
     [SerializeField]
     private GameObject panel;
 
+    public bool stopTrigger = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -51,11 +52,11 @@ public class GameManager3 : MonoBehaviour
 
     public void GameStart()
     {
+        stopTrigger = true;
         StartCoroutine(CreatepoopRoutine());
         panel.SetActive(false);
     }
 
-    public bool stopTrigger = true;
     public void GameOver()
     {
         stopTrigger = false;
