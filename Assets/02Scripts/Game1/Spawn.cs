@@ -13,7 +13,7 @@ public class Spawn : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating("Create", 2, 1f);
+        InvokeRepeating("Create", 2, 3.0f);
     }
 
     void Update()
@@ -23,7 +23,9 @@ public class Spawn : MonoBehaviour
 
     void Create()
     {
-        ran = Random.Range(0, maxPos);
-        Instantiate(Bomb, pos[ran], Quaternion.identity);
+        for(int i = 0; i < 10; i++) { 
+            ran = Random.Range(0, maxPos);
+            Instantiate(Bomb, pos[ran], Quaternion.identity);
+        }
     }
 }
