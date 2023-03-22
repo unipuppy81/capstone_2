@@ -8,15 +8,20 @@ public class Bomb : MonoBehaviour
     {
         StartCoroutine("BombT");
     }
+
+
     IEnumerator BombT()
     {
         Debug.Log("ÆøÅº");
         
+        // anim.stand
+
         yield return new WaitForSeconds(3.0f);
 
-        Destroy(gameObject);
-        
 
+        Destroy(gameObject);
+
+        // instantiate , anim.waterline
 
 
     }
