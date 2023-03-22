@@ -16,7 +16,7 @@ public class Poop : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (!GameManager3.instance.stopTrigger) Destroy(gameObject);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

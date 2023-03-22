@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Player3 : MonoBehaviour
 {
-    private Rigidbody2D rigidbody;
+    private Rigidbody2D playerRigidbody;
 
     private Animator animator;
 
-    private SpriteRenderer renderer;
+    private SpriteRenderer playerRenderer;
 
     private float speed = 3;
 
@@ -19,9 +19,9 @@ public class Player3 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rigidbody= GetComponent<Rigidbody2D>();
+        playerRigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        renderer = GetComponent<SpriteRenderer>();
+        playerRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -49,14 +49,14 @@ public class Player3 : MonoBehaviour
 
         if (horizontal < 0)
         {
-            renderer.flipX = true;
+            playerRenderer.flipX = true;
         }
         else
         {
-            renderer.flipX = false;
+            playerRenderer.flipX = false;
         }
 
-        rigidbody.velocity = new Vector2(horizontal * speed, rigidbody.velocity.y);
+        playerRigidbody.velocity = new Vector2(horizontal * speed, playerRigidbody.velocity.y);
     }
 
     private void ScreenChk()
