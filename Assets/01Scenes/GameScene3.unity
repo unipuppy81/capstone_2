@@ -1460,6 +1460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poop: {fileID: 5852123788630342312, guid: 405d641c6e5f1c54bbc51c9431af63b7, type: 3}
+  coin: {fileID: 6720998839387867397, guid: c5e422f82056bda4683561bc9e0ae559, type: 3}
   scoreTxt: {fileID: 1030201001}
   bestScore: {fileID: 2129766459}
   panel: {fileID: 852441832}

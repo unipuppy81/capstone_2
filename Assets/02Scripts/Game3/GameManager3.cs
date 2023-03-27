@@ -20,6 +20,8 @@ public class GameManager3 : MonoBehaviour
 
     [SerializeField]
     private GameObject poop;
+    [SerializeField]
+    private GameObject coin;
 
     private int score;
 
@@ -32,6 +34,10 @@ public class GameManager3 : MonoBehaviour
     private GameObject panel;
 
     public bool stopTrigger = true;
+
+    private float a;
+    private float b;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,9 +50,21 @@ public class GameManager3 : MonoBehaviour
         
     }
 
-    public void Score()
+    public void Score() // 1Á¡ È¹µæ
     {
         score++;
+        scoreTxt.text = "Score : " + score;
+    }
+
+    public void Score2() // 2Á¡ È¹µæ
+    {
+        score += 2;
+        scoreTxt.text = "Score : " + score;
+    }
+
+    public void Score3() // 3Á¡ È¹µæ
+    {
+        score += 3;
         scoreTxt.text = "Score : " + score;
     }
 
@@ -54,6 +72,7 @@ public class GameManager3 : MonoBehaviour
     {
         stopTrigger = true;
         StartCoroutine(CreatepoopRoutine());
+        StartCoroutine(CreatecoinRoutine());
         panel.SetActive(false);
     }
 
@@ -62,6 +81,7 @@ public class GameManager3 : MonoBehaviour
         stopTrigger = false;
 
         StopCoroutine(CreatepoopRoutine());
+        StopCoroutine(CreatecoinRoutine());
 
         if(score >= PlayerPrefs.GetInt("BestScore", 0))
         PlayerPrefs.SetInt("BestScore", score);
@@ -76,14 +96,32 @@ public class GameManager3 : MonoBehaviour
         while (true)
         {
             CreatePoop();
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(1f);
+        }
+    }
+
+    IEnumerator CreatecoinRoutine()
+    {
+        while (true)
+        {
+            CreateCoin();
+            yield return new WaitForSeconds(1.5f);
         }
     }
 
     private void CreatePoop()
     {
-        Vector3 pos = Camera.main.ViewportToWorldPoint(new Vector3(UnityEngine.Random.Range(0.0f, 1.0f), 1.1f, 0));
+        a = Random.Range(0.0f, 1.0f);
+        Vector3 pos = Camera.main.ViewportToWorldPoint(new Vector3(a, 1.1f, 0));
         pos.z = 0.0f;
         Instantiate(poop, pos, Quaternion.identity);
+    }
+
+    private void CreateCoin()
+    {
+        b = Random.Range(0.0f, 1.0f);
+        Vector3 pos = Camera.main.ViewportToWorldPoint(new Vector3(b, 1.1f, 0));
+        pos.z = 0.0f;
+        Instantiate(coin, pos, Quaternion.identity);
     }
 }
