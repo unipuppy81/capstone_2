@@ -7,16 +7,29 @@ public class Poop : MonoBehaviour
     [SerializeField]
     private Animator animator;
 
+    private Rigidbody2D poopRigidbody;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
-        animator = GetComponent<Animator>();   
+        animator = GetComponent<Animator>();
+        poopRigidbody = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
         if (!GameManager3.instance.stopTrigger) Destroy(gameObject);
+    }
+
+    private void FixedUpdate()
+    {
+        if (GameManager3.instance.score >= 30)
+        {
+            poopRigidbody.AddForce(Vector2.down * 10f);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

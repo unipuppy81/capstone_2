@@ -23,7 +23,7 @@ public class GameManager3 : MonoBehaviour
     [SerializeField]
     private GameObject coin;
 
-    private int score;
+    public int score;
 
     [SerializeField]
     private Text scoreTxt;
@@ -96,7 +96,7 @@ public class GameManager3 : MonoBehaviour
         while (true)
         {
             CreatePoop();
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.9f);
         }
     }
 
@@ -105,7 +105,7 @@ public class GameManager3 : MonoBehaviour
         while (true)
         {
             CreateCoin();
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(1.7f);
         }
     }
 
