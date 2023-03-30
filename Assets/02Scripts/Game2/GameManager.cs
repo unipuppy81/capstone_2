@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     public GameObject mainbtn;
     public GameObject explainPanel;
     public GameObject GameoverPanel;
+    public GameObject PausePanel;
 
 
     public int runScore1 = 0;
@@ -42,6 +43,8 @@ public class GameManager : MonoBehaviour
     {
         RunBestScoreText.text = PlayerPrefs.GetInt("RunBestScore",0).ToString();
         GameoverPanel.SetActive(false);
+        PausePanel.SetActive(false);
+        Time.timeScale = 1f;
     }
 
     IEnumerator AddScore()
@@ -85,5 +88,10 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("RunBestScore", runScore1);
             RunBestScoreText.text = runScore1.ToString();
         }
+    }
+    public void Pause_btn()
+    {
+        PausePanel.SetActive(true);
+        Time.timeScale = 0;
     }
 }

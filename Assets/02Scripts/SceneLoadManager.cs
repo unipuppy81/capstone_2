@@ -20,4 +20,8 @@ public class SceneLoadManager : MonoBehaviour
         SceneManager.LoadScene("GameScene3");
     }
 
+    public void MainScene()
+    {
+        SceneManager.LoadScene("MainScene");
+    }
 }
