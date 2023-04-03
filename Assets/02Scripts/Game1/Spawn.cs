@@ -10,7 +10,7 @@ public class Spawn : MonoBehaviour
     int maxPos = 63;
     int ran;
 
-
+    //¹öÀü
     void Start()
     {
         InvokeRepeating("Create", 2, 3.0f);
