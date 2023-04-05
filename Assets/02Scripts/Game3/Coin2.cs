@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Food : MonoBehaviour
+public class Coin2 : MonoBehaviour
 {
     [SerializeField]
     private Animator animator;
@@ -28,7 +28,8 @@ public class Food : MonoBehaviour
 
         if (collision.gameObject.tag == "Player")
         {
-            GameManager3.instance.Score2();
+            GameManager3.instance.Score3();
+            Destroy(this.gameObject);
         }
     }
 

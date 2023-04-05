@@ -30,6 +30,11 @@ public class Poop : MonoBehaviour
         {
             poopRigidbody.AddForce(Vector2.down * 10f);
         }
+
+        if(GameManager3.instance.score >= 60)
+        {
+            poopRigidbody.AddForce(Vector2.down * 15f);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

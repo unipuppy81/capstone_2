@@ -1461,6 +1461,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poop: {fileID: 5852123788630342312, guid: 405d641c6e5f1c54bbc51c9431af63b7, type: 3}
   coin: {fileID: 6720998839387867397, guid: c5e422f82056bda4683561bc9e0ae559, type: 3}
+  coin2: {fileID: 5093578357683819794, guid: ca59e69ef88f04742803920f7dd3e736, type: 3}
+  score: 0
   scoreTxt: {fileID: 1030201001}
   bestScore: {fileID: 2129766459}
   panel: {fileID: 852441832}

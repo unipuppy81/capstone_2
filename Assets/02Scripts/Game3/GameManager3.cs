@@ -22,6 +22,8 @@ public class GameManager3 : MonoBehaviour
     private GameObject poop;
     [SerializeField]
     private GameObject coin;
+    [SerializeField]
+    private GameObject coin2;
 
     public int score;
 
@@ -73,6 +75,7 @@ public class GameManager3 : MonoBehaviour
         stopTrigger = true;
         StartCoroutine(CreatepoopRoutine());
         StartCoroutine(CreatecoinRoutine());
+        StartCoroutine(Createcoin2Routine());
         panel.SetActive(false);
     }
 
@@ -82,6 +85,7 @@ public class GameManager3 : MonoBehaviour
 
         StopCoroutine(CreatepoopRoutine());
         StopCoroutine(CreatecoinRoutine());
+        StopCoroutine(Createcoin2Routine());
 
         if(score >= PlayerPrefs.GetInt("BestScore", 0))
         PlayerPrefs.SetInt("BestScore", score);
@@ -109,6 +113,15 @@ public class GameManager3 : MonoBehaviour
         }
     }
 
+    IEnumerator Createcoin2Routine()
+    {
+        while (true)
+        {
+            CreateCoin2();
+            yield return new WaitForSeconds(2.5f);
+        }
+    }
+
     private void CreatePoop()
     {
         a = Random.Range(0.0f, 1.0f);
@@ -123,5 +136,16 @@ public class GameManager3 : MonoBehaviour
         Vector3 pos = Camera.main.ViewportToWorldPoint(new Vector3(b, 1.1f, 0));
         pos.z = 0.0f;
         Instantiate(coin, pos, Quaternion.identity);
+    }
+
+    private void CreateCoin2()
+    {
+        b = Random.Range(0.0f, 1.0f);
+        Vector3 pos = Camera.main.ViewportToWorldPoint(new Vector3(b, 1.1f, 0));
+        pos.z = 0.0f;
+        if(score >= 10)
+        {
+            Instantiate(coin2, pos, Quaternion.identity);
+        }
     }
 }

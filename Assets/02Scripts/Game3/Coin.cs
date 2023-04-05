@@ -16,7 +16,6 @@ public class Coin : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (!GameManager3.instance.stopTrigger) Destroy(gameObject);
     }
 
@@ -33,5 +32,4 @@ public class Coin : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-
 }
