@@ -13,7 +13,7 @@ public class Spawn : MonoBehaviour
     //¹öÀü
     void Start()
     {
-        InvokeRepeating("Create", 2, 3.0f);
+        InvokeRepeating("Create", 2, 10f);
     }
 
     void Update()
