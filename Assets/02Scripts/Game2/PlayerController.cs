@@ -24,22 +24,24 @@ public class PlayerController : MonoBehaviour
     {
         if(GameManager.instance.isPlay)
         {
-            animator.SetBool("run", true);
+            animator.SetBool("RUN", true);
         }
         else
         {
-            animator.SetBool("run", false);
+            animator.SetBool("RUN", false);
         }
 
         if (Input.GetMouseButtonDown(0)&& GameManager.instance.isPlay)
         {
             isJump = true;
+            animator.SetBool("JUMP", true);
         }
         else if(transform.position.y <= startPosition.y)
         {
             isJump = false;
             isTop = false;
             transform.position = startPosition;
+            animator.SetBool("JUMP", false);
         }
         if(isJump ) 
         {
