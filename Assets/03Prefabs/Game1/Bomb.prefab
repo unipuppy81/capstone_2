@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2770930234585348787}
   - component: {fileID: 9006850159308443384}
   - component: {fileID: 7766754588869919300}
+  - component: {fileID: 1672612697586511084}
   m_Layer: 0
   m_Name: Bomb
   m_TagString: Untagged
@@ -131,7 +132,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8269351354156707621}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f177bb62ebb4d6d4890e660acd809323, type: 3}
   m_Name: 
@@ -145,16 +146,24 @@ MonoBehaviour:
     m_Bits: 0
   explosionDuration: 1
   explosionRadius: 1
-  playerG1: {fileID: 6007296014799994449, guid: f0eb92a1470ea6d45b50587bd75bcd85, type: 3}
-  position: {x: 0, y: 0}
-  pos2:
-  - {x: 1, y: 1}
-  - {x: 1, y: 2}
-  - {x: 1, y: 3}
-  - {x: 1, y: 4}
-  - {x: 2, y: 1}
-  - {x: 2, y: 2}
-  - {x: 2, y: 3}
-  - {x: 2, y: 4}
-  - {x: 2, y: 5}
-  - {x: 2, y: 6}
+--- !u!114 &1672612697586511084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8269351354156707621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ace595c37b315994e9d0831fbf84cd58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bombPrefab: {fileID: 8269351354156707621}
+  inputKey: 32
+  bombFuseTime: 3
+  explosionPrefab: {fileID: 4425585833389601059, guid: d7d9ca09ba1b8594b8708dded84a4834, type: 3}
+  explosionLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  explosionDuration: 1
+  explosionRadius: 1

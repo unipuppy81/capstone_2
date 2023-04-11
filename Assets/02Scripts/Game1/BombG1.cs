@@ -24,7 +24,7 @@ public class BombG1 : MonoBehaviour
 
     public void Start()
     {
-        //StartCoroutine("RandBomb");
+        ///StartCoroutine("RandBomb");
     }
 
     private void Update()

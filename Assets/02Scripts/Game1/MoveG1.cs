@@ -12,6 +12,8 @@ public class MoveG1 : MonoBehaviour
     private Vector2 direction = Vector2.down;
     public float speed = 5f;
 
+    public Vector2 position;
+
   
     public KeyCode inputUp = KeyCode.W;
     public KeyCode inputDown = KeyCode.S;
@@ -40,7 +42,7 @@ public class MoveG1 : MonoBehaviour
     {
         rigidbody = GetComponent<Rigidbody2D>();
         activeSpriteRenderer = spriteRendererDown;
-      
+        position = PlayerG1pos;
     }
 
 
@@ -72,13 +74,22 @@ public class MoveG1 : MonoBehaviour
         {
             //StartCoroutine(PlaceBomb());
             UnityEngine.Debug.Log("SpaceBar");
-            StartCoroutine(RandBomb());
+            //StartCoroutine(RandBomb());
+            SetBomb();
+            
         }
     }
 
-    private IEnumerator RandBomb()
+    public void SetBomb()
     {
-        Vector2 position = MoveG1.PlayerG1pos;
+        StartCoroutine(RandBomb());
+    }
+
+    public IEnumerator RandBomb()
+    {
+        //Vector2 position = MoveG1.PlayerG1pos;
+        
+        
         position.x = Mathf.Round(position.x) + 0.5f;
         position.y = Mathf.Round(position.y) + 0.5f;
 

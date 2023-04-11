@@ -3451,11 +3451,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 382354026}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e66fbecf5673924aabdbfe113fecdc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  g1: {fileID: 1868104331}
   Bomb: {fileID: 8269351354156707621, guid: d1a79f8239626c7459d54af1b2601f44, type: 3}
   pos:
   - {x: -3.5, y: -7.5, z: 0}
@@ -5833,6 +5834,11 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!1 &1868104331 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5517133693827246085, guid: f0eb92a1470ea6d45b50587bd75bcd85, type: 3}
+  m_PrefabInstance: {fileID: 5517133694822393490}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1971663260
 GameObject:
   m_ObjectHideFlags: 0
@@ -6014,6 +6020,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5517133693827246092, guid: f0eb92a1470ea6d45b50587bd75bcd85, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5517133693827246094, guid: f0eb92a1470ea6d45b50587bd75bcd85, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
