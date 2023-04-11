@@ -34,6 +34,8 @@ public class GameManager3 : MonoBehaviour
     private Text bestScore;
     [SerializeField]
     private GameObject panel;
+    [SerializeField]
+    private GameObject PausePanel;
 
     public bool stopTrigger = true;
 
@@ -147,5 +149,10 @@ public class GameManager3 : MonoBehaviour
         {
             Instantiate(coin2, pos, Quaternion.identity);
         }
+    }
+    public void Pause_btn()
+    {
+        PausePanel.SetActive(true);
+        Time.timeScale = 0;
     }
 }
