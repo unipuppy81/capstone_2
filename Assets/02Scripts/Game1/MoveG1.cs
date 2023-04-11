@@ -90,8 +90,8 @@ public class MoveG1 : MonoBehaviour
         //Vector2 position = MoveG1.PlayerG1pos;
         
         
-        position.x = Mathf.Round(position.x) + 0.5f;
-        position.y = Mathf.Round(position.y) + 0.5f;
+        //position.x = Mathf.Round(position.x) + 0.5f;
+        //position.y = Mathf.Round(position.y) + 0.5f;
 
         UnityEngine.Debug.Log("RandBomb µé¾î¿È");
 

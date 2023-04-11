@@ -15,7 +15,7 @@ public class Spawn : MonoBehaviour
     //¹öÀü
     void Start()
     {
-        InvokeRepeating("Create", 2, 3.0f);
+        InvokeRepeating("Create", 2, 4.0f);
        
     }
 
@@ -26,7 +26,7 @@ public class Spawn : MonoBehaviour
 
     void Create()
     {
-        for(int i = 0; i < 10; i++) { 
+        for(int i = 0; i < 15; i++) { 
 
             ran = Random.Range(0, maxPos);
             Vector2 setPos = pos[ran];
