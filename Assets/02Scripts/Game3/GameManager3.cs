@@ -19,7 +19,9 @@ public class GameManager3 : MonoBehaviour
     }
 
     [SerializeField]
-    private GameObject poop;
+    private GameObject enemy;
+    [SerializeField]
+    private GameObject enemy2;
     [SerializeField]
     private GameObject coin;
     [SerializeField]
@@ -75,7 +77,8 @@ public class GameManager3 : MonoBehaviour
     public void GameStart()
     {
         stopTrigger = true;
-        StartCoroutine(CreatepoopRoutine());
+        StartCoroutine(CreateEnemyRoutine());
+        StartCoroutine(CreateEnemy2Routine());
         StartCoroutine(CreatecoinRoutine());
         StartCoroutine(Createcoin2Routine());
         panel.SetActive(false);
@@ -85,7 +88,8 @@ public class GameManager3 : MonoBehaviour
     {
         stopTrigger = false;
 
-        StopCoroutine(CreatepoopRoutine());
+        StopCoroutine(CreateEnemyRoutine());
+        StopCoroutine(CreateEnemy2Routine());
         StopCoroutine(CreatecoinRoutine());
         StopCoroutine(Createcoin2Routine());
 
@@ -97,12 +101,21 @@ public class GameManager3 : MonoBehaviour
         panel.SetActive(true);
     }
 
-    IEnumerator CreatepoopRoutine()
+    IEnumerator CreateEnemyRoutine()
     {
         while (true)
         {
-            CreatePoop();
+            CreateEnemy();
             yield return new WaitForSeconds(0.9f);
+        }
+    }
+
+    IEnumerator CreateEnemy2Routine()
+    {
+        while (true)
+        {
+            CreateEnemy2();
+            yield return new WaitForSeconds(3.0f);
         }
     }
 
@@ -124,12 +137,23 @@ public class GameManager3 : MonoBehaviour
         }
     }
 
-    private void CreatePoop()
+    private void CreateEnemy()
     {
         a = Random.Range(0.0f, 1.0f);
         Vector3 pos = Camera.main.ViewportToWorldPoint(new Vector3(a, 1.1f, 0));
         pos.z = 0.0f;
-        Instantiate(poop, pos, Quaternion.identity);
+        Instantiate(enemy, pos, Quaternion.identity);
+    }
+
+    private void CreateEnemy2()
+    {
+        a = Random.Range(0.0f, 1.0f);
+        Vector3 pos = Camera.main.ViewportToWorldPoint(new Vector3(a, 1.1f, 0));
+        pos.z = 0.0f;
+        if(score >= 10)
+        {
+            Instantiate(enemy2, pos, Quaternion.identity);
+        }
     }
 
     private void CreateCoin()
@@ -145,7 +169,7 @@ public class GameManager3 : MonoBehaviour
         b = Random.Range(0.0f, 1.0f);
         Vector3 pos = Camera.main.ViewportToWorldPoint(new Vector3(b, 1.1f, 0));
         pos.z = 0.0f;
-        if(score >= 10)
+        if(score >= 15)
         {
             Instantiate(coin2, pos, Quaternion.identity);
         }
