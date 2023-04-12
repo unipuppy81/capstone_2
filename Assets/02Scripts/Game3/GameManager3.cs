@@ -44,10 +44,20 @@ public class GameManager3 : MonoBehaviour
     private float a;
     private float b;
 
+    IEnumerator e1;
+    IEnumerator e2;
+    IEnumerator c1;
+    IEnumerator c2;
+
     // Start is called before the first frame update
     void Start()
     {
         score = 0;
+
+        e1 = CreateEnemyRoutine();
+        e2 = CreateEnemy2Routine();
+        c1 = CreatecoinRoutine();
+        c2 = Createcoin2Routine();
     }
 
     // Update is called once per frame
@@ -77,10 +87,10 @@ public class GameManager3 : MonoBehaviour
     public void GameStart()
     {
         stopTrigger = true;
-        StartCoroutine(CreateEnemyRoutine());
-        StartCoroutine(CreateEnemy2Routine());
-        StartCoroutine(CreatecoinRoutine());
-        StartCoroutine(Createcoin2Routine());
+        StartCoroutine(e1);
+        StartCoroutine(e2);
+        StartCoroutine(c1);
+        StartCoroutine(c2);
         panel.SetActive(false);
     }
 
@@ -88,10 +98,10 @@ public class GameManager3 : MonoBehaviour
     {
         stopTrigger = false;
 
-        StopCoroutine(CreateEnemyRoutine());
-        StopCoroutine(CreateEnemy2Routine());
-        StopCoroutine(CreatecoinRoutine());
-        StopCoroutine(Createcoin2Routine());
+        StopCoroutine(e1);
+        StopCoroutine(e2);
+        StopCoroutine(c1);
+        StopCoroutine(c2);
 
         if(score >= PlayerPrefs.GetInt("BestScore", 0))
         PlayerPrefs.SetInt("BestScore", score);

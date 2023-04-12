@@ -37,12 +37,14 @@ public class Enemy2 : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             GameManager3.instance.Score();
+            Destroy(this.gameObject);
             //animator.SetTrigger("poop");
         }
 
         if (collision.gameObject.tag == "Player")
         {
             GameManager3.instance.GameOver();
+            Destroy(this.gameObject);
             //animator.SetTrigger("poop");
         }
     }
