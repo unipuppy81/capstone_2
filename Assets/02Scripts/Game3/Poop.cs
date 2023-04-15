@@ -9,7 +9,7 @@ public class Poop : MonoBehaviour
 
     private Rigidbody2D poopRigidbody;
 
-
+    public float turnSpeed = 500f;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +21,8 @@ public class Poop : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        transform.Rotate(Vector3.back, turnSpeed * Time.deltaTime);
+
         if (!GameManager3.instance.stopTrigger) Destroy(gameObject);
     }
 
@@ -42,13 +44,15 @@ public class Poop : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             GameManager3.instance.Score();
-            animator.SetTrigger("poop");
+            //animator.SetTrigger("poop");
+            Destroy(this.gameObject);
         }
 
         if (collision.gameObject.tag == "Player")
         {
             GameManager3.instance.GameOver();
-            animator.SetTrigger("poop");
+            //animator.SetTrigger("poop");
+            Destroy(this.gameObject);
         }
     }
 
