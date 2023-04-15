@@ -20,14 +20,14 @@ public class GroundScroller : MonoBehaviour
         {
             for (int i = 0; i < tiles.Length; i++)
             {
-                if (-3.6 >= tiles[i].transform.position.x)
+                if (-3.83 >= tiles[i].transform.position.x)
                 {
                     for (int j = 0; j < tiles.Length; j++)
                     {
                         if (tmp.transform.position.x < tiles[j].transform.position.x)
                             tmp = tiles[j];
                     }
-                    tiles[i].transform.position = new Vector2(tmp.transform.position.x + 1, -1.0f);
+                    tiles[i].transform.position = new Vector2(tmp.transform.position.x + 1.48f, -1.0f);
                     tiles[i].sprite = groundImg[Random.Range(0, groundImg.Length)];
                 }
             }

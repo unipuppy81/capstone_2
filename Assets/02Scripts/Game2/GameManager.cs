@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI runscore2Text;
     public TextMeshProUGUI RunBestScoreText;
 
+    float maxtime = 2;
     private void Start()
     {
         RunBestScoreText.text = PlayerPrefs.GetInt("RunBestScore",0).ToString();
@@ -93,5 +94,9 @@ public class GameManager : MonoBehaviour
     {
         PausePanel.SetActive(true);
         Time.timeScale = 0;
+    }
+    IEnumerator GameoverRoutine()
+    {
+        yield return new WaitForSeconds(1f);
     }
 }
