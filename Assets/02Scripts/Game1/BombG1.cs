@@ -15,7 +15,8 @@ public class BombG1 : MonoBehaviour
     public Explosion01 explosionPrefab;
     public LayerMask explosionLayerMask;
     public float explosionDuration = 1f;
-    public int explosionRadius = 1;
+    public int explosionRadius = 10;
+
 
     public void Awake()
     {

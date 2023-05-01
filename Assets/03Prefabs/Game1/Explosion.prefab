@@ -284,7 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb427d37665e36049b2297daee61c2b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleSprite: {fileID: 1797097651, guid: de4b71a19f88d794496d13208d9357fb, type: 3}
+  idleSprite: {fileID: -719517999, guid: 6f19df6033ed53d4ea58686f475c24aa, type: 3}
   animationSprites:
   - {fileID: -719517999, guid: 6f19df6033ed53d4ea58686f475c24aa, type: 3}
   - {fileID: 1599624752, guid: 6f19df6033ed53d4ea58686f475c24aa, type: 3}
@@ -394,7 +394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb427d37665e36049b2297daee61c2b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleSprite: {fileID: 1797097651, guid: de4b71a19f88d794496d13208d9357fb, type: 3}
+  idleSprite: {fileID: -2129946294, guid: 371015f27fecaf44ea3de71827673f3a, type: 3}
   animationSprites:
   - {fileID: -2129946294, guid: 371015f27fecaf44ea3de71827673f3a, type: 3}
   - {fileID: -962914068, guid: 371015f27fecaf44ea3de71827673f3a, type: 3}

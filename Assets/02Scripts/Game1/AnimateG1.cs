@@ -30,19 +30,25 @@ public class AnimateG1 : MonoBehaviour
         spriteRenderer.enabled = false;
     }
 
+    private void Strat()
+    {
+        InvokeRepeating("NextFrame", animationTime, animationTime);
+    }
+
     private void NextFrame()
     {
         animationFrame++;
-
+        
         if (loop && animationFrame >= animationSprites.Length)
         {
             animationFrame = 0;
         }
-
+        
         if (idle)
         {
             spriteRenderer.sprite = idleSprite;
         }
+
         else if (animationFrame >= 0 && animationFrame < animationSprites.Length)
         {
             spriteRenderer.sprite = animationSprites[animationFrame];

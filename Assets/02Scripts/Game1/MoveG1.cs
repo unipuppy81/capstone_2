@@ -50,7 +50,7 @@ public class MoveG1 : MonoBehaviour
     {
         PlayerG1pos = transform.position;
         BombTimer();
-
+        
         if (Input.GetKey(inputUp)){
             SetDirection(Vector2.up, spriteRendererUp);
         }
@@ -66,6 +66,7 @@ public class MoveG1 : MonoBehaviour
         else{
             SetDirection(Vector2.zero, activeSpriteRenderer);
         }
+        
     }
 
     private void BombTimer()

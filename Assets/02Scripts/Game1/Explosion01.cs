@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Explosion01 : MonoBehaviour
@@ -23,6 +24,4 @@ public class Explosion01 : MonoBehaviour
     {
         Destroy(gameObject, seconds);
     }
-
-
 }
