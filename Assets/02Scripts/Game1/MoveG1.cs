@@ -66,7 +66,7 @@ public class MoveG1 : MonoBehaviour
         else{
             SetDirection(Vector2.zero, activeSpriteRenderer);
         }
-        
+         
     }
 
     private void BombTimer()
@@ -74,7 +74,7 @@ public class MoveG1 : MonoBehaviour
         if (Input.GetKeyDown(inputKey))
         {
             //StartCoroutine(PlaceBomb());
-            UnityEngine.Debug.Log("SpaceBar");
+           
             //StartCoroutine(RandBomb());
             SetBomb();
             
@@ -94,10 +94,10 @@ public class MoveG1 : MonoBehaviour
         //position.x = Mathf.Round(position.x) + 0.5f;
         //position.y = Mathf.Round(position.y) + 0.5f;
 
-        UnityEngine.Debug.Log("RandBomb µé¾î¿È");
+       
 
         GameObject bomb = Instantiate(bombPrefab, position, Quaternion.identity);
-        UnityEngine.Debug.Log("Bomb instantiate");
+       
 
         yield return new WaitForSeconds(3.0f);
 
@@ -106,7 +106,7 @@ public class MoveG1 : MonoBehaviour
         explosion.SetActiveRenderer(explosion.start);
         explosion.DestroyAfter(explosionDuration);
 
-        UnityEngine.Debug.Log("explosion instantiate");
+
 
         Explode(position, Vector2.up, explosionRadius);
         Explode(position, Vector2.down, explosionRadius);
@@ -114,7 +114,6 @@ public class MoveG1 : MonoBehaviour
         Explode(position, Vector2.right, explosionRadius);
 
 
-        UnityEngine.Debug.Log("444");
 
 
         Destroy(bomb);

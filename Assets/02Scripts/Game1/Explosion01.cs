@@ -9,6 +9,7 @@ public class Explosion01 : MonoBehaviour
 
     public void SetActiveRenderer(AnimateG1 renderer)
     {
+        //UnityEngine.Debug.Log("EX");
         start.enabled = renderer == start;
         middle.enabled = renderer == middle;
         end.enabled = renderer == end;

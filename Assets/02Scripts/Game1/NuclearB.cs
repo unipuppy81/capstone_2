@@ -38,10 +38,10 @@ public class NuclearB : MonoBehaviour
         //position.x = Mathf.Round(position.x) + 0.5f;
         //position.y = Mathf.Round(position.y) + 0.5f;
 
-        UnityEngine.Debug.Log("Rand1Bomb µé¾î¿È");
+       // UnityEngine.Debug.Log("Rand1Bomb µé¾î¿È");
 
        // GameObject bomb = Instantiate(bombPrefab, position, Quaternion.identity);
-        UnityEngine.Debug.Log("Bomb 1 instantiate");
+       // UnityEngine.Debug.Log("Bomb 1 instantiate");
 
         yield return new WaitForSeconds(3.0f);
 
@@ -50,7 +50,7 @@ public class NuclearB : MonoBehaviour
         explosion.SetActiveRenderer(explosion.start);
         explosion.DestroyAfter(explosionDuration);
 
-        UnityEngine.Debug.Log("explosion instantiate");
+       // UnityEngine.Debug.Log("explosion instantiate");
 
         Explode(transform.position, Vector2.up, explosionRadius);
         Explode(transform.position, Vector2.down, explosionRadius);
@@ -58,7 +58,7 @@ public class NuclearB : MonoBehaviour
         Explode(transform.position, Vector2.right, explosionRadius);
 
 
-        UnityEngine.Debug.Log("444");
+      //  UnityEngine.Debug.Log("444");
 
 
         Destroy(this);

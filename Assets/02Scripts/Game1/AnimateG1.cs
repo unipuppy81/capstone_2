@@ -10,7 +10,7 @@ public class AnimateG1 : MonoBehaviour
     public Sprite[] animationSprites;
 
     public float animationTime = 0.25f;
-    private int animationFrame;
+    private int animationFrame = 0;
 
     public bool loop = true;
     public bool idle = true;
@@ -22,15 +22,17 @@ public class AnimateG1 : MonoBehaviour
 
     private void OnEnable()
     {
+        UnityEngine.Debug.Log("START");
         spriteRenderer.enabled = true;
     }
 
     private void OnDisable()
     {
+        UnityEngine.Debug.Log("START2222");
         spriteRenderer.enabled = false;
     }
 
-    private void Strat()
+    private void Start()
     {
         InvokeRepeating("NextFrame", animationTime, animationTime);
     }
@@ -38,18 +40,15 @@ public class AnimateG1 : MonoBehaviour
     private void NextFrame()
     {
         animationFrame++;
-        
+
         if (loop && animationFrame >= animationSprites.Length)
         {
             animationFrame = 0;
         }
-        
-        if (idle)
-        {
-            spriteRenderer.sprite = idleSprite;
-        }
 
-        else if (animationFrame >= 0 && animationFrame < animationSprites.Length)
+        if (idle){
+            spriteRenderer.sprite = idleSprite;
+        }else if (animationFrame >= 0 && animationFrame < animationSprites.Length)
         {
             spriteRenderer.sprite = animationSprites[animationFrame];
         }
