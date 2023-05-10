@@ -4,6 +4,7 @@ using UnityEngine;
 using static ButtonManager;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SocialPlatforms.Impl;
 
 [System.Serializable]
 public class Stage
@@ -61,6 +62,8 @@ public class GameManager : MonoBehaviour
     {
         while(isPlay)
         {
+            if (stageScore[curStage] <= runScore1)
+                curStage++;
             runScore1++;
             runScore2++;
             runscore1Text.text = runScore1.ToString();
