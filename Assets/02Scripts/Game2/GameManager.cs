@@ -5,6 +5,13 @@ using static ButtonManager;
 using UnityEngine.UI;
 using TMPro;
 
+[System.Serializable]
+public class Stage
+{
+    public Sprite[] grounds;
+    public GameObject[] mobs;
+}
+
 public class GameManager : MonoBehaviour
 {
     #region instance
@@ -39,7 +46,9 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI runscore2Text;
     public TextMeshProUGUI RunBestScoreText;
 
-    float maxtime = 2;
+    public int curStage;
+    public int[] stageScore;
+    public Stage[] stages;
     private void Start()
     {
         RunBestScoreText.text = PlayerPrefs.GetInt("RunBestScore",0).ToString();
