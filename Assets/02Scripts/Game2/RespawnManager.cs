@@ -1,22 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[System.Serializable]
+public class StageMob
+{
+    public List<GameObject> obs= new List<GameObject>();
+}
 public class RespawnManager : MonoBehaviour
 {
-    public List<GameObject>ObPool = new List<GameObject>();
-    public GameObject[] Obs;
-    public int objCnt = 1;
+    public List<StageMob>ObPool = new List<StageMob>();
 
+    public int objCnt = 1;
+    GameManager gm;
     void Awake()
     {
-        for(int i = 0; i < Obs.Length; i++) 
+        gm = GameManager.instance;
+        for(int i = 0; i <gm.stages.Length; i++) 
         {
-            for(int j = 0; j < objCnt; j++)
+            StageMob stage = new StageMob();
+            for(int x = 0; x < gm.stages[i].mobs.Length; x++)
             {
-                ObPool.Add(CreatObj(Obs[i], transform));
+                for(int q = 0; q < objCnt; q++)
+                {
+                    stage.obs.Add(CreatObj(gm.stages[i].mobs[x], transform));
+                }
             }
+            ObPool.Add(stage);
         }
+        
     }
     private void Start()
     {
@@ -28,8 +39,12 @@ public class RespawnManager : MonoBehaviour
         {
             for(int i = 0; i<ObPool.Count; i++)
             {
-                if (ObPool[i].activeSelf)
-                    ObPool[i].SetActive(false);
+                for(int x = 0; x < ObPool[i].obs.Count; x++)
+                {
+                    if (ObPool[i].obs[x].activeSelf)
+                        ObPool[i].obs[x].SetActive(false);
+                }
+                
             }
             StartCoroutine(CreateOb());
         }
@@ -41,19 +56,20 @@ public class RespawnManager : MonoBehaviour
     IEnumerator CreateOb()
     {
         yield return new WaitForSeconds(0.5f);
+
         while(GameManager.instance.isPlay)
         {
-            ObPool[DeactiveOb()].SetActive(true);
+            ObPool[gm.curStage].obs[DeactiveOb(ObPool[gm.curStage].obs)].SetActive(true);
             yield return new WaitForSeconds(Random.Range(1f, 3f));
         }
     }
 
-    int DeactiveOb()
+    int DeactiveOb(List<GameObject>obs)
     {
         List<int> num = new List<int>();
-        for(int i = 0; i<ObPool.Count; i++) 
+        for(int i = 0; i<obs.Count; i++) 
         {
-            if (!ObPool[i].activeSelf)
+            if (!obs[i].activeSelf)
             {
                 num.Add(i);
             }

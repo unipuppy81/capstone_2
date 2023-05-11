@@ -6,7 +6,7 @@ public class GroundScroller : MonoBehaviour
 {
     public SpriteRenderer[] tiles; // 바닥 오브젝트 배열
     public Sprite[] groundImg;
-
+    
     public float speed;
     void Start()
     {

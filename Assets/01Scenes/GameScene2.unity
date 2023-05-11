@@ -3620,6 +3620,34 @@ MonoBehaviour:
   runscore1Text: {fileID: 868319502}
   runscore2Text: {fileID: 1161501895}
   RunBestScoreText: {fileID: 1794282308}
+  curStage: 0
+  stageScore: c8000000f40100004c040000dc050000d0070000
+  stages:
+  - grounds:
+    - {fileID: 21300000, guid: 8687927d9bd18b746b02c73342ce6bcb, type: 3}
+    mobs:
+    - {fileID: 8872782680405367958, guid: d34d91ea3fd269f42849fb5c8677176d, type: 3}
+    - {fileID: 1088522167661511260, guid: 2281ccfee8d562c4f8ce053d491163b3, type: 3}
+  - grounds:
+    - {fileID: 21300000, guid: e1e41b3909c231948ac2ccb7daba3533, type: 3}
+    mobs:
+    - {fileID: 8872782680405367958, guid: d34d91ea3fd269f42849fb5c8677176d, type: 3}
+    - {fileID: 1088522167661511260, guid: 2281ccfee8d562c4f8ce053d491163b3, type: 3}
+  - grounds:
+    - {fileID: 21300000, guid: 8687927d9bd18b746b02c73342ce6bcb, type: 3}
+    mobs:
+    - {fileID: 8872782680405367958, guid: d34d91ea3fd269f42849fb5c8677176d, type: 3}
+    - {fileID: 1088522167661511260, guid: 2281ccfee8d562c4f8ce053d491163b3, type: 3}
+  - grounds:
+    - {fileID: 21300000, guid: e1e41b3909c231948ac2ccb7daba3533, type: 3}
+    mobs:
+    - {fileID: 8872782680405367958, guid: d34d91ea3fd269f42849fb5c8677176d, type: 3}
+    - {fileID: 1088522167661511260, guid: 2281ccfee8d562c4f8ce053d491163b3, type: 3}
+  - grounds:
+    - {fileID: 21300000, guid: 8687927d9bd18b746b02c73342ce6bcb, type: 3}
+    mobs:
+    - {fileID: 8872782680405367958, guid: d34d91ea3fd269f42849fb5c8677176d, type: 3}
+    - {fileID: 1088522167661511260, guid: 2281ccfee8d562c4f8ce053d491163b3, type: 3}
 --- !u!4 &486303600
 Transform:
   m_ObjectHideFlags: 0
@@ -4549,9 +4577,6 @@ MonoBehaviour:
   - {fileID: 1795433547}
   - {fileID: 147496106}
   - {fileID: 1958768339}
-  groundImg:
-  - {fileID: 21300000, guid: 8687927d9bd18b746b02c73342ce6bcb, type: 3}
-  - {fileID: 21300000, guid: 8687927d9bd18b746b02c73342ce6bcb, type: 3}
   speed: 0
 --- !u!4 &669424098
 Transform:
@@ -12404,9 +12429,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObPool: []
-  Obs:
-  - {fileID: 8872782680405367958, guid: d34d91ea3fd269f42849fb5c8677176d, type: 3}
-  - {fileID: 1088522167661511260, guid: 2281ccfee8d562c4f8ce053d491163b3, type: 3}
   objCnt: 4
 --- !u!4 &2137050183
 Transform:

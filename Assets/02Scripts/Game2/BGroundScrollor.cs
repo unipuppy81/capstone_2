@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class BGroundScrollor : MonoBehaviour
 {
     public SpriteRenderer[] tiles; // 바닥 오브젝트 배열
-    public Sprite[] groundImg;
+    //public Sprite[] groundImg;
 
     public float speed;
+    GameManager gm;
     void Start()
     {
+        gm = GameManager.instance;
         tmp = tiles[0];
     }
     SpriteRenderer tmp;
@@ -28,7 +31,7 @@ public class BGroundScrollor : MonoBehaviour
                             tmp = tiles[j];
                     }
                     tiles[i].transform.position = new Vector2(tmp.transform.position.x + 4.1f, 0.5f);
-                    tiles[i].sprite = groundImg[Random.Range(0, groundImg.Length)];
+                    tiles[i].sprite = gm.stages[gm.curStage].grounds[Random.Range(0, gm.stages[gm.curStage].grounds.Length)];
                 }
             }
             for (int i = 0; i < tiles.Length; i++)

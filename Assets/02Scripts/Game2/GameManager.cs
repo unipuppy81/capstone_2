@@ -62,8 +62,12 @@ public class GameManager : MonoBehaviour
     {
         while(isPlay)
         {
-            if (stageScore[curStage] <= runScore1)
-                curStage++;
+            try {
+                if (stageScore[curStage] <= runScore1)
+                    curStage++;
+            }
+            catch { }
+            
             runScore1++;
             runScore2++;
             runscore1Text.text = runScore1.ToString();
@@ -77,6 +81,7 @@ public class GameManager : MonoBehaviour
         playbtn.SetActive(false);
         explainPanel.SetActive(false);
         GameoverPanel.SetActive(false );
+        curStage = 0;
         isPlay = true;
         onPlay.Invoke(isPlay);
         gameSpeed = 1;
