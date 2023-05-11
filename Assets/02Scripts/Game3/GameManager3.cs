@@ -23,6 +23,8 @@ public class GameManager3 : MonoBehaviour
     [SerializeField]
     private GameObject enemy2;
     [SerializeField]
+    private GameObject enemy3;
+    [SerializeField]
     private GameObject coin;
     [SerializeField]
     private GameObject coin2;
@@ -46,8 +48,10 @@ public class GameManager3 : MonoBehaviour
 
     IEnumerator e1;
     IEnumerator e2;
+    IEnumerator e3;
     IEnumerator c1;
     IEnumerator c2;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -56,6 +60,7 @@ public class GameManager3 : MonoBehaviour
 
         e1 = CreateEnemyRoutine();
         e2 = CreateEnemy2Routine();
+        e3 = CreateEnemy3Routine();
         c1 = CreatecoinRoutine();
         c2 = Createcoin2Routine();
     }
@@ -89,6 +94,7 @@ public class GameManager3 : MonoBehaviour
         stopTrigger = true;
         StartCoroutine(e1);
         StartCoroutine(e2);
+        StartCoroutine(e3);
         StartCoroutine(c1);
         StartCoroutine(c2);
         panel.SetActive(false);
@@ -100,6 +106,7 @@ public class GameManager3 : MonoBehaviour
 
         StopCoroutine(e1);
         StopCoroutine(e2);
+        StopCoroutine(e3);
         StopCoroutine(c1);
         StopCoroutine(c2);
 
@@ -126,6 +133,15 @@ public class GameManager3 : MonoBehaviour
         {
             CreateEnemy2();
             yield return new WaitForSeconds(3.0f);
+        }
+    }
+
+    IEnumerator CreateEnemy3Routine()
+    {
+        while (true)
+        {
+            CreateEnemy3();
+            yield return new WaitForSeconds(5.0f);
         }
     }
 
@@ -163,6 +179,17 @@ public class GameManager3 : MonoBehaviour
         if(score >= 10)
         {
             Instantiate(enemy2, pos, Quaternion.identity);
+        }
+    }
+
+    private void CreateEnemy3()
+    {
+        a = Random.Range(0.0f, 1.0f);
+        Vector3 pos = Camera.main.ViewportToWorldPoint(new Vector3(a, 1.1f, 0));
+        pos.z = 0.0f;
+        if (score >= 0)
+        {
+            Instantiate(enemy3, pos, Quaternion.identity);
         }
     }
 
