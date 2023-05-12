@@ -7,10 +7,13 @@ using UnityEngine;
 public class MoveG1 : MonoBehaviour
 {
     static public Vector2 PlayerG1pos;
+    
 
     public new Rigidbody2D rigidbody { get; private set; }
     private Vector2 direction = Vector2.down;
     public float speed = 5f;
+    public float gameTime;
+    public bool isDead;
 
     public Vector2 position;
 
@@ -24,6 +27,8 @@ public class MoveG1 : MonoBehaviour
     public AnimateG1 spriteRendererDown;
     public AnimateG1 spriteRendererLeft;
     public AnimateG1 spriteRendererRight;
+    public AnimateG1 spriteRendererDeath;
+
     private AnimateG1 activeSpriteRenderer;
 
 
@@ -43,14 +48,18 @@ public class MoveG1 : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
         activeSpriteRenderer = spriteRendererDown;
         position = PlayerG1pos;
+        isDead = false;
+        gameTime = 0.0f;
     }
 
 
     private void Update()
     {
         PlayerG1pos = transform.position;
+        GameTimer();
         BombTimer();
-        
+
+
         if (Input.GetKey(inputUp)){
             SetDirection(Vector2.up, spriteRendererUp);
         }
@@ -67,6 +76,14 @@ public class MoveG1 : MonoBehaviour
             SetDirection(Vector2.zero, activeSpriteRenderer);
         }
          
+    }
+
+    private void GameTimer()
+    {
+        if(!isDead)
+        {
+            gameTime += Time.deltaTime;
+        }
     }
 
     private void BombTimer()
@@ -149,6 +166,7 @@ public class MoveG1 : MonoBehaviour
             other.isTrigger = false;
         }
     }
+
     private void FixedUpdate()
     {
         Vector2 position = rigidbody.position;
@@ -169,5 +187,34 @@ public class MoveG1 : MonoBehaviour
 
         activeSpriteRenderer = spriteRenderer;
         activeSpriteRenderer.idle = direction == Vector2.zero;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Explosion"))
+        {
+            DeathSequence();
+        }
+    }
+
+    private void DeathSequence()
+    {
+        enabled = false;
+        GetComponent<BombG1>().enabled = false;
+
+        spriteRendererUp.enabled = false;
+        spriteRendererDown.enabled = false;
+        spriteRendererLeft.enabled = false;
+        spriteRendererRight.enabled = false;
+        spriteRendererDeath.enabled = true;
+
+        Invoke("OnDeathSquenceEnded",1.25f);
+    }
+      
+    private void OnDeathSquenceEnded()
+    {
+        isDead = true;
+        gameObject.SetActive(false);
+
     }
 }
