@@ -74,19 +74,20 @@ public class GameManager3 : MonoBehaviour
     public void Score() // 1Á¡ È¹µæ
     {
         score++;
-        scoreTxt.text = "Score : " + score;
+        //scoreTxt.text = "Score : " + score;
+        scoreTxt.text = ""+ score;
     }
 
     public void Score2() // 2Á¡ È¹µæ
     {
         score += 2;
-        scoreTxt.text = "Score : " + score;
+        scoreTxt.text = "" + score;
     }
 
     public void Score3() // 3Á¡ È¹µæ
     {
         score += 3;
-        scoreTxt.text = "Score : " + score;
+        scoreTxt.text = "" + score;
     }
 
     public void GameStart()
