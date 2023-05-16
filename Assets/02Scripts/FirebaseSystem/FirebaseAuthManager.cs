@@ -8,6 +8,8 @@ public class FirebaseAuthManager
 {
     private static FirebaseAuthManager instance = null;
 
+
+
     public static FirebaseAuthManager Instance
     {
         get
@@ -21,12 +23,14 @@ public class FirebaseAuthManager
         }
     }
 
+
+    public Action<bool> LoginState;
+
     private FirebaseAuth auth;
     private FirebaseUser user;
 
     public string UserId => user.UserId;
 
-    public Action<bool> LoginState;
     public void Init()
     {
         auth = FirebaseAuth.DefaultInstance;
