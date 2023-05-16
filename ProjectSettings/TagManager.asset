@@ -10,6 +10,7 @@ TagManager:
   - Enemy
   - up
   - down
+  - BGM
   layers:
   - Default
   - TransparentFX

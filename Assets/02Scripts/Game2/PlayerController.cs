@@ -56,12 +56,13 @@ public class PlayerController : MonoBehaviour
     {
         rigi.simulated = false;
         // »ç¿îµå
-        ChangeAnim(State.hit);
-
+        
         if (collision.CompareTag("Ob"))
         {
+            ChangeAnim(State.hit);
             GameManager.instance.GameOver();
         }
+        
     }
 
     public void UpBtn()
@@ -71,6 +72,7 @@ public class PlayerController : MonoBehaviour
             isJump = true;
             rigi.AddForce(Vector2.up * startJumpPower, ForceMode2D.Impulse);
         }
+        Debug.Log("up");
     }
 
     public void DownBtn()
