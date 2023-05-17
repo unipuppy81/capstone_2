@@ -78,6 +78,7 @@ public class GameManager : MonoBehaviour
     }
     public void Playbtn()
     {
+        //AudioManager.instance.PlaySfx(AudioManager.Sfx.Start);
         playbtn.SetActive(false);
         explainPanel.SetActive(false);
         GameoverPanel.SetActive(false );
@@ -95,11 +96,11 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         GameoverPanel.SetActive(true);
-        //playbtn.SetActive(true);
-        //explainPanel.SetActive(true);
         isPlay = false;
         onPlay.Invoke(isPlay);
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.GameOve);
         StopCoroutine(AddScore());
+        StopCoroutine(GameoverRoutine());
         //최고점수
         if (PlayerPrefs.GetInt("RunBestScore", 0) < runScore1)
         {
@@ -112,8 +113,11 @@ public class GameManager : MonoBehaviour
         PausePanel.SetActive(true);
         Time.timeScale = 0;
     }
+
     IEnumerator GameoverRoutine()
     {
+        
         yield return new WaitForSeconds(1f);
+       
     }
 }
