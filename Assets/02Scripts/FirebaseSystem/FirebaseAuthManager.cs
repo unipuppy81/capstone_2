@@ -6,9 +6,9 @@ using System;
 
 public class FirebaseAuthManager
 {
+    public GameObject LoginPanel;
+
     private static FirebaseAuthManager instance = null;
-
-
 
     public static FirebaseAuthManager Instance
     {
@@ -97,6 +97,8 @@ public class FirebaseAuthManager
 
             FirebaseUser newUser = task.Result.User;
             Debug.LogError("로그인 완료");
+            //LoginPanel.SetActive(false);
+
         });
     }
 
