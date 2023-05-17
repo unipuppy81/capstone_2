@@ -12,7 +12,8 @@ public class DatabaseManager : MonoBehaviour
     public string nameField;
     public string scoreField;
 
-    public string name = "ABA";
+    public string userid = "222@222.22";
+    public string name = "김재우";
     public string score= "12";
 
     // json 파일로 만들기 위해 class 정의
@@ -32,6 +33,8 @@ public class DatabaseManager : MonoBehaviour
 
     private void Start()
     {
+        userid = "naver";
+
         // 데이터 쓰려면 databasereference의 인스턴트가 필요
         databaseReference = FirebaseDatabase.DefaultInstance.RootReference;
     }
@@ -44,7 +47,7 @@ public class DatabaseManager : MonoBehaviour
         var userScore = new Data(name, score);
         string jsonData = JsonUtility.ToJson(userScore);
 
-        databaseReference.Child(name).SetRawJsonValueAsync(jsonData);
+        databaseReference.Child(userid).SetRawJsonValueAsync(jsonData);
         //databaseReference.Child(email).SetRawJsonValueAsync(jsonData);
     }
     /*
