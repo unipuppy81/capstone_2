@@ -1,54 +1,56 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 using TMPro;
 using Firebase.Database;
-using static System.Net.Mime.MediaTypeNames;
+using Firebase.Unity;
+using static System.Net.Mime.MediaTypeNames; // using Firebase.Unity.Editor; 에러난 Editor 삭제
 
 public class DatabaseManager : MonoBehaviour
 {
-    public TMP_InputField emailField;
-    public TMP_InputField levelField;
-    public TMP_InputField goldField;
-    public TMP_Text text;
+    public string nameField;
+    public string scoreField;
 
-    public string email;
-    public string level;
-    public string gold;
+    public string userid = "222@222.22";
+    public string name = "김재우";
+    public string score= "12";
 
+    // json 파일로 만들기 위해 class 정의
     public class Data
     {
-        public string level;
-        public string gold;
+        public string name;
+        public string score;
 
-        public Data(string level, string gold)
+        public Data(string name, string score)
         {
-            this.level = level;
-            this.gold = gold;
+            this.name = name;
+            this.score = score;
         }
     }
-
+    // databasereference 변수 선언
     private DatabaseReference databaseReference;
 
     private void Start()
     {
+        userid = "naver";
+
+        // 데이터 쓰려면 databasereference의 인스턴트가 필요
         databaseReference = FirebaseDatabase.DefaultInstance.RootReference;
     }
 
     public void OnClickSaveButton()
     {
-        email = emailField.text.Trim();
-        level = levelField.text.Trim();
-        gold = goldField.text.Trim();
+        //name = nameField.text.Trim();
+        //score = scoreField.text.Trim();
 
-        var data = new Data(level, gold);
-        string jsonData = JsonUtility.ToJson(data);
+        var userScore = new Data(name, score);
+        string jsonData = JsonUtility.ToJson(userScore);
 
-        databaseReference.Child(email).SetRawJsonValueAsync(jsonData);
-
-        text.text = "저장";
+        databaseReference.Child(userid).SetRawJsonValueAsync(jsonData);
+        //databaseReference.Child(email).SetRawJsonValueAsync(jsonData);
     }
-
+    /*
     public void OnClickLoadButton()
     {
         email = emailField.text.Trim();
@@ -77,4 +79,5 @@ public class DatabaseManager : MonoBehaviour
             }
         });
     }
+    */
 }
