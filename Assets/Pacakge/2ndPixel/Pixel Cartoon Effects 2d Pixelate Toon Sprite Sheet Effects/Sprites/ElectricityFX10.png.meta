@@ -475,7 +475,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Electricity10_12: 21300024
+      Electricity10_1: 21300002
       Electricity10_11: 21300022
       Electricity10_0: 21300000
       Electricity10_5: 21300010
@@ -488,7 +488,7 @@ TextureImporter:
       Electricity10_13: 21300026
       Electricity10_3: 21300006
       Electricity10_4: 21300008
-      Electricity10_1: 21300002
+      Electricity10_12: 21300024
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -30,6 +30,7 @@ public class DatabaseManager : MonoBehaviour
     }
     // databasereference 변수 선언
     private DatabaseReference databaseReference;
+    int count = 1;
 
     private void Start()
     {
@@ -38,8 +39,8 @@ public class DatabaseManager : MonoBehaviour
         // 데이터 쓰려면 databasereference의 인스턴트가 필요
         databaseReference = FirebaseDatabase.DefaultInstance.RootReference;
     }
-
-    public void OnClickSaveButton()
+    
+    public void writeNewUser(string userId, string name, string email)
     {
         //name = nameField.text.Trim();
         //score = scoreField.text.Trim();
@@ -47,8 +48,13 @@ public class DatabaseManager : MonoBehaviour
         var userScore = new Data(name, score);
         string jsonData = JsonUtility.ToJson(userScore);
 
-        databaseReference.Child(userid).SetRawJsonValueAsync(jsonData);
+        databaseReference.Child(userid).Child("num" + count.ToString()).SetRawJsonValueAsync(jsonData);
         //databaseReference.Child(email).SetRawJsonValueAsync(jsonData);
+    }
+    public void OnClickSaveButton()
+    {
+        writeNewUser("personal information", "googleman", "google@google.com");
+        count++;
     }
     /*
     public void OnClickLoadButton()
@@ -80,4 +86,45 @@ public class DatabaseManager : MonoBehaviour
         });
     }
     */
+
+    public void LoadButton()
+    {
+        readUser("Perzzz");
+    }
+    private void readUser(string userid)
+    {
+        databaseReference = FirebaseDatabase.DefaultInstance.GetReference("naver");
+
+        //reference의 자식(userId)를 task로 받음
+        //databaseReference.Child(userid).GetValueAsync().ContinueWith(task =>
+         databaseReference.GetValueAsync().ContinueWith(task =>
+         {
+            string t;
+            t = task.ToString();
+            Debug.Log(task);
+
+            
+
+            if (task.IsFaulted)
+            {
+                // Handle the error
+                Debug.Log("error");
+            }
+            else if (task.IsCompleted)
+            {
+                //DataSnapShot 변수를 선언하여 task의 결과 값을 받음
+                DataSnapshot snapshot = task.Result;
+                // Do something with snapshot ...
+                // snapShot의 자식 개수를 확인
+                Debug.Log(snapshot.ChildrenCount);
+
+                //foreach 문으로 각각 데이터를 IDictionary로 변환해 각 이름에 맞게 변수 초기화
+                foreach (DataSnapshot data in snapshot.Children)
+                {
+                    IDictionary personInfo = (IDictionary)data.Value;
+                    Debug.Log("name : " + personInfo["name"] + ", score: " + personInfo["score"]);
+                }
+            }
+        });
+    }
 }

@@ -667,7 +667,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Water11_7: 21300014
+      Water11_0: 21300000
       Water11_12: 21300024
       Water11_1: 21300002
       Water11_2: 21300004
@@ -688,7 +688,7 @@ TextureImporter:
       Water11_9: 21300018
       Water11_15: 21300030
       Water11_20: 21300040
-      Water11_0: 21300000
+      Water11_7: 21300014
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

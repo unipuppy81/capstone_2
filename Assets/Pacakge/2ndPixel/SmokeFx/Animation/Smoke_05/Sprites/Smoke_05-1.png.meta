@@ -523,7 +523,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Smoke_05-1 8: 5204903087289717954
+      Smoke_05-1 0: 6083207653651572365
       Smoke_05-1 13: 5301652427219355507
       Smoke_05-1 12: 5627860666328523258
       Smoke_05-1 10: 8540905513544140694
@@ -538,7 +538,7 @@ TextureImporter:
       Smoke_05-1 11: -7235681425087130914
       Smoke_05-1 6: -1304957666137637165
       Smoke_05-1 9: -1661394005525601153
-      Smoke_05-1 0: 6083207653651572365
+      Smoke_05-1 8: 5204903087289717954
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

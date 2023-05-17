@@ -835,11 +835,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Fire5_18: 21300036
       Fire5_1: 21300002
       Fire5_4: 21300008
-      Fire5_25: 21300050
+      Fire5_12: 21300024
       Fire5_21: 21300042
+      Fire5_17: 21300034
       Fire5_27: 21300054
       Fire5_11: 21300022
       Fire5_14: 21300028
@@ -862,8 +862,8 @@ TextureImporter:
       Fire5_6: 21300012
       Fire5_22: 21300044
       Fire5_7: 21300014
-      Fire5_12: 21300024
-      Fire5_17: 21300034
+      Fire5_25: 21300050
+      Fire5_18: 21300036
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
