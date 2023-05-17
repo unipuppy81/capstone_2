@@ -5,18 +5,12 @@ using UnityEngine;
 using TMPro;
 using Firebase.Database;
 using Firebase.Unity;
-using static System.Net.Mime.MediaTypeNames; // using Firebase.Unity.Editor; 에러난 Editor 삭제
+using static System.Net.Mime.MediaTypeNames;
+using System;
 
 public class DatabaseManager : MonoBehaviour
 {
-    public string nameField;
-    public string scoreField;
 
-    public string userid = "222@222.22";
-    public string name = "김재우";
-    public string score= "12";
-
-    // json 파일로 만들기 위해 class 정의
     public class Data
     {
         public string name;
@@ -28,9 +22,23 @@ public class DatabaseManager : MonoBehaviour
             this.score = score;
         }
     }
-    // databasereference 변수 선언
+
+    public string nameField;
+    public string scoreField;
+
+    public string userid;
+    public string name;
+    public string score;
+
     private DatabaseReference databaseReference;
     int count = 1;
+
+    public TMP_Text[] Rank = new TMP_Text[10];
+
+    private string[] strRank;
+    private long strLen;
+
+    private bool textLoadBool = false;
 
     private void Start()
     {
@@ -39,12 +47,80 @@ public class DatabaseManager : MonoBehaviour
         // 데이터 쓰려면 databasereference의 인스턴트가 필요
         databaseReference = FirebaseDatabase.DefaultInstance.RootReference;
     }
-    
+
+    private void Update()
+    {
+        // 현재 첫번째 Text UI가 "Loading" 이면,
+        // 즉, 스크립트를 컴포넌트하고있는 게임 오브젝트가 Activeself(true) 이면,
+        if (Rank[0].text == "Loading..")
+        {
+            DataLoad();
+        }
+    }
+
+    private void LateUpdate()
+    {
+        if (textLoadBool)
+        {
+            TextLoad();
+        }
+        if (Time.timeScale != 0.0f) Time.timeScale = 0.0f;
+    }
+
+    public void DataLoad()
+    {
+        databaseReference = FirebaseDatabase.DefaultInstance.GetReference("rank");
+
+        databaseReference.GetValueAsync().ContinueWith(task =>
+        {
+            if (task.IsFaulted)
+            {
+                DataLoad();
+            }
+            else if (task.IsCompleted)
+            {
+                DataSnapshot snapshot = task.Result;
+
+                int count1 = 0;
+                strLen = snapshot.ChildrenCount;
+                strRank = new string[strLen];
+
+                foreach (DataSnapshot data in snapshot.Children)
+                {
+                    // 받은 데이터들을 하나씩 잘라 string 배열에 저장
+                    IDictionary rankInfo = (IDictionary)data.Value;
+
+                    strRank[count] = rankInfo["name"].ToString() + " | " + string.Format("{0:N2}", rankInfo["score"]);
+
+                    count1++;
+                }
+            }
+        });
+    }
+
+    public void TextLoad()
+    {
+        textLoadBool = false;
+        try
+        {
+            // 받아온 데이터 정렬 =?> 위에서부터 아래로
+            Array.Sort(strRank, (x, y) => string.Compare(
+                y.Substring(y.Length - 5, 5).ToString() + x.Substring(x.Length - 5, 5).ToString(),
+                x.Substring(x.Length - 5, 5).ToString() + y.Substring(y.Length - 5, 5).ToString()));
+        }
+        catch(NullReferenceException e)
+        {
+            return;
+        }
+
+        for(int i = 0; i < Rank.Length; i++)
+        {
+            if (strLen <= i) return;
+            Rank[i].text = strRank[i];
+        }
+    }
     public void writeNewUser(string userId, string name, string email)
     {
-        //name = nameField.text.Trim();
-        //score = scoreField.text.Trim();
-
         var userScore = new Data(name, score);
         string jsonData = JsonUtility.ToJson(userScore);
 
@@ -53,7 +129,7 @@ public class DatabaseManager : MonoBehaviour
     }
     public void OnClickSaveButton()
     {
-        writeNewUser("personal information", "googleman", "google@google.com");
+        writeNewUser(userid, name, score);
         count++;
     }
     /*
@@ -93,18 +169,13 @@ public class DatabaseManager : MonoBehaviour
     }
     private void readUser(string userid)
     {
-        databaseReference = FirebaseDatabase.DefaultInstance.GetReference("naver");
+        string set = "naver";
+        databaseReference = FirebaseDatabase.DefaultInstance.GetReference(set);
 
         //reference의 자식(userId)를 task로 받음
         //databaseReference.Child(userid).GetValueAsync().ContinueWith(task =>
          databaseReference.GetValueAsync().ContinueWith(task =>
          {
-            string t;
-            t = task.ToString();
-            Debug.Log(task);
-
-            
-
             if (task.IsFaulted)
             {
                 // Handle the error
@@ -127,4 +198,6 @@ public class DatabaseManager : MonoBehaviour
             }
         });
     }
+
+
 }
