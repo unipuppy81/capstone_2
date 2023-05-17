@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "64941542849",
+    "firebase_url": "https://kmukt-1-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "kmukt-1",
+    "storage_bucket": "kmukt-1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:64941542849:android:309c7f73b720760a4b7340",
+        "android_client_info": {
+          "package_name": "com.company.kmukt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "64941542849-d8k3725srb9lv7qusijnffljlav2jc09.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFHB3Vw8X6kOZKjPfczaMxhxlkMh-YklA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "64941542849-d8k3725srb9lv7qusijnffljlav2jc09.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "64941542849-s2605tdtdo8qjs98e3a3svo3ugal0d47.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.company.kmukt"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

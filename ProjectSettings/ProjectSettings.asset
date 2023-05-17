@@ -157,6 +157,7 @@ PlayerSettings:
   applicationIdentifier:
     Android: com.company.kmukt
     Standalone: com.DefaultCompany.2DProject
+    iPhone: com.company.kmukt
   buildNumber:
     Standalone: 0
     iPhone: 0
