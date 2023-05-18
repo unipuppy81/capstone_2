@@ -72,6 +72,9 @@ public class LoginSystem : MonoBehaviour
 
     public void PanelSet()
     {
+        id.text = string.Empty;
+        password.text = string.Empty;
+
         SignupPanel.SetActive(false);
         LoginPanel.SetActive(true);
         TPanel.SetActive(false);
