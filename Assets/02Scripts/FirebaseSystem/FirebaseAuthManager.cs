@@ -6,8 +6,6 @@ using System;
 
 public class FirebaseAuthManager
 {
-    public GameObject LoginPanel;
-
     private static FirebaseAuthManager instance = null;
 
     public static FirebaseAuthManager Instance
@@ -34,7 +32,7 @@ public class FirebaseAuthManager
     public void Init()
     {
         auth = FirebaseAuth.DefaultInstance;
-
+        for (int i = 0; i < 5; i++) { Logout(); }
         auth.StateChanged += OnChanged;
     }
 

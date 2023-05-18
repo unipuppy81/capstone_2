@@ -1,27 +1,36 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BlinkAnim : MonoBehaviour
 {
+    public Image image;
     float time;
     // Start is called before the first frame update
     void Start()
     {
-        
+        image = image.GetComponent<Image>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (time < 0.5f) 
+        Color color = image.color;
+
+        if (time < 0.75f) 
         {
-            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1 - time);
+            //tempColor = new Color(1, 1, 1, 1 - time);
+            color.a = time;
+            image.color = color;
         }
         else
         {
-            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, time);
-            if(time > 1f)
+           //tempColor = new Color(1, 1, 1, time);
+            color.a = time;
+            image.color = color;
+            if(time > 1.5f)
             {
                 time = 0f;
             }
