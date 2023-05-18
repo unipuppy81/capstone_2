@@ -52,19 +52,24 @@ public class DatabaseManager : MonoBehaviour
     {
         // 현재 첫번째 Text UI가 "Loading" 이면,
         // 즉, 스크립트를 컴포넌트하고있는 게임 오브젝트가 Activeself(true) 이면,
+        /*
         if (Rank[0].text == "Loading..")
         {
             DataLoad();
         }
+        */
     }
 
     private void LateUpdate()
     {
+        /*
         if (textLoadBool)
         {
             TextLoad();
         }
         if (Time.timeScale != 0.0f) Time.timeScale = 0.0f;
+        */
+
     }
 
     public void DataLoad()
