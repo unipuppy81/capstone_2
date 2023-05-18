@@ -35,12 +35,18 @@ public class LoginSystem : MonoBehaviour
         {
             FirebaseAuthManager.Instance.Logout();
         }
+
+        if(FirebaseAuthManager.Instance.isLogin == true){
+            PanelSet();
+            FirebaseAuthManager.Instance.isLogin = false;
+        }
     }
 
     private void OnChangedState(bool sign)
     {
         outputText.text = sign ? "LogIn : " : "LogOut : ";
         outputText.text += FirebaseAuthManager.Instance.UserId;
+
         if (sign)
         {
             LoginPanel.SetActive(false);
@@ -59,8 +65,16 @@ public class LoginSystem : MonoBehaviour
         string p = pw_signUp.text;
 
         FirebaseAuthManager.Instance.Create(i, p);
+
+        //UnityEngine.Debug.Log("ABC");
+        //FirebaseAuthManager.Instance.Logout();
+    }
+
+    public void PanelSet()
+    {
         SignupPanel.SetActive(false);
         LoginPanel.SetActive(true);
+        TPanel.SetActive(false);
     }
 
     public void Login()
@@ -75,13 +89,21 @@ public class LoginSystem : MonoBehaviour
 
     public void OpenSignup()
     {
+        id_signUp.text = string.Empty;
+        pw_signUp.text = string.Empty;
+
+
         LoginPanel.SetActive(false);
         SignupPanel.SetActive(true);
     }
 
     public void BackBtn()
     {
+        id.text = string.Empty;
+        password.text = string.Empty;
+
         LoginPanel.SetActive(true);
         SignupPanel.SetActive(false);
+
     }
 }

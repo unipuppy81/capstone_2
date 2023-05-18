@@ -27,10 +27,16 @@ public class FirebaseAuthManager
     private FirebaseAuth auth;
     private FirebaseUser user;
 
+    LoginSystem loginSystem;
+
     public string UserId => user.UserId;
+
+    public bool isLogin;
 
     public void Init()
     {
+        isLogin = false;
+        loginSystem = GameObject.Find("Canvas").GetComponent<LoginSystem>();
         auth = FirebaseAuth.DefaultInstance;
         auth.StateChanged += OnChanged;
         Logout();
@@ -74,6 +80,9 @@ public class FirebaseAuthManager
 
             FirebaseUser newUser = task.Result.User;
             Debug.LogError("회원가입 완료");
+            Logout();
+            isLogin = true;
+
         });
     }
 
