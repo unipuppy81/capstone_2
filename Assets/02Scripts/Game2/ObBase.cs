@@ -11,11 +11,6 @@ public class ObBase : MonoBehaviour
     {
         transform.position = StartPosition;
     }
-    void Start()
-    {
-
-    }
-
 
     void Update()
     {

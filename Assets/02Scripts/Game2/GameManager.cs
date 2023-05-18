@@ -82,7 +82,6 @@ public class GameManager : MonoBehaviour
     }
     public void Playbtn()
     {
-        //AudioManager.instance.PlayBgm(true);
         playbtn.SetActive(false);
         explainPanel.SetActive(false);
         GameoverPanel.SetActive(false );
@@ -105,8 +104,6 @@ public class GameManager : MonoBehaviour
         Overbgm.SetActive(true);
         isPlay = false;
         onPlay.Invoke(isPlay);
-        //AudioManager.instance.PlayBgm(false);
-        //AudioManager.instance.PlaySfx(AudioManager.Sfx.GameOver);
         StopCoroutine(AddScore());
         StopCoroutine(GameoverRoutine());
         //최고점수
