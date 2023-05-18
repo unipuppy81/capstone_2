@@ -305,6 +305,7 @@ GameObject:
   m_Component:
   - component: {fileID: 235300266}
   - component: {fileID: 235300264}
+  - component: {fileID: 235300267}
   m_Layer: 5
   m_Name: SFXSlider
   m_TagString: Untagged
@@ -356,17 +357,17 @@ MonoBehaviour:
   m_FillRect: {fileID: 482528664}
   m_HandleRect: {fileID: 1601696418}
   m_Direction: 0
-  m_MinValue: -40
-  m_MaxValue: 0
+  m_MinValue: 0.0001
+  m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 886803814}
+      - m_Target: {fileID: 235300267}
         m_TargetAssemblyTypeName: SetVoulum, Assembly-CSharp
-        m_MethodName: SPXControl
-        m_Mode: 1
+        m_MethodName: SFXSetLevel
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -398,6 +399,24 @@ RectTransform:
   m_AnchoredPosition: {x: 72.362, y: -46}
   m_SizeDelta: {x: 510.43, y: 88.4}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &235300267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 235300263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d56e12859f6915e4eb2bc32580a2e3a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Mmixer: {fileID: 24100000, guid: 10a24b69fb89f1849aaca712a6b63708, type: 2}
+  Bgmmixer: {fileID: 24100000, guid: 10a24b69fb89f1849aaca712a6b63708, type: 2}
+  Sfxmixer: {fileID: 24100000, guid: 10a24b69fb89f1849aaca712a6b63708, type: 2}
+  Mslider: {fileID: 1480272219}
+  Bgmslider: {fileID: 851722939}
+  Sfxslider: {fileID: 235300264}
 --- !u!1 &259553358
 GameObject:
   m_ObjectHideFlags: 0
@@ -973,6 +992,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 854024227}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: e731aae28d7ef49e1a76eca2a3c62500, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &666292092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1137,7 +1168,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &851722937
 GameObject:
@@ -1149,6 +1180,7 @@ GameObject:
   m_Component:
   - component: {fileID: 851722938}
   - component: {fileID: 851722939}
+  - component: {fileID: 851722940}
   m_Layer: 5
   m_Name: BGMSlider
   m_TagString: Untagged
@@ -1223,17 +1255,17 @@ MonoBehaviour:
   m_FillRect: {fileID: 929550614}
   m_HandleRect: {fileID: 1408786404}
   m_Direction: 0
-  m_MinValue: -40
-  m_MaxValue: 0
+  m_MinValue: 0.0001
+  m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 886803814}
+      - m_Target: {fileID: 851722940}
         m_TargetAssemblyTypeName: SetVoulum, Assembly-CSharp
-        m_MethodName: BGMControl
-        m_Mode: 1
+        m_MethodName: BGMrSetLevel
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1242,6 +1274,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &851722940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 851722937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d56e12859f6915e4eb2bc32580a2e3a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Mmixer: {fileID: 24100000, guid: 10a24b69fb89f1849aaca712a6b63708, type: 2}
+  Bgmmixer: {fileID: 24100000, guid: 10a24b69fb89f1849aaca712a6b63708, type: 2}
+  Sfxmixer: {fileID: 24100000, guid: 10a24b69fb89f1849aaca712a6b63708, type: 2}
+  Mslider: {fileID: 1480272219}
+  Bgmslider: {fileID: 851722939}
+  Sfxslider: {fileID: 235300264}
 --- !u!1 &854024226
 GameObject:
   m_ObjectHideFlags: 0
@@ -1253,7 +1303,7 @@ GameObject:
   - component: {fileID: 854024228}
   - component: {fileID: 854024227}
   m_Layer: 0
-  m_Name: BtnSound
+  m_Name: SFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1269,7 +1319,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -7225372733434141105, guid: 10a24b69fb89f1849aaca712a6b63708, type: 2}
-  m_audioClip: {fileID: 8300000, guid: e731aae28d7ef49e1a76eca2a3c62500, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1362,13 +1412,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 854024226}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.22775292, y: 3.8751936, z: -0.036553852}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.22775301, y: 3.8751936, z: -0.03655243}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &873513320
 GameObject:
@@ -1467,6 +1517,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 854024227}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: e731aae28d7ef49e1a76eca2a3c62500, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &873513323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1534,12 +1596,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d56e12859f6915e4eb2bc32580a2e3a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  masterMixer: {fileID: 24100000, guid: 10a24b69fb89f1849aaca712a6b63708, type: 2}
-  BGMMixer: {fileID: 24100000, guid: 10a24b69fb89f1849aaca712a6b63708, type: 2}
-  SPXMixer: {fileID: 24100000, guid: 10a24b69fb89f1849aaca712a6b63708, type: 2}
-  masterSlider: {fileID: 1480272219}
-  bgmSlider: {fileID: 851722939}
-  spxSlider: {fileID: 235300264}
+  Mmixer: {fileID: 24100000, guid: 10a24b69fb89f1849aaca712a6b63708, type: 2}
+  Bgmmixer: {fileID: 24100000, guid: 10a24b69fb89f1849aaca712a6b63708, type: 2}
+  Sfxmixer: {fileID: 24100000, guid: 10a24b69fb89f1849aaca712a6b63708, type: 2}
+  Mslider: {fileID: 1480272219}
+  Bgmslider: {fileID: 851722939}
+  Sfxslider: {fileID: 235300264}
 --- !u!4 &886803815
 Transform:
   m_ObjectHideFlags: 0
@@ -2451,7 +2513,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1384368274
 AudioSource:
@@ -2463,7 +2525,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -7225372733434141105, guid: 10a24b69fb89f1849aaca712a6b63708, type: 2}
-  m_audioClip: {fileID: 8300000, guid: e731aae28d7ef49e1a76eca2a3c62500, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -3003,6 +3065,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1480272217}
   - component: {fileID: 1480272219}
+  - component: {fileID: 1480272220}
   m_Layer: 5
   m_Name: MasterSlider
   m_TagString: Untagged
@@ -3077,17 +3140,17 @@ MonoBehaviour:
   m_FillRect: {fileID: 428236292}
   m_HandleRect: {fileID: 1228706850}
   m_Direction: 0
-  m_MinValue: -40
-  m_MaxValue: 0
+  m_MinValue: 0.0001
+  m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 886803814}
+      - m_Target: {fileID: 1480272220}
         m_TargetAssemblyTypeName: SetVoulum, Assembly-CSharp
-        m_MethodName: MasterControl
-        m_Mode: 1
+        m_MethodName: MasterSetLevel
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3096,6 +3159,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1480272220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1480272216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d56e12859f6915e4eb2bc32580a2e3a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Mmixer: {fileID: 24100000, guid: 10a24b69fb89f1849aaca712a6b63708, type: 2}
+  Bgmmixer: {fileID: 24100000, guid: 10a24b69fb89f1849aaca712a6b63708, type: 2}
+  Sfxmixer: {fileID: 24100000, guid: 10a24b69fb89f1849aaca712a6b63708, type: 2}
+  Mslider: {fileID: 1480272219}
+  Bgmslider: {fileID: 851722939}
+  Sfxslider: {fileID: 235300264}
 --- !u!1 &1550735221
 GameObject:
   m_ObjectHideFlags: 0
@@ -4538,58 +4619,3 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2116245434}
   m_CullTransparentMesh: 1
---- !u!1 &2145722341
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2145722343}
-  - component: {fileID: 2145722342}
-  m_Layer: 0
-  m_Name: AudioManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2145722342
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2145722341}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a60e90df58e3e4c4f89e9059548f4642, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bgmClip: {fileID: 8300000, guid: 77e14a044efb3484995cb7faefc6d63d, type: 3}
-  bgmVolum: 0.2
-  sfxClip:
-  - {fileID: 8300000, guid: a465ea594fbb14de0914d881b9058984, type: 3}
-  - {fileID: 8300000, guid: 3b9ebb7ab17874521bb18cf30f271d57, type: 3}
-  - {fileID: 8300000, guid: 9d4e6d024831e4366a46f5287f1e1a43, type: 3}
-  - {fileID: 8300000, guid: e731aae28d7ef49e1a76eca2a3c62500, type: 3}
-  - {fileID: 8300000, guid: 9212b64f8618343cf90461126a9444ee, type: 3}
-  - {fileID: 8300000, guid: 67458445fdb0c4318b1550e64f30187c, type: 3}
-  sfxVolum: 0.5
-  channels: 16
---- !u!4 &2145722343
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2145722341}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.8775396, y: 0.23818564, z: -0.038834095}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

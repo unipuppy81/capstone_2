@@ -6,6 +6,36 @@ using UnityEngine.UI;
 
 public class SetVoulum : MonoBehaviour
 {
+    public AudioMixer Mmixer;
+    public AudioMixer Bgmmixer;
+    public AudioMixer Sfxmixer;
+
+    public Slider Mslider;
+    public Slider Bgmslider;
+    public Slider Sfxslider;
+
+    void Start()
+    {
+        Mslider.value = PlayerPrefs.GetFloat("Master", 0.75f);
+        Bgmslider.value = PlayerPrefs.GetFloat("BGM", 0.75f);
+        Sfxslider.value = PlayerPrefs.GetFloat("SFX", 0.75f);
+    }
+    public void MasterSetLevel(float sliderValue)
+    {
+        Mmixer.SetFloat("Master", Mathf.Log10(sliderValue) * 20);
+        PlayerPrefs.SetFloat("Master", sliderValue);
+    }
+    public void BGMrSetLevel(float sliderValue)
+    {
+        Bgmmixer.SetFloat("BGM", Mathf.Log10(sliderValue) * 20);
+        PlayerPrefs.SetFloat("BGM", sliderValue);
+    }
+    public void SFXSetLevel(float sliderValue)
+    {
+        Sfxmixer.SetFloat("SFX", Mathf.Log10(sliderValue) * 20);
+        PlayerPrefs.SetFloat("SFX", sliderValue);
+    }
+    /*
     public AudioMixer masterMixer;
     public AudioMixer BGMMixer;
     public AudioMixer SPXMixer;
@@ -43,5 +73,5 @@ public class SetVoulum : MonoBehaviour
     {
         AudioListener.volume = AudioListener.volume == 0 ? 1 : 0;
     }
-
+    */
 }
