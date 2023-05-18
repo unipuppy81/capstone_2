@@ -55,9 +55,9 @@ public class FirebaseAuthManager
             }
         }
     }
-    public void Create(string email, string password)
+    public void Create(string id, string password)
     {
-        auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWith(task =>
+        auth.CreateUserWithEmailAndPasswordAsync(id, password).ContinueWith(task =>
         {
             if (task.IsCanceled)
             {

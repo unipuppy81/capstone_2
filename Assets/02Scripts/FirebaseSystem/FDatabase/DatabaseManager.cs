@@ -24,10 +24,13 @@ public class DatabaseManager : MonoBehaviour
     }
 
     public string nameField;
+    public string IDField;
+
     public string scoreField;
 
-    public string userid;
     public string name;
+    public string userid;
+
     public string score;
 
     private DatabaseReference databaseReference;
@@ -124,6 +127,7 @@ public class DatabaseManager : MonoBehaviour
             Rank[i].text = strRank[i];
         }
     }
+
     public void writeNewUser(string userId, string name, string email)
     {
         var userScore = new Data(name, score);

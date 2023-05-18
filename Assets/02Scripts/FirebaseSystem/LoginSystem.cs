@@ -8,19 +8,26 @@ using System.Reflection;
 
 public class LoginSystem : MonoBehaviour
 {
-    public TMP_InputField email;
+    //public TMP_InputField name;
+    public TMP_InputField id;
     public TMP_InputField password;
+
 
     public TMP_Text outputText;
 
     public GameObject LoginPanel;
     public GameObject TPanel;
+    public GameObject SignupPanel;
+
 
     void Start()
     {
         FirebaseAuthManager.Instance.LoginState += OnChangedState;
         FirebaseAuthManager.Instance.Init();
+        FirebaseAuthManager.Instance.Logout();
     }
+
+    
 
     private void OnChangedState(bool sign)
     {
@@ -35,18 +42,33 @@ public class LoginSystem : MonoBehaviour
 
     public void Create()
     {
-        string e = email.text;
+        string i = id.text;
         string p = password.text;
 
-        FirebaseAuthManager.Instance.Create(e, p);
+        FirebaseAuthManager.Instance.Create(i, p);
+        SignupPanel.SetActive(false);
+        LoginPanel.SetActive(true);
     }
+
     public void Login()
     {
-        FirebaseAuthManager.Instance.Login(email.text, password.text);
+        FirebaseAuthManager.Instance.Login(id.text, password.text);
     }
 
     public void LogOut()
     {
         FirebaseAuthManager.Instance.Logout();
+    }
+
+    public void OpenSignup()
+    {
+        LoginPanel.SetActive(false);
+        SignupPanel.SetActive(true);
+    }
+
+    public void BackBtn()
+    {
+        LoginPanel.SetActive(true);
+        SignupPanel.SetActive(false);
     }
 }
