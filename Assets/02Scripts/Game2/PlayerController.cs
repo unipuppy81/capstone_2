@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
     void OnCollisionExit2D(Collision2D collision)
     {
         ChangeAnim(State.jump);
-        //»ç¿îµå
+        
         isGround = false;
     }
 
@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
             isJump = true;
             rigi.AddForce(Vector2.up * startJumpPower, ForceMode2D.Impulse);
         }
-        AudioManager.instance.PlaySfx(AudioManager.Sfx.Jump);
+        //AudioManager.instance.PlaySfx(AudioManager.Sfx.Jump);
         Debug.Log("up");
     }
 
@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour
         {
             transform.position = startPosition;
         }
-        AudioManager.instance.PlaySfx(AudioManager.Sfx.Down);
+        //AudioManager.instance.PlaySfx(AudioManager.Sfx.Down);
     }
     
 

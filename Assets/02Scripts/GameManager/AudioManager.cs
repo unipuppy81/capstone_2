@@ -18,7 +18,7 @@ public class AudioManager : MonoBehaviour
     AudioSource[] sfxPlayer;
     int channelIndex;
 
-    public enum Sfx { Jump, Down, UI_select1 = 3, UI_select2, GameOve = 5, Start}
+    public enum Sfx { Jump, Down, UI_select1 = 3, UI_select2, GameOver = 5, Start}
     void Awake()
     {
         instance = this;
@@ -52,6 +52,19 @@ public class AudioManager : MonoBehaviour
         }
 
     }
+
+    public void PlayBgm(bool isplay)
+    {
+        if(isplay)
+        {
+            bgmPlayer.Play();
+        }
+        else
+        {
+            bgmPlayer.Stop();
+        }
+    }
+
     public void PlaySfx(Sfx sfx)
     {
         for( int index = 0; index < sfxPlayer.Length; index++ ) 

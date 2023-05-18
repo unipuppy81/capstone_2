@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour
     public GameObject explainPanel;
     public GameObject GameoverPanel;
     public GameObject PausePanel;
+    public GameObject Bgm;
+    public GameObject Overbgm;
 
 
     public int runScore1 = 0;
@@ -52,6 +54,8 @@ public class GameManager : MonoBehaviour
     public Stage[] stages;
     private void Start()
     {
+        Bgm.SetActive(false);
+        Overbgm.SetActive(false);
         RunBestScoreText.text = PlayerPrefs.GetInt("RunBestScore",0).ToString();
         GameoverPanel.SetActive(false);
         PausePanel.SetActive(false);
@@ -78,10 +82,11 @@ public class GameManager : MonoBehaviour
     }
     public void Playbtn()
     {
-        //AudioManager.instance.PlaySfx(AudioManager.Sfx.Start);
+        //AudioManager.instance.PlayBgm(true);
         playbtn.SetActive(false);
         explainPanel.SetActive(false);
         GameoverPanel.SetActive(false );
+        Bgm.SetActive(true);
         curStage = 0;
         isPlay = true;
         onPlay.Invoke(isPlay);
@@ -96,9 +101,12 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         GameoverPanel.SetActive(true);
+        Bgm.SetActive(false);
+        Overbgm.SetActive(true);
         isPlay = false;
         onPlay.Invoke(isPlay);
-        AudioManager.instance.PlaySfx(AudioManager.Sfx.GameOve);
+        //AudioManager.instance.PlayBgm(false);
+        //AudioManager.instance.PlaySfx(AudioManager.Sfx.GameOver);
         StopCoroutine(AddScore());
         StopCoroutine(GameoverRoutine());
         //최고점수
