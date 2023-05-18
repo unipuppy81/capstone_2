@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,12 +31,16 @@ public class GameManager3 : MonoBehaviour
     private GameObject coin2;
 
     public int score;
+    public int nowscore;
 
     [SerializeField]
     private Text scoreTxt;
 
     [SerializeField]
-    private Text bestScore;
+    private TextMeshProUGUI nowScoreTxt;
+    [SerializeField]
+    private TextMeshProUGUI bestScore;
+
     [SerializeField]
     private GameObject panel;
     [SerializeField]
@@ -115,8 +120,12 @@ public class GameManager3 : MonoBehaviour
         StopCoroutine(c1);
         StopCoroutine(c2);
 
-        if(score >= PlayerPrefs.GetInt("BestScore", 0))
-        PlayerPrefs.SetInt("BestScore", score);
+        if (score >= PlayerPrefs.GetInt("BestScore", 0))
+        {
+            PlayerPrefs.SetInt("BestScore", score);
+        }
+
+        nowScoreTxt.text = "" + score;
 
         bestScore.text = PlayerPrefs.GetInt("BestScore", 0).ToString();
 

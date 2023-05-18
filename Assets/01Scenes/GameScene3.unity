@@ -4214,8 +4214,10 @@ MonoBehaviour:
   coin: {fileID: 6720998839387867397, guid: c5e422f82056bda4683561bc9e0ae559, type: 3}
   coin2: {fileID: 5093578357683819794, guid: ca59e69ef88f04742803920f7dd3e736, type: 3}
   score: 0
+  nowscore: 0
   scoreTxt: {fileID: 1030201001}
-  bestScore: {fileID: 2129766459}
+  nowScoreTxt: {fileID: 1602072953}
+  bestScore: {fileID: 2103487401}
   panel: {fileID: 1679160428}
   PausePanel: {fileID: 76015862}
   GameoverPanel: {fileID: 1822619876}
