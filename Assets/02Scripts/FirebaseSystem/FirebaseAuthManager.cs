@@ -32,8 +32,8 @@ public class FirebaseAuthManager
     public void Init()
     {
         auth = FirebaseAuth.DefaultInstance;
-        for (int i = 0; i < 5; i++) { Logout(); }
         auth.StateChanged += OnChanged;
+        Logout();
     }
 
     private void OnChanged(object sender, EventArgs e)

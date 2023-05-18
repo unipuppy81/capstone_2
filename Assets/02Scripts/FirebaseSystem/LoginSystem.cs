@@ -12,6 +12,8 @@ public class LoginSystem : MonoBehaviour
     public TMP_InputField id;
     public TMP_InputField password;
 
+    public TMP_InputField id_signUp;
+    public TMP_InputField pw_signUp;
 
     public TMP_Text outputText;
 
@@ -27,7 +29,13 @@ public class LoginSystem : MonoBehaviour
         FirebaseAuthManager.Instance.Logout();
     }
 
-    
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            FirebaseAuthManager.Instance.Logout();
+        }
+    }
 
     private void OnChangedState(bool sign)
     {
@@ -38,12 +46,17 @@ public class LoginSystem : MonoBehaviour
             LoginPanel.SetActive(false);
             TPanel.SetActive(true);
         }
+        else if (!sign)
+        {
+            LoginPanel.SetActive(true);
+            TPanel.SetActive(false);
+        }
     }
 
     public void Create()
     {
-        string i = id.text;
-        string p = password.text;
+        string i = id_signUp.text;
+        string p = pw_signUp.text;
 
         FirebaseAuthManager.Instance.Create(i, p);
         SignupPanel.SetActive(false);

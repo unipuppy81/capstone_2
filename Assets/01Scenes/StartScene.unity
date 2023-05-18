@@ -619,8 +619,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eda4a382bf03beb42b85229cb18739ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: {fileID: 1866441303}
-  password: {fileID: 831276615}
+  id: {fileID: 524392322}
+  password: {fileID: 1345600383}
+  id_signUp: {fileID: 1866441303}
+  pw_signUp: {fileID: 831276615}
   outputText: {fileID: 1218244492}
   LoginPanel: {fileID: 531925539}
   TPanel: {fileID: 875798503}
@@ -1369,9 +1371,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameField: 
+  IDField: 
   scoreField: 
-  userid: real
   name: ronaldo
+  userid: real
   score: 7
   Rank:
   - {fileID: 0}
