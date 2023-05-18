@@ -40,6 +40,7 @@ public class GameManager3 : MonoBehaviour
     private GameObject panel;
     [SerializeField]
     private GameObject PausePanel;
+    public GameObject GameoverPanel;
 
     public bool stopTrigger = true;
 
@@ -63,6 +64,8 @@ public class GameManager3 : MonoBehaviour
         e3 = CreateEnemy3Routine();
         c1 = CreatecoinRoutine();
         c2 = Createcoin2Routine();
+
+        GameoverPanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -99,6 +102,7 @@ public class GameManager3 : MonoBehaviour
         StartCoroutine(c1);
         StartCoroutine(c2);
         panel.SetActive(false);
+        GameoverPanel.SetActive(false);
     }
 
     public void GameOver()
@@ -116,7 +120,8 @@ public class GameManager3 : MonoBehaviour
 
         bestScore.text = PlayerPrefs.GetInt("BestScore", 0).ToString();
 
-        panel.SetActive(true);
+        //panel.SetActive(true);
+        GameoverPanel.SetActive(true);
     }
 
     IEnumerator CreateEnemyRoutine()

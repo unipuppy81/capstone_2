@@ -24,6 +24,7 @@ public class SceneLoadManager : MonoBehaviour
     {
         SceneManager.LoadScene("MainScene");
     }
+
     public void LoadingScene()
     {
         LoadingManager.LoadScene("MainScene");
