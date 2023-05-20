@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class SceneManagerG1 : MonoBehaviour
 {
     MoveG1 moveG1;
+    ScoreG1 scoreG1;
 
     public GameObject MainBtn;
     public GameObject StartBtn;
@@ -23,6 +24,7 @@ public class SceneManagerG1 : MonoBehaviour
     private void Awake()
     {
         moveG1 = GameObject.Find("Player").GetComponent<MoveG1>();
+        scoreG1 = GameObject.Find("Score").GetComponent<ScoreG1>();
     }
     private void Start()
     {
@@ -31,9 +33,9 @@ public class SceneManagerG1 : MonoBehaviour
 
     private void Update()
     {
-        
         isStarting();
         isDie();
+        if(Input.GetKeyDown(KeyCode.E)) { PlayBtnG1(); }
     }
     public void isDie()
     {
@@ -58,6 +60,7 @@ public class SceneManagerG1 : MonoBehaviour
     }
     public void PlayBtnG1()
     {
+        UnityEngine.Debug.Log("AQWE");
         ExplainPanel.SetActive(false);
         isStart = true;
     }
@@ -80,6 +83,8 @@ public class SceneManagerG1 : MonoBehaviour
 
     public void ReStartBtnG1()
     {
+        scoreG1.a = 0;
         SceneManager.LoadScene("GameScene1");
+
     }
 }
