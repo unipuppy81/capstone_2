@@ -16,12 +16,17 @@ public class Player3 : MonoBehaviour
 
     public bool isDie = false;
 
+    public GameObject left;
+    public GameObject right;
+
     // Start is called before the first frame update
     void Start()
     {
         playerRigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         playerRenderer = GetComponent<SpriteRenderer>();
+        left = GameObject.FindGameObjectWithTag("Left");
+        right = GameObject.FindGameObjectWithTag("Right");
     }
 
     // Update is called once per frame
@@ -55,6 +60,15 @@ public class Player3 : MonoBehaviour
         {
             playerRenderer.flipX = false;
         }
+
+        /*if (Input.GetMouseButtonDown(0))
+        {
+            playerRenderer.flipX = true;
+        }
+        else
+        {
+            playerRenderer.flipX = false;
+        }*/
 
         playerRigidbody.velocity = new Vector2(horizontal * speed, playerRigidbody.velocity.y);
     }

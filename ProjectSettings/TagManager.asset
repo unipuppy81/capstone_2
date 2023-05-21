@@ -11,6 +11,9 @@ TagManager:
   - up
   - down
   - BGM
+  - CoinSound
+  - Left
+  - Right
   layers:
   - Default
   - TransparentFX

@@ -47,6 +47,9 @@ public class GameManager3 : MonoBehaviour
     private GameObject PausePanel;
     public GameObject GameoverPanel;
 
+    public GameObject Bgm;
+    public GameObject Overbgm;
+
     public bool stopTrigger = true;
 
     private float a;
@@ -71,6 +74,8 @@ public class GameManager3 : MonoBehaviour
         c2 = Createcoin2Routine();
 
         GameoverPanel.SetActive(false);
+        Bgm.SetActive(false);
+        Overbgm.SetActive(false);
     }
 
     // Update is called once per frame
@@ -108,6 +113,7 @@ public class GameManager3 : MonoBehaviour
         StartCoroutine(c2);
         panel.SetActive(false);
         GameoverPanel.SetActive(false);
+        Bgm.SetActive(true);
     }
 
     public void GameOver()
@@ -131,6 +137,8 @@ public class GameManager3 : MonoBehaviour
 
         //panel.SetActive(true);
         GameoverPanel.SetActive(true);
+        Bgm.SetActive(false);
+        Overbgm.SetActive(true);
     }
 
     IEnumerator CreateEnemyRoutine()

@@ -7,10 +7,13 @@ public class Coin : MonoBehaviour
     [SerializeField]
     private Animator animator;
 
+    private GameObject sfx;
+
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
+        sfx = GameObject.FindGameObjectWithTag("CoinSound");
     }
 
     // Update is called once per frame
@@ -29,6 +32,7 @@ public class Coin : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             GameManager3.instance.Score2();
+            sfx.SetActive(true);
             Destroy(this.gameObject);
         }
     }
