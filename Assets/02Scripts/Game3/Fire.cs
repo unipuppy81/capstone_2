@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class Fire : MonoBehaviour
 {
+    private Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
         Destroy(this.gameObject, 2.5f);
     }
 
@@ -14,6 +17,7 @@ public class Fire : MonoBehaviour
     void Update()
     {
         if (!GameManager3.instance.stopTrigger) Destroy(gameObject);
+        animator.SetTrigger("Idle1");
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
