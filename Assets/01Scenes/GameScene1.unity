@@ -10211,7 +10211,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1781988614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12135,7 +12135,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5517133693884651916, guid: f0eb92a1470ea6d45b50587bd75bcd85, type: 3}
       propertyPath: animationTime
-      value: 0.16666667
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 5517133693884651917, guid: f0eb92a1470ea6d45b50587bd75bcd85, type: 3}
       propertyPath: m_Enabled
