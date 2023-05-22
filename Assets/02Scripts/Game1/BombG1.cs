@@ -4,6 +4,9 @@ using System.Security.Cryptography;
 using System.Threading;
 using UnityEngine;
 
+
+//  ¾È¾¸
+
 public class BombG1 : MonoBehaviour
 {
     [Header("Bomb")]
@@ -39,10 +42,10 @@ public class BombG1 : MonoBehaviour
         position.x = Mathf.Round(position.x);
         position.y = Mathf.Round(position.y);
 
-        UnityEngine.Debug.Log("RandBomb µé¾î¿È");
+
 
         GameObject bomb = Instantiate(bombPrefab, position, Quaternion.identity);
-        UnityEngine.Debug.Log("Bomb instantiate");
+
 
         yield return new WaitForSeconds(3.0f);
 
@@ -51,7 +54,6 @@ public class BombG1 : MonoBehaviour
         explosion.SetActiveRenderer(explosion.start);
         explosion.DestroyAfter(explosionDuration);
 
-        UnityEngine.Debug.Log("explosion instantiate");
 
         Explode(position, Vector2.up, explosionRadius);
         Explode(position, Vector2.down, explosionRadius);
@@ -59,7 +61,7 @@ public class BombG1 : MonoBehaviour
         Explode(position, Vector2.right, explosionRadius);
 
 
-        UnityEngine.Debug.Log("444");
+
 
 
         Destroy(bomb);

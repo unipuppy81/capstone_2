@@ -139,7 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bombPrefab: {fileID: 8269351354156707621}
   inputKey: 32
-  bombFuseTime: 3
+  bombFuseTime: 5
   explosionPrefab: {fileID: 4425585833389601059, guid: d7d9ca09ba1b8594b8708dded84a4834, type: 3}
   explosionLayerMask:
     serializedVersion: 2

@@ -23,7 +23,7 @@ public class ScoreG1 : MonoBehaviour
     }
     private void Start()
     {
-        GameScore.text = "0";
+        GameScore.text = "Time : 0";
         bestScore = PlayerPrefs.GetFloat("BestScore", 0);
         a = 0;
     }
@@ -36,7 +36,7 @@ public class ScoreG1 : MonoBehaviour
             score1 -= 0.01f;
             a++;
         }
-        GameScore.text = score1.ToString("N2");
+        GameScore.text = "Time : " + score1.ToString("N2");
         //score1 = moveG1.gameTime;
         //GameScore.text = score1.ToString();
         //GameScore2.text = score1.ToString();
@@ -47,7 +47,7 @@ public class ScoreG1 : MonoBehaviour
     void scored()
     {
         score1 = moveG1.gameTime;
-        GameScore.text = score1.ToString();
+        GameScore.text = "Time : " + score1.ToString();
     }
 
     void BestScored()

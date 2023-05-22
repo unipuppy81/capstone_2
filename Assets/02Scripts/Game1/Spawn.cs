@@ -9,14 +9,20 @@ public class Spawn : MonoBehaviour
     public GameObject Bomb;
 
     public Vector3[] pos;
+
+    public float Rtimer;
+    public int bombCount = 17;
     int maxPos = 127;
     int ran;
 
-    //버전
+    private void Awake()
+    {
+        Rtimer = 4.0f;
+        // 폭탄 터지기까지 3초 + 애니메이션 1초
+    }
     void Start()
     {
-        InvokeRepeating("Create", 2, 4.0f);
-       
+        InvokeRepeating("Create", 2, Rtimer);
     }
 
     void Update()
@@ -26,7 +32,7 @@ public class Spawn : MonoBehaviour
 
     void Create()
     {
-        for(int i = 0; i < 15; i++) { 
+        for(int i = 0; i < bombCount; i++) { 
 
             ran = Random.Range(0, maxPos);
             Vector2 setPos = pos[ran];

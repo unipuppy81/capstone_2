@@ -22,13 +22,12 @@ public class AnimateG1 : MonoBehaviour
 
     private void OnEnable()
     {
-        UnityEngine.Debug.Log("START");
+       
         spriteRenderer.enabled = true;
     }
 
     private void OnDisable()
     {
-        UnityEngine.Debug.Log("START2222");
         spriteRenderer.enabled = false;
     }
 

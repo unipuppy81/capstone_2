@@ -4,34 +4,33 @@ using UnityEngine;
 
 public class NuclearB : MonoBehaviour
 {
+    MoveG1 moveG1;
     static bool isFinish = false;
 
     [Header("Bomb")]
     public GameObject bombPrefab;
     public KeyCode inputKey = KeyCode.Space;
-    public float bombFuseTime = 3f;
+    public float bombFuseTime;
 
     [Header("Explosion")]
     public Explosion01 explosionPrefab;
     public LayerMask explosionLayerMask;
-    public float explosionDuration = 1f;
+    public float explosionDuration;
     public int explosionRadius = 1;
 
     public void Awake()
     {
+        moveG1 = GetComponent<MoveG1>();
 
     }
 
     public void Start()
     {
-       StartCoroutine("Rand1Bomb");
+        explosionDuration = 1;
+        StartCoroutine("Rand1Bomb");
     }
 
-    private void Update()
-    {
-
-    }
-
+    
     private IEnumerator Rand1Bomb()
     {
         //Vector2 position = MoveG1.PlayerG1pos;
@@ -43,7 +42,7 @@ public class NuclearB : MonoBehaviour
        // GameObject bomb = Instantiate(bombPrefab, position, Quaternion.identity);
        // UnityEngine.Debug.Log("Bomb 1 instantiate");
 
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(bombFuseTime);
 
 
         Explosion01 explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
@@ -56,18 +55,19 @@ public class NuclearB : MonoBehaviour
         Explode(transform.position, Vector2.down, explosionRadius);
         Explode(transform.position, Vector2.left, explosionRadius);
         Explode(transform.position, Vector2.right, explosionRadius);
+        
 
-
-      //  UnityEngine.Debug.Log("444");
+        UnityEngine.Debug.Log("444");
 
 
         Destroy(this);
 
         isFinish = true;
     }
-
+    
     private void Explode(Vector2 position, Vector2 direction, int length)
     {
+        
         if (length <= 0)
         {
             return;
