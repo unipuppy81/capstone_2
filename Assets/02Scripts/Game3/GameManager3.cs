@@ -210,7 +210,7 @@ public class GameManager3 : MonoBehaviour
         a = Random.Range(0.0f, 1.0f);
         Vector3 pos = Camera.main.ViewportToWorldPoint(new Vector3(a, 1.1f, 0));
         pos.z = 0.0f;
-        if (score >= 80)
+        if (score >= 50)
         {
             Instantiate(enemy3, pos, Quaternion.identity);
         }
