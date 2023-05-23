@@ -11,8 +11,8 @@ public class Spawn : MonoBehaviour
     public Vector3[] pos;
 
     public float Rtimer;
-    public int bombCount = 17;
-    int maxPos = 127;
+    public int bombCount = 15;
+    int maxPos = 112;
     int ran;
 
     private void Awake()
@@ -27,7 +27,7 @@ public class Spawn : MonoBehaviour
 
     void Update()
     {
-        
+        //Rtimer = 3.0f + 1.0f;
     }
 
     void Create()

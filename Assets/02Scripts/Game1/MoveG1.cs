@@ -7,7 +7,8 @@ using UnityEngine;
 public class MoveG1 : MonoBehaviour
 {
     static public Vector2 PlayerG1pos;
-    
+
+    public Spawn sp;
 
     public new Rigidbody2D rigidbody { get; private set; }
     private Vector2 direction = Vector2.down;
@@ -32,7 +33,7 @@ public class MoveG1 : MonoBehaviour
 
     private AnimateG1 activeSpriteRenderer;
 
-    private NuclearB nuclearB;
+    public NuclearB nuclearB;
 
     [Header("Bomb")]
     public GameObject bombPrefab;
@@ -49,6 +50,7 @@ public class MoveG1 : MonoBehaviour
     {
         nuclearB = GetComponent<NuclearB>();
         rigidbody = GetComponent<Rigidbody2D>();
+        sp = GameObject.Find("Spawn").GetComponent<Spawn>();
         activeSpriteRenderer = spriteRendererDown;
 
         position = PlayerG1pos;
@@ -61,7 +63,7 @@ public class MoveG1 : MonoBehaviour
     {
         PlayerG1pos = transform.position;
         GameTimer();
-        BombTimer();
+        //BombTimer();
 
 
         if (Input.GetKey(inputUp)){
@@ -107,6 +109,7 @@ public class MoveG1 : MonoBehaviour
         StartCoroutine(RandBomb());
     }
 
+
     private IEnumerator RandBomb()
     {
         //Vector2 position = MoveG1.PlayerG1pos;
@@ -117,12 +120,14 @@ public class MoveG1 : MonoBehaviour
 
        
 
+
+
         GameObject bomb = Instantiate(bombPrefab, position, Quaternion.identity);
        
 
         yield return new WaitForSeconds(3.0f);
 
-        
+
         //Explosion01 explosion = Instantiate(explosionPrefab, position, Quaternion.identity);
         //explosion.SetActiveRenderer(explosion.start);
         //explosion.DestroyAfter(explosionDuration);
@@ -134,12 +139,16 @@ public class MoveG1 : MonoBehaviour
         Explode(position, Vector2.left, explosionRadius);
         Explode(position, Vector2.right, explosionRadius);
         */
-        UnityEngine.Debug.Log("111");
+       
+
+  
 
 
         Destroy(bomb);
 
     }
+
+
     public void Explode(Vector2 position, Vector2 direction, int length)
     {
         if (length <= 0)

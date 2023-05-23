@@ -2748,7 +2748,7 @@ GameObject:
   - component: {fileID: 184021802}
   - component: {fileID: 184021801}
   m_Layer: 5
-  m_Name: Canvas (1)
+  m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3422,22 +3422,6 @@ MonoBehaviour:
   - {x: 1.5, y: 5.5, z: 0}
   - {x: 2.5, y: 5.5, z: 0}
   - {x: 3.5, y: 5.5, z: 0}
-  - {x: -3.5, y: 6.5, z: 0}
-  - {x: -2.5, y: 6.5, z: 0}
-  - {x: -1.5, y: 6.5, z: 0}
-  - {x: -0.5, y: 6.5, z: 0}
-  - {x: 0.5, y: 6.5, z: 0}
-  - {x: 1.5, y: 6.5, z: 0}
-  - {x: 2.5, y: 6.5, z: 0}
-  - {x: 3.5, y: 6.5, z: 0}
-  - {x: -3.5, y: 7.5, z: 0}
-  - {x: -2.5, y: 7.5, z: 0}
-  - {x: -1.5, y: 7.5, z: 0}
-  - {x: -0.5, y: 7.5, z: 0}
-  - {x: 0.5, y: 7.5, z: 0}
-  - {x: 1.5, y: 7.5, z: 0}
-  - {x: 2.5, y: 7.5, z: 0}
-  - {x: 3.5, y: 7.5, z: 0}
   Rtimer: 0
   bombCount: 17
 --- !u!4 &382354028
@@ -6130,7 +6114,7 @@ GameObject:
   - component: {fileID: 818440587}
   - component: {fileID: 818440586}
   - component: {fileID: 818440588}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Indestructibles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8099,7 +8083,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1131673966}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 103.57498, y: 224.72868, z: -1.8948393}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11318,7 +11302,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1581681662}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 103.57498, y: 224.72868, z: -1.8948393}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11821,7 +11805,7 @@ GameObject:
   - component: {fileID: 1781988615}
   - component: {fileID: 1781988614}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Canvas NO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15979,7 +15963,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5517133693827246092, guid: f0eb92a1470ea6d45b50587bd75bcd85, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5517133693827246092, guid: f0eb92a1470ea6d45b50587bd75bcd85, type: 3}
       propertyPath: m_LocalPosition.z
