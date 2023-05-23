@@ -10,8 +10,8 @@ public class SceneManagerG1 : MonoBehaviour
     MoveG1 moveG1;
     ScoreG1 scoreG1;
 
-    public GameObject MainBtn;
-    public GameObject StartBtn;
+    //public GameObject MainBtn;
+    //public GameObject StartBtn;
     public GameObject PauseBtn;
     public GameObject ResumeBtn;
 
