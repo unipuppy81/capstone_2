@@ -13,11 +13,18 @@ public class Player3 : MonoBehaviour
     private float speed = 3;
 
     private float horizontal;
+    private float mouseRotation;
+    private float mouseRotationAbs;
 
     public bool isDie = false;
 
+    public bool isLeft = false;
+    public bool isRight = false;
+
     public GameObject left;
     public GameObject right;
+
+    public Vector2 mousePosition;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +36,16 @@ public class Player3 : MonoBehaviour
         right = GameObject.FindGameObjectWithTag("Right");
     }
 
+    void Update()
+    {
+        if(Input.GetMouseButtonDown(0))
+        {
+            mousePosition = Input.mousePosition;
+            mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+            mouseRotation = mousePosition.x;
+        }
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -37,7 +54,8 @@ public class Player3 : MonoBehaviour
         if (GameManager3.instance.stopTrigger)
         {
             animator.SetTrigger("start");
-            PlayerMove();
+            //PlayerMoveKey();
+            PlayerMoveMouse();
         }
 
         if (!GameManager3.instance.stopTrigger)
@@ -48,7 +66,7 @@ public class Player3 : MonoBehaviour
         ScreenChk(); 
     }
 
-    private void PlayerMove()
+    private void PlayerMoveKey()
     {
         animator.SetFloat("speed", Mathf.Abs(horizontal));
 
@@ -61,16 +79,26 @@ public class Player3 : MonoBehaviour
             playerRenderer.flipX = false;
         }
 
-        if(TouchMoveLeft.instance.isClickLeft)
+        playerRigidbody.velocity = new Vector2(horizontal * speed, playerRigidbody.velocity.y);
+    }
+
+    private void PlayerMoveMouse()
+    {
+        animator.SetFloat("speed", Mathf.Abs(mouseRotation));
+
+        if (mouseRotation < 0)
         {
             playerRenderer.flipX = true;
+            //playerRigidbody.AddForce(new Vector2(-speed, 0), ForceMode2D.Force);
+            playerRigidbody.velocity = new Vector2(-1.2f * speed, playerRigidbody.velocity.y);
         }
-        else if(TouchMoveRight.instance.isClickRight)
+        else
         {
             playerRenderer.flipX = false;
+            //playerRigidbody.AddForce(new Vector2(speed, 0), ForceMode2D.Force);
+            playerRigidbody.velocity = new Vector2(1.2f * speed, playerRigidbody.velocity.y);
         }
-
-        playerRigidbody.velocity = new Vector2(horizontal * speed, playerRigidbody.velocity.y);
+       
     }
 
     private void ScreenChk()
