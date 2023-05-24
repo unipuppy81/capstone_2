@@ -42,6 +42,8 @@ public class MoveG1 : MonoBehaviour
     public AnimateG1 spriteRendererRight;
     public AnimateG1 spriteRendererDeath;
 
+
+
     private AnimateG1 activeSpriteRenderer;
 
     public NuclearB nuclearB;
@@ -63,7 +65,7 @@ public class MoveG1 : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
         
        
-        activeSpriteRenderer = spriteRendererDown;
+        activeSpriteRenderer = spriteRendererRight;
 
         position = PlayerG1pos;
         isDead = false;
@@ -106,27 +108,30 @@ public class MoveG1 : MonoBehaviour
 
         if (xabs > zabs && x>=0)
         {
-            UnityEngine.Debug.Log("Case 1");
+
             SetDirection(Vector2.right, spriteRendererRight);
         }
         else if (xabs > zabs && x <= 0)
         {
-            UnityEngine.Debug.Log("Case 2");
+
             SetDirection(Vector2.left, spriteRendererLeft);
         }
         else if (xabs < zabs && z <= 0)
         {
-            UnityEngine.Debug.Log("Case 3");
+         
             SetDirection(Vector2.down, spriteRendererDown);
         }
         else if (xabs < zabs && z >= 0)
         {
-            UnityEngine.Debug.Log("Case 4");
+
             SetDirection(Vector2.up, spriteRendererUp);
+        }
+        else if(xabs == 0 && zabs == 0)
+        {
+            SetDirection(Vector2.zero, activeSpriteRenderer);
         }
         else
         {
-            UnityEngine.Debug.Log("Case 5");
             SetDirection(Vector2.zero, activeSpriteRenderer);
         }
     }

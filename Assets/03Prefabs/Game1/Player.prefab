@@ -198,6 +198,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 182c28ec89e606549bd57cfc38b8d446, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  joy: {fileID: 0}
+  fjoy: {fileID: 0}
   speed: 5
   gameTime: 0
   BombTime: 3
@@ -212,6 +214,8 @@ MonoBehaviour:
   spriteRendererLeft: {fileID: 5517133694047328648}
   spriteRendererRight: {fileID: 5517133694753647930}
   spriteRendererDeath: {fileID: 0}
+  spriteRendererStand: {fileID: 0}
+  nuclearB: {fileID: 0}
   bombPrefab: {fileID: 0}
   inputKey: 32
   bombFuseTime: 3

@@ -41,7 +41,7 @@ public class ScoreG1 : MonoBehaviour
             //score1 -= 0.01f;
             a++;
         }
-        GameScore.text = "Time : " + score1.ToString("N2");
+        GameScore.text = score1.ToString("N1");
         //score1 = moveG1.gameTime;
         //GameScore.text = score1.ToString();
         //GameScore2.text = score1.ToString();
