@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class Player3 : MonoBehaviour
 {
-    private Rigidbody2D playerRigidbody;
+    public Rigidbody2D playerRigidbody;
 
     private Animator animator;
 
@@ -36,16 +37,6 @@ public class Player3 : MonoBehaviour
         right = GameObject.FindGameObjectWithTag("Right");
     }
 
-    void Update()
-    {
-        if(Input.GetMouseButtonDown(0))
-        {
-            mousePosition = Input.mousePosition;
-            mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-            mouseRotation = mousePosition.x;
-        }
-    }
-
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -54,8 +45,8 @@ public class Player3 : MonoBehaviour
         if (GameManager3.instance.stopTrigger)
         {
             animator.SetTrigger("start");
-            //PlayerMoveKey();
-            PlayerMoveMouse();
+            PlayerMoveKey();
+            //PlayerMoveMouse();
         }
 
         if (!GameManager3.instance.stopTrigger)
@@ -65,6 +56,7 @@ public class Player3 : MonoBehaviour
 
         ScreenChk(); 
     }
+
 
     private void PlayerMoveKey()
     {
