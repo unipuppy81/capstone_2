@@ -1,35 +1,58 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class Spawn : MonoBehaviour
 {
-    public GameObject g1;
+    MoveG1 g1;
 
     public GameObject Bomb;
 
     public Vector3[] pos;
 
     public float Rtimer;
-    public int bombCount = 15;
+    public int bombCount;
     int maxPos = 112;
     int ran;
 
     private void Awake()
     {
+        bombCount = 10;
         Rtimer = 4.0f;
+        g1 = GameObject.Find("Player").GetComponent<MoveG1>();
+
         // 폭탄 터지기까지 3초 + 애니메이션 1초
     }
     void Start()
     {
         InvokeRepeating("Create", 2, Rtimer);
+        InvokeRepeating("SetUp", 2, 1.0f);
     }
 
-    void Update()
+    private void Update()
     {
-        //Rtimer = 3.0f + 1.0f;
+        SetBombCount();
     }
 
+    void SetBombCount()
+    {
+        if (g1.gameTime >= 0 && g1.gameTime < 20.0f)
+        {
+            bombCount = 10;
+        }
+        else if(g1.gameTime >= 20.0f && g1.gameTime < 40.0f)
+        {
+            bombCount = 13;
+        }
+        else if(g1.gameTime >= 40.0f)
+        {
+            bombCount = 16;
+        }
+    }
+    void SetUp()
+    {
+    }
     void Create()
     {
         for(int i = 0; i < bombCount; i++) { 
