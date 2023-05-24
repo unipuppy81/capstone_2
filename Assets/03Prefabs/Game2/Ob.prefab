@@ -98,8 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d1b0b4c577c3814782a88334fe0a506, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obSpeed: 1
-  StartPosition: {x: 3, y: 0.55}
+  obSpeed: 3
+  StartPosition: {x: 3, y: 0.4}
 --- !u!61 &1011596048251650603
 BoxCollider2D:
   m_ObjectHideFlags: 0

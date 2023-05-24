@@ -15,12 +15,14 @@ public class PlayerController : MonoBehaviour
     Animator anim;
     Vector2 startPosition; //캐릭터 시작위치
 
+    RespawnManager pm;
     // Start is called before the first frame update
     void Awake()
     {
         rigi = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         startPosition = transform.position;
+        pm= GetComponent<RespawnManager>();
     }
 
     // Update is called once per frame
@@ -62,7 +64,6 @@ public class PlayerController : MonoBehaviour
             ChangeAnim(State.hit);
             GameManager.instance.GameOver();
         }
-        
     }
 
     public void UpBtn()
@@ -72,7 +73,7 @@ public class PlayerController : MonoBehaviour
             isJump = true;
             rigi.AddForce(Vector2.up * startJumpPower, ForceMode2D.Impulse);
         }
-        //AudioManager.instance.PlaySfx(AudioManager.Sfx.Jump);
+     
         Debug.Log("up");
     }
 
@@ -82,8 +83,5 @@ public class PlayerController : MonoBehaviour
         {
             transform.position = startPosition;
         }
-        //AudioManager.instance.PlaySfx(AudioManager.Sfx.Down);
     }
-    
-
 }
