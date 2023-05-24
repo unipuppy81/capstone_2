@@ -45,7 +45,7 @@ public class Player3 : MonoBehaviour
             animator.SetTrigger("dead");
         }
 
-        ScreenChk();
+        ScreenChk(); 
     }
 
     private void PlayerMove()
@@ -61,14 +61,14 @@ public class Player3 : MonoBehaviour
             playerRenderer.flipX = false;
         }
 
-        /*if (Input.GetMouseButtonDown(0))
+        if(TouchMoveLeft.instance.isClickLeft)
         {
             playerRenderer.flipX = true;
         }
-        else
+        else if(TouchMoveRight.instance.isClickRight)
         {
             playerRenderer.flipX = false;
-        }*/
+        }
 
         playerRigidbody.velocity = new Vector2(horizontal * speed, playerRigidbody.velocity.y);
     }

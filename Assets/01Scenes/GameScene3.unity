@@ -3140,6 +3140,7 @@ GameObject:
   - component: {fileID: 1119309788}
   - component: {fileID: 1119309787}
   - component: {fileID: 1119309789}
+  - component: {fileID: 1119309790}
   m_Layer: 0
   m_Name: Left
   m_TagString: Left
@@ -3240,6 +3241,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1119309790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1119309786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9093a4892424565458cad529c22cae16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isClickLeft: 0
 --- !u!1 &1133154689
 GameObject:
   m_ObjectHideFlags: 0
@@ -4631,8 +4645,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDie: 0
-  left: {fileID: 0}
-  right: {fileID: 0}
+  left: {fileID: 1119309786}
+  right: {fileID: 1657684841}
 --- !u!61 &1606272845
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4804,6 +4818,7 @@ GameObject:
   - component: {fileID: 1657684843}
   - component: {fileID: 1657684842}
   - component: {fileID: 1657684844}
+  - component: {fileID: 1657684845}
   m_Layer: 0
   m_Name: Right
   m_TagString: Right
@@ -4904,6 +4919,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1657684845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657684841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e07c28e8f6615494fbdc3ef84caf84bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isClickRight: 0
 --- !u!1 &1679160428
 GameObject:
   m_ObjectHideFlags: 0
