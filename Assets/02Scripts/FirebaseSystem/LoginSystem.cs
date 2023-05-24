@@ -21,12 +21,16 @@ public class LoginSystem : MonoBehaviour
     public GameObject TPanel;
     public GameObject SignupPanel;
 
+    void Awake()
+    {
+        FirebaseAuthManager.Instance.Init();
+    }
 
     void Start()
     {
         FirebaseAuthManager.Instance.LoginState += OnChangedState;
-        FirebaseAuthManager.Instance.Init();
-        FirebaseAuthManager.Instance.Logout();
+       
+        //FirebaseAuthManager.Instance.Logout();
     }
 
     void Update()
