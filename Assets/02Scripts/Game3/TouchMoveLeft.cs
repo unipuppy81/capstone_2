@@ -27,12 +27,7 @@ public class TouchMoveLeft : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    private void FixedUpdate()
-    {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             isClickLeft = true;
             Debug.Log("¿ÞÂÊ Å¬¸¯");

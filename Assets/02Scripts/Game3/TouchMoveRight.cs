@@ -27,12 +27,7 @@ public class TouchMoveRight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    private void FixedUpdate()
-    {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             isClickRight = true;
             Debug.Log("오른쪽 클릭");
