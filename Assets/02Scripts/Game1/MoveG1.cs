@@ -36,8 +36,8 @@ public class MoveG1 : MonoBehaviour
     public KeyCode inputLeft = KeyCode.A;
     public KeyCode inputRight = KeyCode.D;
 
-    public AnimateG1 spriteRendererUp;
-    public AnimateG1 spriteRendererDown;
+    //public AnimateG1 spriteRendererUp;
+    //public AnimateG1 spriteRendererDown;
     public AnimateG1 spriteRendererLeft;
     public AnimateG1 spriteRendererRight;
     public AnimateG1 spriteRendererDeath;
@@ -98,9 +98,33 @@ public class MoveG1 : MonoBehaviour
         //BombTimer();
 
         PControl();
-        JoyControl();
+        //JoyControl();
+        JoyControl2();
     }
+    private void JoyControl2()
+    {
 
+
+        if (x > 0)
+        {
+
+            SetDirection(Vector2.right, spriteRendererRight);
+        }
+        else if (x < 0)
+        {
+
+            SetDirection(Vector2.left, spriteRendererLeft);
+        }
+       
+        else if (x == 0)
+        {
+            SetDirection(Vector2.zero, activeSpriteRenderer);
+        }
+        else
+        {
+            SetDirection(Vector2.zero, activeSpriteRenderer);
+        }
+    }
     private void JoyControl()
     {
         float xabs = Mathf.Abs(x);
@@ -119,12 +143,12 @@ public class MoveG1 : MonoBehaviour
         else if (xabs < zabs && z <= 0)
         {
          
-            SetDirection(Vector2.down, spriteRendererDown);
+           // SetDirection(Vector2.down, spriteRendererDown);
         }
         else if (xabs < zabs && z >= 0)
         {
 
-            SetDirection(Vector2.up, spriteRendererUp);
+           // SetDirection(Vector2.up, spriteRendererUp);
         }
         else if(xabs == 0 && zabs == 0)
         {
@@ -140,11 +164,11 @@ public class MoveG1 : MonoBehaviour
 
         if (Input.GetKey(inputUp))
         {
-            SetDirection(Vector2.up, spriteRendererUp);
+            //SetDirection(Vector2.up, spriteRendererUp);
         }
         else if (Input.GetKey(inputDown))
         {
-            SetDirection(Vector2.down, spriteRendererDown);
+            //(Vector2.down, spriteRendererDown);
         }
         else if (Input.GetKey(inputLeft))
         {
@@ -262,8 +286,8 @@ public class MoveG1 : MonoBehaviour
     {
         direction = newDirection;
 
-        spriteRendererUp.enabled = spriteRenderer == spriteRendererUp;
-        spriteRendererDown.enabled = spriteRenderer == spriteRendererDown;
+        //spriteRendererUp.enabled = spriteRenderer == spriteRendererUp;
+        //spriteRendererDown.enabled = spriteRenderer == spriteRendererDown;
         spriteRendererLeft.enabled = spriteRenderer == spriteRendererLeft;
         spriteRendererRight.enabled = spriteRenderer == spriteRendererRight;
 
@@ -284,8 +308,8 @@ public class MoveG1 : MonoBehaviour
         enabled = false;
         GetComponent<BombG1>().enabled = false;
 
-        spriteRendererUp.enabled = false;
-        spriteRendererDown.enabled = false;
+        //spriteRendererUp.enabled = false;
+        //spriteRendererDown.enabled = false;
         spriteRendererLeft.enabled = false;
         spriteRendererRight.enabled = false;
         spriteRendererDeath.enabled = true;
