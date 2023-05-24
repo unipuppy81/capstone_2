@@ -2,17 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MoveG1 : MonoBehaviour
 {
     static public Vector2 PlayerG1pos;
 
-    public Spawn sp;
+
+   
+    public DynamicJoystick joy;
+    public FixedJoystick fjoy;
+
+    public float speed  = 5f;
+    float x;
+    float z;
+
+    Vector2 moveVec;
+
+
 
     public new Rigidbody2D rigidbody { get; private set; }
     private Vector2 direction = Vector2.down;
-    public float speed = 5f;
     public float gameTime;
     public float BombTime = 3.0f;
     public bool isDead;
@@ -50,7 +61,8 @@ public class MoveG1 : MonoBehaviour
     {
         nuclearB = GetComponent<NuclearB>();
         rigidbody = GetComponent<Rigidbody2D>();
-        sp = GameObject.Find("Spawn").GetComponent<Spawn>();
+        
+       
         activeSpriteRenderer = spriteRendererDown;
 
         position = PlayerG1pos;
@@ -59,30 +71,91 @@ public class MoveG1 : MonoBehaviour
     }
 
 
+    void FixedUpdate()
+    {
+        x = fjoy.Horizontal;
+        z = fjoy.Vertical;
+
+        Vector2 position = rigidbody.position;
+        Vector2 translation = new Vector2(x,z) * speed * Time.fixedDeltaTime;
+
+        rigidbody.MovePosition(position + translation);
+
+        if (moveVec.sqrMagnitude == 0)
+        {
+            UnityEngine.Debug.Log("Holy");
+            return;
+        }
+            
+    }
+
     private void Update()
     {
         PlayerG1pos = transform.position;
         GameTimer();
         //BombTimer();
 
+        PControl();
+        JoyControl();
+    }
 
-        if (Input.GetKey(inputUp)){
-            SetDirection(Vector2.up, spriteRendererUp);
-        }
-        else if (Input.GetKey(inputDown)){
-            SetDirection(Vector2.down, spriteRendererDown);
-        }
-        else if (Input.GetKey(inputLeft)){
-            SetDirection(Vector2.left, spriteRendererLeft);
-        }
-        else if (Input.GetKey(inputRight)){
+    private void JoyControl()
+    {
+        float xabs = Mathf.Abs(x);
+        float zabs = Mathf.Abs(z);
+
+        if (xabs > zabs && x>=0)
+        {
+            UnityEngine.Debug.Log("Case 1");
             SetDirection(Vector2.right, spriteRendererRight);
         }
-        else{
+        else if (xabs > zabs && x <= 0)
+        {
+            UnityEngine.Debug.Log("Case 2");
+            SetDirection(Vector2.left, spriteRendererLeft);
+        }
+        else if (xabs < zabs && z <= 0)
+        {
+            UnityEngine.Debug.Log("Case 3");
+            SetDirection(Vector2.down, spriteRendererDown);
+        }
+        else if (xabs < zabs && z >= 0)
+        {
+            UnityEngine.Debug.Log("Case 4");
+            SetDirection(Vector2.up, spriteRendererUp);
+        }
+        else
+        {
+            UnityEngine.Debug.Log("Case 5");
             SetDirection(Vector2.zero, activeSpriteRenderer);
         }
-         
     }
+    private void PControl()
+    {
+
+        if (Input.GetKey(inputUp))
+        {
+            SetDirection(Vector2.up, spriteRendererUp);
+        }
+        else if (Input.GetKey(inputDown))
+        {
+            SetDirection(Vector2.down, spriteRendererDown);
+        }
+        else if (Input.GetKey(inputLeft))
+        {
+            SetDirection(Vector2.left, spriteRendererLeft);
+        }
+        else if (Input.GetKey(inputRight))
+        {
+            SetDirection(Vector2.right, spriteRendererRight);
+        }
+        else
+        {
+            SetDirection(Vector2.zero, activeSpriteRenderer);
+        }
+
+    }
+
 
     private void GameTimer()
     {
@@ -179,15 +252,6 @@ public class MoveG1 : MonoBehaviour
             other.isTrigger = false;
         }
     }
-
-    private void FixedUpdate()
-    {
-        Vector2 position = rigidbody.position;
-        Vector2 translation = direction * speed * Time.fixedDeltaTime;
-
-        rigidbody.MovePosition(position + translation);
-    }
-
 
     private void SetDirection(Vector2 newDirection, AnimateG1 spriteRenderer)
     {
