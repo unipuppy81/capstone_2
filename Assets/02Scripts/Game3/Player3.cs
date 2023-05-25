@@ -15,12 +15,8 @@ public class Player3 : MonoBehaviour
 
     private float horizontal;
     private float Rotation;
-    private float mouseRotationAbs;
 
     public bool isDie = false;
-
-    public GameObject left;
-    public GameObject right;
 
     public Vector2 mousePosition;
 
@@ -30,8 +26,6 @@ public class Player3 : MonoBehaviour
         playerRigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         playerRenderer = GetComponent<SpriteRenderer>();
-        left = GameObject.FindGameObjectWithTag("Left");
-        right = GameObject.FindGameObjectWithTag("Right");
     }
 
     // Update is called once per frame
