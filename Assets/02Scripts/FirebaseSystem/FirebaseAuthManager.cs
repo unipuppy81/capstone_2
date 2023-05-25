@@ -81,7 +81,7 @@ public class FirebaseAuthManager
             FirebaseUser newUser = task.Result.User;
             Debug.LogError("회원가입 완료");
             Logout();
-            isLogin = true;
+            isLogin = false;
 
         });
     }
@@ -104,6 +104,7 @@ public class FirebaseAuthManager
 
             FirebaseUser newUser = task.Result.User;
             Debug.LogError("로그인 완료");
+            isLogin = true;
             //LoginPanel.SetActive(false);
 
         });
@@ -113,5 +114,6 @@ public class FirebaseAuthManager
     {
         auth.SignOut();
         Debug.Log("로그아웃");
+        isLogin = false;
     }
 }

@@ -39,11 +39,12 @@ public class LoginSystem : MonoBehaviour
         {
             FirebaseAuthManager.Instance.Logout();
         }
-
+        /*
         if(FirebaseAuthManager.Instance.isLogin == true){
             PanelSet();
             FirebaseAuthManager.Instance.isLogin = false;
         }
+        */
     }
 
     private void OnChangedState(bool sign)
@@ -87,6 +88,7 @@ public class LoginSystem : MonoBehaviour
     public void Login()
     {
         FirebaseAuthManager.Instance.Login(id.text, password.text);
+        LoginPanel.SetActive(false);
     }
 
     public void LogOut()
