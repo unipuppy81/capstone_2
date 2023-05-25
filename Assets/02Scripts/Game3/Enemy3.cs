@@ -48,6 +48,7 @@ public class Enemy3 : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             GameManager3.instance.GameOver();
+            AudioManager.soundPlay1();
             Destroy(this.gameObject);
             //animator.SetTrigger("poop");
         }

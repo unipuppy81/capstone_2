@@ -52,6 +52,7 @@ public class Poop : MonoBehaviour
         {
             GameManager3.instance.GameOver();
             //animator.SetTrigger("poop");
+            AudioManager.soundPlay1();
             Destroy(this.gameObject);
         }
     }

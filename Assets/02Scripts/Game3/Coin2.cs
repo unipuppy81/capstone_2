@@ -29,6 +29,7 @@ public class Coin2 : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             GameManager3.instance.Score3();
+            AudioManager.soundPlay();
             Destroy(this.gameObject);
         }
     }
