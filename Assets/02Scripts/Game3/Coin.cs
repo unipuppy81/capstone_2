@@ -9,6 +9,7 @@ public class Coin : MonoBehaviour
 
     private GameObject sfx;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +33,8 @@ public class Coin : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             GameManager3.instance.Score2();
-            sfx.SetActive(true);
+            //sfx.SetActive(true);
+            AudioManager.soundPlay();
             Destroy(this.gameObject);
         }
     }

@@ -19,6 +19,7 @@ public class TouchMove : MonoBehaviour
 
     public bool isClick1 = false;
     public bool isClick2 = true;
+    public bool isClicked = false;
 
     // Start is called before the first frame update
     void Start()
@@ -33,11 +34,13 @@ public class TouchMove : MonoBehaviour
         {
             isClick1 = true;
             isClick2 = false;
+            isClicked = true;
         }
         else if (Input.GetMouseButtonDown(0) && isClick1 == true)
         {
             isClick1 = false;
             isClick2 = true;
+            isClicked = true;
         }
     }
 }

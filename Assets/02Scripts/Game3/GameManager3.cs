@@ -52,6 +52,8 @@ public class GameManager3 : MonoBehaviour
 
     public bool stopTrigger = true;
 
+    public bool isStart = false;
+
     private float a;
     private float b;
 
@@ -76,18 +78,13 @@ public class GameManager3 : MonoBehaviour
         GameoverPanel.SetActive(false);
         Bgm.SetActive(false);
         Overbgm.SetActive(false);
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        isStart = false;
     }
 
     public void Score() // 1¡° »πµÊ
     {
         score++;
-        //scoreTxt.text = "Score : " + score;
         scoreTxt.text = ""+ score;
     }
 
@@ -114,6 +111,8 @@ public class GameManager3 : MonoBehaviour
         panel.SetActive(false);
         GameoverPanel.SetActive(false);
         Bgm.SetActive(true);
+        isStart = true;
+        Debug.Log("∞‘¿” Ω√¿€");
     }
 
     public void GameOver()
@@ -134,8 +133,6 @@ public class GameManager3 : MonoBehaviour
         nowScoreTxt.text = "" + score;
 
         bestScore.text = PlayerPrefs.GetInt("BestScore", 0).ToString();
-
-        //panel.SetActive(true);
         GameoverPanel.SetActive(true);
         Bgm.SetActive(false);
         Overbgm.SetActive(true);

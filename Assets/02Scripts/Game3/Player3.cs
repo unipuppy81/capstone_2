@@ -31,7 +31,7 @@ public class Player3 : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        horizontal = Input.GetAxis("Horizontal");
+        //horizontal = Input.GetAxis("Horizontal");
 
         if (GameManager3.instance.stopTrigger)
         {
@@ -67,23 +67,28 @@ public class Player3 : MonoBehaviour
 
     private void PlayerMoveMouse()
     {
-        // animator.SetBool("Rotation", TouchMove.instance.isClick1);
-
-        if (TouchMove.instance.isClick1 == true)
+        if (GameManager3.instance.isStart == true)
         {
-            Rotation = -1;
-            playerRenderer.flipX = true;
-            //playerRigidbody.AddForce(new Vector2(-speed, 0), ForceMode2D.Force);
-            playerRigidbody.velocity = new Vector2(-1.2f * speed, playerRigidbody.velocity.y);
+            if (TouchMove.instance.isClick1 == true)
+            {
+                Rotation = -1;
+                playerRenderer.flipX = true;
+                //playerRigidbody.AddForce(new Vector2(-speed, 0), ForceMode2D.Force);
+                playerRigidbody.velocity = new Vector2(-1.2f * speed, playerRigidbody.velocity.y);
+            }
+            else if (TouchMove.instance.isClick2 == true)
+            {
+                Rotation = 1;
+                playerRenderer.flipX = false;
+                //playerRigidbody.AddForce(new Vector2(speed, 0), ForceMode2D.Force);
+                playerRigidbody.velocity = new Vector2(1.2f * speed, playerRigidbody.velocity.y);
+            }
+            animator.SetFloat("speed", Mathf.Abs(Rotation));
         }
-        else if (TouchMove.instance.isClick2 == true)
+        else
         {
-            Rotation = 1;
-            playerRenderer.flipX = false;
-            //playerRigidbody.AddForce(new Vector2(speed, 0), ForceMode2D.Force);
-            playerRigidbody.velocity = new Vector2(1.2f * speed, playerRigidbody.velocity.y);
+            playerRigidbody.velocity = Vector2.zero;
         }
-        animator.SetFloat("speed", Mathf.Abs(Rotation));
     }
 
     private void ScreenChk()
