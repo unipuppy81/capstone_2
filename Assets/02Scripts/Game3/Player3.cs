@@ -14,13 +14,10 @@ public class Player3 : MonoBehaviour
     private float speed = 3;
 
     private float horizontal;
-    private float mouseRotation;
+    private float Rotation;
     private float mouseRotationAbs;
 
     public bool isDie = false;
-
-    public bool isLeft = false;
-    public bool isRight = false;
 
     public GameObject left;
     public GameObject right;
@@ -45,8 +42,8 @@ public class Player3 : MonoBehaviour
         if (GameManager3.instance.stopTrigger)
         {
             animator.SetTrigger("start");
-            PlayerMoveKey();
-            //PlayerMoveMouse();
+            //PlayerMoveKey();
+            PlayerMoveMouse();
         }
 
         if (!GameManager3.instance.stopTrigger)
@@ -54,7 +51,7 @@ public class Player3 : MonoBehaviour
             animator.SetTrigger("dead");
         }
 
-        ScreenChk(); 
+        ScreenChk();
     }
 
 
@@ -76,21 +73,23 @@ public class Player3 : MonoBehaviour
 
     private void PlayerMoveMouse()
     {
-        animator.SetFloat("speed", Mathf.Abs(mouseRotation));
+        // animator.SetBool("Rotation", TouchMove.instance.isClick1);
 
-        if (mouseRotation < 0)
+        if (TouchMove.instance.isClick1 == true)
         {
+            Rotation = -1;
             playerRenderer.flipX = true;
             //playerRigidbody.AddForce(new Vector2(-speed, 0), ForceMode2D.Force);
             playerRigidbody.velocity = new Vector2(-1.2f * speed, playerRigidbody.velocity.y);
         }
-        else
+        else if (TouchMove.instance.isClick2 == true)
         {
+            Rotation = 1;
             playerRenderer.flipX = false;
             //playerRigidbody.AddForce(new Vector2(speed, 0), ForceMode2D.Force);
             playerRigidbody.velocity = new Vector2(1.2f * speed, playerRigidbody.velocity.y);
         }
-       
+        animator.SetFloat("speed", Mathf.Abs(Rotation));
     }
 
     private void ScreenChk()
