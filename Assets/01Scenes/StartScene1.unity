@@ -1370,13 +1370,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c99fd2ab907123449cfc18e15906bb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameField: {fileID: 0}
-  IDField: {fileID: 524392322}
-  scoreField: {fileID: 1345600383}
   name: ronaldo
-  userid: 
   score: 
-  Rank:
+  IDField: {fileID: 524392322}
+  text123: {fileID: 0}
+  userid: 
+  Rank_name1:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -1387,6 +1386,70 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  Rank_score1:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  Rank_name2:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  Rank_score2:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  Rank_name3:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  Rank_score3:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  score1_1: 0
+  score1_2: 0
+  tmp1: 
+  score2_1: 0
+  score2_2: 0
+  tmp2: 
+  score3_1: 0
+  score3_2: 0
+  tmp3: 
 --- !u!4 &362368578
 Transform:
   m_ObjectHideFlags: 0
@@ -6954,7 +7017,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 362368577}
         m_TargetAssemblyTypeName: DatabaseManager, Assembly-CSharp
-        m_MethodName: OnClickSaveButton
+        m_MethodName: OnClickSaveButton1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

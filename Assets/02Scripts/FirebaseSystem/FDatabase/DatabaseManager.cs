@@ -40,8 +40,8 @@ public class DatabaseManager : MonoBehaviour
     }
 
     [Header("User")]
-    public string name;
-    public string score;
+    public string name; // 게임이름
+    public string score; // 
 
 
     [Header("Login")]
@@ -57,6 +57,13 @@ public class DatabaseManager : MonoBehaviour
     [Header("Ranking")]
     public TMP_Text[] Rank_name1 = new TMP_Text[10];
     public TMP_Text[] Rank_score1 = new TMP_Text[10];
+
+    public TMP_Text[] Rank_name2 = new TMP_Text[10];
+    public TMP_Text[] Rank_score2 = new TMP_Text[10];
+
+    public TMP_Text[] Rank_name3 = new TMP_Text[10];
+    public TMP_Text[] Rank_score3 = new TMP_Text[10];
+
     ScoreArray[] sarray;
 
     private float[] scoreRankf;
@@ -66,16 +73,26 @@ public class DatabaseManager : MonoBehaviour
 
     private bool textLoadBool = false;
 
+    private bool G1 = false;
+    private bool G2 = false;
+    private bool G3 = false;
 
 
     [Header("Game 1")]
-    public string a;
+    public float score1_1; // 원래
+    public float score1_2; // firebase 최고기록
+    public string tmp1;
+
 
     [Header("Game 2")]
-    public string b;
+    public float score2_1;
+    public float score2_2;
+    public string tmp2;
 
     [Header("Game 3")]
-    public string c;
+    public float score3_1;
+    public float score3_2;
+    public string tmp3;
 
     private void Start()
     {
@@ -83,33 +100,39 @@ public class DatabaseManager : MonoBehaviour
         if (LoginState.LoginOk == true) { 
             userid = LoginState.LoginId;
         }
-
-        name = "Game1";
         // 데이터 쓰려면 databasereference의 인스턴트가 필요
         databaseReference = FirebaseDatabase.DefaultInstance.RootReference;
     }
 
     private void Update()
     {
-        //IdUpdate();
-        
+        IdUpdate();
+
         // 현재 첫번째 Text UI가 "Loading" 이면,
         // 즉, 스크립트를 컴포넌트하고있는 게임 오브젝트가 Activeself(true) 이면,
         /*
-        if (Rank_name[0].text == "None")
+        if (LoginState.isMain) { 
+        if (Rank_score1[0].text == "None")
         {
-            DataLoad();
+            readUser("Game1");
+        }
+        if (Rank_score2[0].text == "None")
+        {
+            readUser("Game2");
+        }
+        if (Rank_score3[0].text == "None")
+        {
+            readUser("Game3");
+        }
         }
         */
-
     }
 
     private void LateUpdate()
     {
 
         if (textLoadBool) {
-            TextLoad2();
-            //TextLoad();
+            TextLoad();
         }
         
         // if (Time.timeScale != 0.0f) Time.timeScale = 0.0f;
@@ -119,13 +142,18 @@ public class DatabaseManager : MonoBehaviour
 
     public void IdUpdate()
     {
-        if (FirebaseAuthManager.Instance.isLogin == false)
+        if (FirebaseAuthManager.Instance.isLogin == false && LoginState.isMain == false)
         {
             userid = IDField.text;
         }
         else if (FirebaseAuthManager.Instance.isLogin == true)
         {
             LoginState.LoginId = userid;
+        }
+        
+        if (LoginState.LoginOk)
+        {
+            userid = LoginState.LoginId;
         }
     }
 
@@ -142,16 +170,34 @@ public class DatabaseManager : MonoBehaviour
         string jsonData = JsonUtility.ToJson(userScore);
 
         // DatabseReference 변수에 userId의 자식으로 json 파일 업로드
-        databaseReference.Child(name).Child(userid).SetRawJsonValueAsync(jsonData);
+        databaseReference.Child(userid).SetRawJsonValueAsync(jsonData);
 
         //databaseReference.Child(name).Child("num" + count.ToString()).SetRawJsonValueAsync(jsonData);
 
         //databaseReference.Child(userid).SetRawJsonValueAsync(jsonData);
     }
-    public void OnClickSaveButton()
+    public void OnClickSaveButton1()
     {
+        readScore("Game1");
+        name = "Game1";
         writeNewUser(userid, score);
-        count++;
+
+    }
+
+    public void OnClickSaveButton2()
+    {
+        readScore("Game2");
+        name = "Game2";
+        writeNewUser(userid, score);
+
+    }
+
+    public void OnClickSaveButton3()
+    {
+        readScore("Game3");
+        name = "Game3";
+        writeNewUser(userid, score);
+
     }
     /*
     public void OnClickLoadButton()
@@ -183,12 +229,200 @@ public class DatabaseManager : MonoBehaviour
         });
     }
     */
-    public void LoadButton()
-    {
-        readUser(name);
-    }
+
 
     // 데이터 출력
+    private void readScore(string name)
+    {
+        databaseReference = FirebaseDatabase.DefaultInstance.GetReference(name);
+
+        //reference의 자식(userId)를 task로 받음
+        //databaseReference.Child(userid).GetValueAsync().ContinueWith(task =>
+        databaseReference.GetValueAsync().ContinueWith(task =>
+        {
+            if (task.IsFaulted)
+            {
+                // Handle the error
+                Debug.Log("error");
+            }
+            else if (task.IsCompleted)
+            {
+                //DataSnapShot 변수를 선언하여 task의 결과 값을 받음
+                DataSnapshot snapshot = task.Result;
+
+                int co = 0;
+                strLen = snapshot.ChildrenCount;
+                scoreRank = new string[strLen];
+                scoreRankf = new float[strLen];
+                textRank = new string[strLen];
+                sarray = new ScoreArray[strLen];
+                //foreach 문으로 각각 데이터를 IDictionary로 변환해 각 이름에 맞게 변수 초기화
+                foreach (DataSnapshot data in snapshot.Children)
+                {
+                    IDictionary personInfo = (IDictionary)data.Value;
+                    textRank[co] = personInfo["id"].ToString();
+                    scoreRank[co] = personInfo["score"].ToString();
+
+                    sarray[co] = new ScoreArray(textRank[co], float.Parse(scoreRank[co]));
+                    co++;
+                }
+                findScoreName();
+            }
+        });
+    }
+
+    private void findScoreName()
+    {
+       for(int i = 0; i<sarray.Length; i++)
+        {
+            if (sarray[i].id == userid)
+            {
+                score1_2 = sarray[i].score;
+
+                if (score1_2 >= score1_1)
+                {
+                    score = score1_2.ToString();
+                    break;
+                }
+                else
+                {
+                    score = score1_1.ToString();
+                    break;
+                }
+                
+            }
+            else
+            {
+                score = score1_1.ToString();
+            }
+        }
+    }
+    public void LoadButton1()
+    {
+        readUser("Game1");
+        G1 = true;
+        G2 = false;
+        G3 = false;
+    }
+
+    public void LoadButton2()
+    {
+        readUser("Game2");
+        G1 = false;
+        G2 = true;
+        G3 = false;
+    }
+
+    public void LoadButton3()
+    {
+        readUser("Game3");
+        G1 = false;
+        G2 = false;
+        G3 = true;
+    }
+
+    private void readUser(string name)
+    {
+        databaseReference = FirebaseDatabase.DefaultInstance.GetReference(name);
+
+        //reference의 자식(userId)를 task로 받음
+        //databaseReference.Child(userid).GetValueAsync().ContinueWith(task =>
+         databaseReference.GetValueAsync().ContinueWith(task =>
+         {
+            if (task.IsFaulted)
+            {
+                // Handle the error
+                Debug.Log("error");
+            }
+            else if (task.IsCompleted)
+            {
+                //DataSnapShot 변수를 선언하여 task의 결과 값을 받음
+                DataSnapshot snapshot = task.Result;
+
+                 int co = 0;
+                 strLen = snapshot.ChildrenCount;
+                 scoreRank = new string[strLen];
+                 scoreRankf = new float[strLen];
+                 textRank = new string[strLen];
+                 sarray = new ScoreArray[strLen];
+                 //foreach 문으로 각각 데이터를 IDictionary로 변환해 각 이름에 맞게 변수 초기화
+                 foreach (DataSnapshot data in snapshot.Children)
+                 {
+                    IDictionary personInfo = (IDictionary)data.Value;
+                     textRank[co] = personInfo["id"].ToString();
+                     scoreRank[co] = personInfo["score"].ToString();
+                     
+                     sarray[co] = new ScoreArray(textRank[co], float.Parse(scoreRank[co]));
+
+                     Debug.Log("name : " + personInfo["id"] + ", score: " + personInfo["score"]);
+                     co++;
+                 }
+                 SetScoreArray();
+                 textLoadBool = true;
+
+            }
+        });
+    }
+
+    public void TextLoad()
+    {
+        textLoadBool = false;
+        /*
+        for(int i = 0; i< Rank.Length; i++)
+        {
+            if(strLen <= i) return;
+            Rank[i].text = scoreRankf[i].ToString();
+        }
+        */
+
+        if (G1 == true && G2 == false && G3 == false) { 
+            for (int i = 0; i < Rank_name1.Length; i++)
+            {
+            if (strLen <= i) return;
+            UnityEngine.Debug.Log("TRY");
+            Rank_name1[i].text = sarray[i].id;
+            Rank_score1[i].text = sarray[i].score.ToString();
+            }
+        }
+        else if(G2 == true && G1 == false && G3 == false)
+        {
+            for (int i = 0; i < Rank_name2.Length; i++)
+            {
+                if (strLen <= i) return;
+                UnityEngine.Debug.Log("TRY");
+                Rank_name2[i].text = sarray[i].id;
+                Rank_score2[i].text = sarray[i].score.ToString();
+            }
+        }
+        else if (G3 == true && G1 == false && G2 == false)
+        {
+            for (int i = 0; i < Rank_name3.Length; i++)
+            {
+                if (strLen <= i) return;
+                UnityEngine.Debug.Log("TRY");
+                Rank_name3[i].text = sarray[i].id;
+                Rank_score3[i].text = sarray[i].score.ToString();
+            }
+        }
+    }
+
+    public void SetScoreArray()
+    {
+        /*
+        for (int i = 0; i < strLen; i++)
+        {
+            scoreRankf[i] = sarray[i].score;
+        }
+        Array.Sort(scoreRankf);
+        Array.Reverse(scoreRankf);
+        */
+
+        Array.Sort(sarray, (x, y) => x.score.CompareTo(y.score));
+        Array.Reverse(sarray);
+     
+    }
+
+    /*
     public void DataLoad()
     {
         databaseReference = FirebaseDatabase.DefaultInstance.GetReference(score);
@@ -223,109 +457,5 @@ public class DatabaseManager : MonoBehaviour
             }
         });
     }
-
-   
-    private void readUser(string userid)
-    {
-
-
-
-
-        databaseReference = FirebaseDatabase.DefaultInstance.GetReference(userid);
-
-        //reference의 자식(userId)를 task로 받음
-        //databaseReference.Child(userid).GetValueAsync().ContinueWith(task =>
-         databaseReference.GetValueAsync().ContinueWith(task =>
-         {
-            if (task.IsFaulted)
-            {
-                // Handle the error
-                Debug.Log("error");
-            }
-            else if (task.IsCompleted)
-            {
-                //DataSnapShot 변수를 선언하여 task의 결과 값을 받음
-                DataSnapshot snapshot = task.Result;
-
-                 int co = 0;
-                 strLen = snapshot.ChildrenCount;
-                 scoreRank = new string[strLen];
-                 scoreRankf = new float[strLen];
-                 textRank = new string[strLen];
-                 sarray = new ScoreArray[strLen];
-                 //foreach 문으로 각각 데이터를 IDictionary로 변환해 각 이름에 맞게 변수 초기화
-                 foreach (DataSnapshot data in snapshot.Children)
-                 {
-                    IDictionary personInfo = (IDictionary)data.Value;
-                     textRank[co] = personInfo["id"].ToString();
-                     scoreRank[co] = personInfo["score"].ToString();
-                     
-                     sarray[co] = new ScoreArray(textRank[co], float.Parse(scoreRank[co]));
-
-                     Debug.Log("name : " + personInfo["id"] + ", score: " + personInfo["score"]);
-                     co++;
-
-                 }
-                 SetScoreArray();
-                 textLoadBool = true;
-
-            }
-        });
-    }
-    public void TextLoad()
-    {
-        textLoadBool = false;
-        try
-        {
-            // 받아온 데이터 정렬 =?> 위에서부터 아래로
-            Array.Sort(textRank, (x, y) => string.Compare(
-                y.Substring(y.Length - 5, 5).ToString() + x.Substring(x.Length - 5, 5).ToString(),
-                x.Substring(x.Length - 5, 5).ToString() + y.Substring(y.Length - 5, 5).ToString()));
-        }
-        catch (NullReferenceException e)
-        {
-            return;
-        }
-
-        for (int i = 0; i < Rank_name1.Length; i++)
-        {
-            if (strLen <= i) return;
-            Rank_score1[i].text = textRank[i];
-        }
-    }
-
-    public void TextLoad2()
-    {
-        textLoadBool = false;
-        /*
-        for(int i = 0; i< Rank.Length; i++)
-        {
-            if(strLen <= i) return;
-            Rank[i].text = scoreRankf[i].ToString();
-        }
-        */
-
-        for(int i = 0; i< Rank_name1.Length; i++)
-        {
-            if (strLen <= i) return;
-            Rank_score1[i].text = sarray[i].score.ToString();
-            Rank_name1[i].text = sarray[i].id;
-        }
-    }
-
-    public void SetScoreArray()
-    {
-        /*
-        for (int i = 0; i < strLen; i++)
-        {
-            scoreRankf[i] = sarray[i].score;
-        }
-        Array.Sort(scoreRankf);
-        Array.Reverse(scoreRankf);
-        */
-
-        Array.Sort(sarray, (x, y) => x.score.CompareTo(y.score));
-        Array.Reverse(sarray);
-     
-    }
+    */
 }

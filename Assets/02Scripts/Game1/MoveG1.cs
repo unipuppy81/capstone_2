@@ -9,7 +9,7 @@ public class MoveG1 : MonoBehaviour
 {
     static public Vector2 PlayerG1pos;
 
-
+    DatabaseManager databasemanager;
    
     public DynamicJoystick joy;
     public FixedJoystick fjoy;
@@ -63,13 +63,14 @@ public class MoveG1 : MonoBehaviour
     {
         nuclearB = GetComponent<NuclearB>();
         rigidbody = GetComponent<Rigidbody2D>();
-        
+        databasemanager = GameObject.Find("DatabaseManager").GetComponent<DatabaseManager>();
        
         activeSpriteRenderer = spriteRendererRight;
 
         position = PlayerG1pos;
         isDead = false;
         gameTime = 0.0f;
+        
     }
 
 
@@ -102,6 +103,20 @@ public class MoveG1 : MonoBehaviour
         PControl();
         //JoyControl();
         JoyControl2();
+        setRank();
+
+    }
+    
+    private void setRank()
+    {
+        if (isDead)
+        {
+            databasemanager.score1_1 = gameTime;
+
+            databasemanager.OnClickSaveButton1();
+
+            return;
+        }
     }
 
     private void SetSpeed()
@@ -339,6 +354,5 @@ public class MoveG1 : MonoBehaviour
     {
         isDead = true;
         gameObject.SetActive(false);
-
     }
 }

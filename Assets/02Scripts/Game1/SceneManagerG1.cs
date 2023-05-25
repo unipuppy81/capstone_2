@@ -9,6 +9,7 @@ public class SceneManagerG1 : MonoBehaviour
 {
     MoveG1 moveG1;
     ScoreG1 scoreG1;
+    DatabaseManager databaseManagerG1;
 
     //public GameObject MainBtn;
     //public GameObject StartBtn;
@@ -19,12 +20,19 @@ public class SceneManagerG1 : MonoBehaviour
     public GameObject PausePanel;
     public GameObject ExplainPanel;
 
+    public TMP_Text bestScoreText;
+    public TMP_Text nowScoreText;
+
+    public string bestScore;
+    public string nowScore;
+
     public bool isStart;
 
     private void Awake()
     {
         moveG1 = GameObject.Find("Player").GetComponent<MoveG1>();
         scoreG1 = GameObject.Find("Score").GetComponent<ScoreG1>();
+        databaseManagerG1 = GameObject.Find("DatabaseManager").GetComponent<DatabaseManager>();
     }
     private void Start()
     {
@@ -35,12 +43,14 @@ public class SceneManagerG1 : MonoBehaviour
     {
         isStarting();
         isDie();
-        if(Input.GetKeyDown(KeyCode.E)) { PlayBtnG1(); }
     }
     public void isDie()
     {
         if(moveG1.isDead)
         {
+            databaseManagerG1.OnClickSaveButton1();
+            nowScore = databaseManagerG1.score1_1.ToString();
+            bestScore = databaseManagerG1.score.ToString();
             GameOverPanel.SetActive(true);
             isStart = false;
         }
