@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Globalization;
+
 public class ScoreG1 : MonoBehaviour
 {
     MoveG1 moveG1;
@@ -35,7 +37,7 @@ public class ScoreG1 : MonoBehaviour
             GameScore2.text = score1.ToString("N2");
 
             databaseManager.score1_1 = score1;
-            databaseManager.score1_2 = float.Parse(databaseManager.tmp1);
+            databaseManager.score1_2 = float.Parse(databaseManager.tmp1, CultureInfo.InvariantCulture);
             bestScore = databaseManager.score1_2.ToString("N2");
         }
         BestScoreText.text = databaseManager.tmp1.ToString();

@@ -75,6 +75,7 @@ public class LoginSystem : MonoBehaviour
     public void StartLogin()
     {
         LoginPanel.SetActive(true);
+        FirebaseAuthManager.Instance.Logout();
     }
 
     private void OnChangedState(bool sign)
