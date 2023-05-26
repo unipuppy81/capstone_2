@@ -50,7 +50,7 @@ public class DatabaseManager : MonoBehaviour
     public string userid;
 
     private DatabaseReference databaseReference;
-
+    ScoreG1 scoreg1;
     int count = 1;
 
 
@@ -145,6 +145,8 @@ public class DatabaseManager : MonoBehaviour
         if (FirebaseAuthManager.Instance.isLogin == false && LoginState.isMain == false)
         {
             userid = IDField.text;
+            int endIndex = userid.Length - 4;
+            userid = userid.Substring(0, endIndex);
         }
         else if (FirebaseAuthManager.Instance.isLogin == true)
         {
@@ -178,24 +180,26 @@ public class DatabaseManager : MonoBehaviour
     }
     public void OnClickSaveButton1()
     {
-        readScore("Game1");
         name = "Game1";
+        readScore(name);
         writeNewUser(userid, score);
 
     }
 
     public void OnClickSaveButton2()
     {
-        readScore("Game2");
         name = "Game2";
+        readScore(name);
+
         writeNewUser(userid, score);
 
     }
 
     public void OnClickSaveButton3()
     {
-        readScore("Game3");
         name = "Game3";
+        readScore(name);
+ 
         writeNewUser(userid, score);
 
     }
@@ -259,13 +263,17 @@ public class DatabaseManager : MonoBehaviour
                 //foreach 문으로 각각 데이터를 IDictionary로 변환해 각 이름에 맞게 변수 초기화
                 foreach (DataSnapshot data in snapshot.Children)
                 {
+                    UnityEngine.Debug.Log(strLen);
                     IDictionary personInfo = (IDictionary)data.Value;
                     textRank[co] = personInfo["id"].ToString();
                     scoreRank[co] = personInfo["score"].ToString();
+                    UnityEngine.Debug.Log("A");
 
                     sarray[co] = new ScoreArray(textRank[co], float.Parse(scoreRank[co]));
+                    UnityEngine.Debug.Log("B");
                     co++;
                 }
+                UnityEngine.Debug.Log("C");
                 findScoreName();
             }
         });
@@ -273,11 +281,16 @@ public class DatabaseManager : MonoBehaviour
 
     private void findScoreName()
     {
+        UnityEngine.Debug.Log("POW");
        for(int i = 0; i<sarray.Length; i++)
-        {
-            if (sarray[i].id == userid)
+       {
+            string said = sarray[i].ToString();
+            int endIndex = said.Length - 4;
+            said = said.Substring(0, endIndex);
+
+            if (said == userid)
             {
-                score1_2 = sarray[i].score;
+                score1_2 = sarray[i].score; // 최고기록
 
                 if (score1_2 >= score1_1)
                 {
@@ -291,11 +304,8 @@ public class DatabaseManager : MonoBehaviour
                 }
                 
             }
-            else
-            {
-                score = score1_1.ToString();
-            }
         }
+
     }
     public void LoadButton1()
     {
@@ -379,7 +389,7 @@ public class DatabaseManager : MonoBehaviour
             for (int i = 0; i < Rank_name1.Length; i++)
             {
             if (strLen <= i) return;
-            UnityEngine.Debug.Log("TRY");
+           
             Rank_name1[i].text = sarray[i].id;
             Rank_score1[i].text = sarray[i].score.ToString();
             }
@@ -389,7 +399,7 @@ public class DatabaseManager : MonoBehaviour
             for (int i = 0; i < Rank_name2.Length; i++)
             {
                 if (strLen <= i) return;
-                UnityEngine.Debug.Log("TRY");
+               
                 Rank_name2[i].text = sarray[i].id;
                 Rank_score2[i].text = sarray[i].score.ToString();
             }
@@ -399,7 +409,7 @@ public class DatabaseManager : MonoBehaviour
             for (int i = 0; i < Rank_name3.Length; i++)
             {
                 if (strLen <= i) return;
-                UnityEngine.Debug.Log("TRY");
+                
                 Rank_name3[i].text = sarray[i].id;
                 Rank_score3[i].text = sarray[i].score.ToString();
             }

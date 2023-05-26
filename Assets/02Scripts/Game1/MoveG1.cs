@@ -25,6 +25,7 @@ public class MoveG1 : MonoBehaviour
     public new Rigidbody2D rigidbody { get; private set; }
     private Vector2 direction = Vector2.down;
     public float gameTime;
+    float time_tmp;
     public float BombTime = 3.0f;
     public bool isDead;
 
@@ -73,7 +74,11 @@ public class MoveG1 : MonoBehaviour
         
     }
 
-
+    private void Start()
+    {
+        gameTime = 0;
+        time_tmp = 0;
+    }
     void FixedUpdate()
     {
         x = fjoy.Horizontal;
@@ -86,7 +91,7 @@ public class MoveG1 : MonoBehaviour
 
         if (moveVec.sqrMagnitude == 0)
         {
-            UnityEngine.Debug.Log("Holy");
+            
             return;
         }
             
@@ -95,29 +100,17 @@ public class MoveG1 : MonoBehaviour
     private void Update()
     {
         PlayerG1pos = transform.position;
-        GameTimer();
-        //BombTimer();
 
+        //BombTimer();
         SetSpeed();
 
         PControl();
         //JoyControl();
         JoyControl2();
-        setRank();
+        GameTimer();
 
     }
     
-    private void setRank()
-    {
-        if (isDead)
-        {
-            databasemanager.score1_1 = gameTime;
-
-            databasemanager.OnClickSaveButton1();
-
-            return;
-        }
-    }
 
     private void SetSpeed()
     {
@@ -225,6 +218,7 @@ public class MoveG1 : MonoBehaviour
         {
             gameTime += Time.deltaTime;
         }
+
     }
 
     private void BombTimer()
@@ -353,6 +347,6 @@ public class MoveG1 : MonoBehaviour
     private void OnDeathSquenceEnded()
     {
         isDead = true;
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 }

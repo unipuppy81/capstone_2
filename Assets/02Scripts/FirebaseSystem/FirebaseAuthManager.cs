@@ -81,8 +81,6 @@ public class FirebaseAuthManager
             FirebaseUser newUser = task.Result.User;
             Debug.LogError("회원가입 완료");
             Logout();
-            isLogin = false;
-
         });
     }
 

@@ -7,64 +7,52 @@ public class ScoreG1 : MonoBehaviour
 {
     MoveG1 moveG1;
     SceneManagerG1 smg;
-    public TMP_Text GameScore;
+    DatabaseManager databaseManager;
+
+    public TextMeshProUGUI GameScore;
     public TextMeshProUGUI GameScore2;
     public TextMeshProUGUI BestScoreText;
 
     public float score1;
-    public float bestScore;
+    public string bestScore;
 
     public int a;
     void Awake()
     {
         moveG1 = GameObject.Find("Player").GetComponent<MoveG1>();
         smg = GameObject.Find("SceneManager").GetComponent<SceneManagerG1>();
-        GameScore = GetComponent<TextMeshProUGUI>();
-        GameScore2 = GetComponent<TextMeshProUGUI>();
-        BestScoreText = GetComponent<TextMeshProUGUI>();
+        databaseManager = GameObject.Find("DatabaseManager").GetComponent<DatabaseManager>();
     }
     private void Start()
     {
-        //GameScore.text = "Time : 0";
-        GameScore.text = "0";
-        bestScore = PlayerPrefs.GetFloat("BestScore", 0);
-        a = 0;
+        BestScoreUpdate();
+
     }
     void Update()
     {
-        if (smg.isStart) { 
+        if (smg.isStart) {
             score1 += Time.deltaTime;
+            GameScore.text = score1.ToString("N2");
+            GameScore2.text = score1.ToString("N2");
         }
-
-        if (a <= 5)
-        {
-            //score1 -= 0.01f;
-            a++;
+        if (smg.isStart == false) {
+            //BestScoreText.text = "Best";
+            //BestScoreUpdate();
+           
         }
-        GameScore.text = score1.ToString("N1");
-        //score1 = moveG1.gameTime;
-        //GameScore.text = score1.ToString();
-        //GameScore2.text = score1.ToString();
-        //BestScoreText.text = bestScore.ToString();
-        //BestScored();
     }
 
-    void scored()
+    void BestScoreUpdate()
     {
-        score1 = moveG1.gameTime;
-        GameScore.text = "" + score1.ToString();
+        UnityEngine.Debug.Log("ScoreG1");
+        databaseManager.OnClickSaveButton1();
+        UnityEngine.Debug.Log("ScoreG2");
+        bestScore = databaseManager.score.ToString();
+        UnityEngine.Debug.Log(bestScore);
+        UnityEngine.Debug.Log("ScoreG3");
+        BestScoreText.text = bestScore;
+        UnityEngine.Debug.Log("ScoreG4");
     }
 
-    void BestScored()
-    {
-        if (moveG1.isDead)
-        {
-            if(bestScore < score1)
-            {
-                bestScore = score1;
-            }
-            PlayerPrefs.SetFloat("BestScore", bestScore);
-            PlayerPrefs.Save();
-        }
-    }
+   
 }

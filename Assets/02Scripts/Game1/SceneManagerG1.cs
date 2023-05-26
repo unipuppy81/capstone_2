@@ -54,7 +54,6 @@ public class SceneManagerG1 : MonoBehaviour
             GameOverPanel.SetActive(true);
             isStart = false;
         }
-
     }
 
     public void isStarting()
@@ -70,7 +69,6 @@ public class SceneManagerG1 : MonoBehaviour
     }
     public void PlayBtnG1()
     {
-        UnityEngine.Debug.Log("AQWE");
         ExplainPanel.SetActive(false);
         isStart = true;
     }
