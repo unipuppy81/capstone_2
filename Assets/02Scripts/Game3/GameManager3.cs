@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -102,7 +103,8 @@ public class GameManager3 : MonoBehaviour
 
 
             databaseManager.score3_1 = score1;
-            databaseManager.score3_2 = float.Parse(databaseManager.tmp3);
+            databaseManager.score3_2 = float.Parse(databaseManager.tmp3, CultureInfo.InvariantCulture);
+            UnityEngine.Debug.Log("score3_2 : " + databaseManager.score3_2);
             bestscore = databaseManager.score3_2.ToString();
         }
         bestScoreText.text = databaseManager.tmp3.ToString();

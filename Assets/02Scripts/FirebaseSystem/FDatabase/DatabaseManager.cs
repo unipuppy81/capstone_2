@@ -352,6 +352,7 @@ public class DatabaseManager : MonoBehaviour
     {
         UnityEngine.Debug.Log("POW");
 
+        UnityEngine.Debug.Log(score3_2);
         if (score3_2 >= score3_1)
         {
             tmp3 = score3_2.ToString();
@@ -468,7 +469,7 @@ public class DatabaseManager : MonoBehaviour
                     findBestScore2();
 
                 }
-                else if(name == "Game2")
+                else if(name == "Game3")
                 {
                     findBestScore3();
                 }
