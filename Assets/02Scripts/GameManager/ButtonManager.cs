@@ -71,6 +71,14 @@ public class ButtonManager : MonoBehaviour
     }
     public void menuPanel()
     {
-        MenuPanel.SetActive(true);
+        if(MenuPanel.activeSelf == true)
+        {
+            MenuPanel.SetActive(false);
+        }
+        else
+        {
+            MenuPanel.SetActive(true);
+        }
+        
     }
 }
