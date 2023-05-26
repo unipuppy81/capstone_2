@@ -61,14 +61,7 @@ public class NuclearB : MonoBehaviour
 
     private IEnumerator Rand1Bomb()
     {
-        //Vector2 position = MoveG1.PlayerG1pos;
-        //position.x = Mathf.Round(position.x) + 0.5f;
-        //position.y = Mathf.Round(position.y) + 0.5f;
 
-       // UnityEngine.Debug.Log("Rand1Bomb µé¾î¿È");
-
-       // GameObject bomb = Instantiate(bombPrefab, position, Quaternion.identity);
-       // UnityEngine.Debug.Log("Bomb 1 instantiate");
 
         yield return new WaitForSeconds(3.0f);
 
@@ -76,7 +69,7 @@ public class NuclearB : MonoBehaviour
         explosion.SetActiveRenderer(explosion.start);
         explosion.DestroyAfter(explosionDuration);
 
-       // UnityEngine.Debug.Log("explosion instantiate");
+
 
         Explode(transform.position, Vector2.up, explosionRadius);
         Explode(transform.position, Vector2.down, explosionRadius);
@@ -93,14 +86,6 @@ public class NuclearB : MonoBehaviour
 
     private IEnumerator Rand2Bomb()
     {
-        //Vector2 position = MoveG1.PlayerG1pos;
-        //position.x = Mathf.Round(position.x) + 0.5f;
-        //position.y = Mathf.Round(position.y) + 0.5f;
-
-        // UnityEngine.Debug.Log("Rand1Bomb µé¾î¿È");
-
-        // GameObject bomb = Instantiate(bombPrefab, position, Quaternion.identity);
-        // UnityEngine.Debug.Log("Bomb 1 instantiate");
 
         yield return new WaitForSeconds(0.2f);
 
@@ -108,7 +93,6 @@ public class NuclearB : MonoBehaviour
         explosion.SetActiveRenderer(explosion.start);
         explosion.DestroyAfter(explosionDuration);
 
-        // UnityEngine.Debug.Log("explosion instantiate");
 
         Explode(transform.position, Vector2.up, explosionRadius);
         Explode(transform.position, Vector2.down, explosionRadius);
@@ -125,22 +109,13 @@ public class NuclearB : MonoBehaviour
 
     private IEnumerator Rand3Bomb()
     {
-        //Vector2 position = MoveG1.PlayerG1pos;
-        //position.x = Mathf.Round(position.x) + 0.5f;
-        //position.y = Mathf.Round(position.y) + 0.5f;
-
-        // UnityEngine.Debug.Log("Rand1Bomb µé¾î¿È");
-
-        // GameObject bomb = Instantiate(bombPrefab, position, Quaternion.identity);
-        // UnityEngine.Debug.Log("Bomb 1 instantiate");
-
         yield return new WaitForSeconds(1.0f);
 
         Explosion01 explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         explosion.SetActiveRenderer(explosion.start);
         explosion.DestroyAfter(explosionDuration);
 
-        // UnityEngine.Debug.Log("explosion instantiate");
+
 
         Explode(transform.position, Vector2.up, explosionRadius);
         Explode(transform.position, Vector2.down, explosionRadius);
@@ -165,7 +140,6 @@ public class NuclearB : MonoBehaviour
 
         if (Physics2D.OverlapBox(position, Vector2.one / 2f, 0f, explosionLayerMask))
         {
-            //ClearDestructible(position);
             return;
         }
 

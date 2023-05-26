@@ -119,11 +119,9 @@ public class MoveG1 : MonoBehaviour
     {
         PlayerG1pos = transform.position;
 
-        //BombTimer();
+
         SetSpeed();
-        //walkAudio();
-        PControl();
-        //JoyControl();
+
         JoyControl2();
         GameTimer();
 
@@ -133,16 +131,9 @@ public class MoveG1 : MonoBehaviour
     {
         if (isWalk)
         {
-            for(int i = 0; i< 1; i++) { 
-                audioSrc.Play();
-            }
-            UnityEngine.Debug.Log(isWalk);
-            float audioTime = 0.0f;
-            audioTime += Time.deltaTime;
-
+            audioSrc.Play();
         }
         else {
-        UnityEngine.Debug.Log("Not");
         audioSrc.Stop();
         }
     }
@@ -219,31 +210,7 @@ public class MoveG1 : MonoBehaviour
             SetDirection(Vector2.zero, activeSpriteRenderer);
         }
     }
-    private void PControl()
-    {
-
-        if (Input.GetKey(inputUp))
-        {
-            //SetDirection(Vector2.up, spriteRendererUp);
-        }
-        else if (Input.GetKey(inputDown))
-        {
-            //(Vector2.down, spriteRendererDown);
-        }
-        else if (Input.GetKey(inputLeft))
-        {
-            SetDirection(Vector2.left, spriteRendererLeft);
-        }
-        else if (Input.GetKey(inputRight))
-        {
-            SetDirection(Vector2.right, spriteRendererRight);
-        }
-        else
-        {
-            SetDirection(Vector2.zero, activeSpriteRenderer);
-        }
-
-    }
+    
 
 
     private void GameTimer()
@@ -255,17 +222,7 @@ public class MoveG1 : MonoBehaviour
 
     }
 
-    private void BombTimer()
-    {
-        if (Input.GetKeyDown(inputKey))
-        {
-            //StartCoroutine(PlaceBomb());
-           
-            //StartCoroutine(RandBomb());
-            SetBomb();
-            
-        }
-    }
+
 
     public void SetBomb()
     {
@@ -275,37 +232,9 @@ public class MoveG1 : MonoBehaviour
 
     private IEnumerator RandBomb()
     {
-        //Vector2 position = MoveG1.PlayerG1pos;
-        
-        
-        //position.x = Mathf.Round(position.x) + 0.5f;
-        //position.y = Mathf.Round(position.y) + 0.5f;
-
-       
-
-
-
         GameObject bomb = Instantiate(bombPrefab, position, Quaternion.identity);
-       
 
         yield return new WaitForSeconds(BombTime);
-
-
-        //Explosion01 explosion = Instantiate(explosionPrefab, position, Quaternion.identity);
-        //explosion.SetActiveRenderer(explosion.start);
-        //explosion.DestroyAfter(explosionDuration);
-
-
-        /*
-        Explode(position, Vector2.up, explosionRadius);
-        Explode(position, Vector2.down, explosionRadius);
-        Explode(position, Vector2.left, explosionRadius);
-        Explode(position, Vector2.right, explosionRadius);
-        */
-       
-
-  
-
 
         Destroy(bomb);
 
@@ -323,7 +252,6 @@ public class MoveG1 : MonoBehaviour
 
         if (Physics2D.OverlapBox(position, Vector2.one / 2f, 0f, explosionLayerMask))
         {
-            //ClearDestructible(position);
             return;
         }
 
@@ -383,6 +311,5 @@ public class MoveG1 : MonoBehaviour
     {
         isDead = true;
         databasemanager.readScore("Game1");
-        //gameObject.SetActive(false);
     }
 }
