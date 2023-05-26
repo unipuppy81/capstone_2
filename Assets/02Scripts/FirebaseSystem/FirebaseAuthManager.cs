@@ -35,10 +35,14 @@ public class FirebaseAuthManager
     public bool isSign;
     public bool isSign2;
 
+    public string errortextmesh; // 회원가입용
+    public string loginerrortext;
     public void Init()
     {
-        isLogin = false;
-        isSign = true;
+        errortextmesh = string.Empty;
+        loginerrortext = "로그인 확인 중..";
+        isLogin = false;  // fasle 고정
+        isSign = false;
         isSign2 = false;
         loginSystem = GameObject.Find("Canvas").GetComponent<LoginSystem>();
         auth = FirebaseAuth.DefaultInstance;
@@ -79,20 +83,21 @@ public class FirebaseAuthManager
             {
                 // 회원가입 실패 이유 => 이메밀 비정상 / 비번 간단 / 이미 가입된 이메일
                 isSign = false;
+                errortextmesh = "회원가입에 실패하였습니다. 아이디 및 비밀번호를 확인해주세요.";
                 Debug.LogError("회원가입 실패");
                 return;
             }
-            isSign = true;
             isSign2 = true;
             FirebaseUser newUser = task.Result.User;
             Debug.LogError("회원가입 완료");
-            
+            errortextmesh = "회원가입에 성공하였습니다. 로그인창에서 로그인을 해주세요.";
             Logout();
         });
     }
 
     public void Login(string email, string password)
     {
+        loginerrortext = "로그인 확인 중..";
         auth.SignInWithEmailAndPasswordAsync(email, password).ContinueWith(task =>
         {
             if (task.IsCanceled)
@@ -103,6 +108,7 @@ public class FirebaseAuthManager
 
             if (task.IsFaulted)
             {
+                loginerrortext = "로그인 실패";
                 Debug.LogError("로그인 실패");
                 return;
             }

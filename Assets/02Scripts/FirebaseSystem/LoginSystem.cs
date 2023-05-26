@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Diagnostics;
 using System.Reflection;
+using UnityEngine.Rendering;
 
 public class LoginSystem : MonoBehaviour
 {
@@ -22,7 +23,12 @@ public class LoginSystem : MonoBehaviour
     public GameObject SignupPanel;
     public GameObject OkayPanel;
     public GameObject ErrorPanel;
+    public TextMeshProUGUI ErrorPanelText;
     public GameObject LogErrorPanel;
+    public TextMeshProUGUI LogErrorText;
+
+    public string errorText;  // 회원가입
+    public string loginerrorText;
 
     void Awake()
     {
@@ -42,6 +48,20 @@ public class LoginSystem : MonoBehaviour
         {
             FirebaseAuthManager.Instance.Logout();
         }
+
+        errorText = FirebaseAuthManager.Instance.errortextmesh.ToString();
+        ErrorPanelText.text = errorText;
+
+        loginerrorText = FirebaseAuthManager.Instance.loginerrortext.ToString();
+        LogErrorText.text = loginerrorText;
+
+        if (FirebaseAuthManager.Instance.isLogin == true)
+        {
+            LogErrorPanel.SetActive(false);
+        }
+        
+
+        
         /*
         if(FirebaseAuthManager.Instance.isLogin == true){
             PanelSet();
@@ -74,6 +94,9 @@ public class LoginSystem : MonoBehaviour
 
         FirebaseAuthManager.Instance.Create(i, p);
 
+        Error();
+
+
         //UnityEngine.Debug.Log("ABC");
         //FirebaseAuthManager.Instance.Logout();
     }
@@ -93,12 +116,10 @@ public class LoginSystem : MonoBehaviour
         FirebaseAuthManager.Instance.Login(id.text, password.text);
         if(FirebaseAuthManager.Instance.isLogin == false)
         {
-            LogErrorPanel.SetActive(true) ;
+            LoginPanel.SetActive(true);
         }
-        else
-        {
-            LoginPanel.SetActive(false);
-        }
+
+        LogErrorPanel.SetActive(true);
     }
 
     public void LogOut()
@@ -140,16 +161,9 @@ public class LoginSystem : MonoBehaviour
     }
     public void Error()
     {
-        if (FirebaseAuthManager.Instance.isSign == false && FirebaseAuthManager.Instance.isSign2 == false) ;
-        {
-            UnityEngine.Debug.Log(FirebaseAuthManager.Instance.isSign);
-            ErrorPanel.SetActive(true);
-            OkayPanel.SetActive(false);
-        }
-        if (FirebaseAuthManager.Instance.isSign == false && FirebaseAuthManager.Instance.isSign2 == true)
-        {
-            OkayPanel.SetActive(true);
-            ErrorPanel.SetActive(false);
-        }
+
+
+        ErrorPanel.SetActive(true);
+ 
     }
 }

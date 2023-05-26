@@ -3350,7 +3350,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC544\uC774\uB514 \uD639\uC740 \uBE44\uBC00\uBC88\uD638 \uC624\uB958\uC785\uB2C8\uB2E4."
+  m_text: "\uB85C\uADF8\uC778 \uD655\uC778 \uC911..."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c7b90c20ae50a0f4bb6a43af80885d5c, type: 2}
   m_sharedMaterial: {fileID: -5943377806498259593, guid: c7b90c20ae50a0f4bb6a43af80885d5c, type: 2}
@@ -7134,7 +7134,11 @@ MonoBehaviour:
   SignupPanel: {fileID: 428299034}
   OkayPanel: {fileID: 1033809577}
   ErrorPanel: {fileID: 658281848}
+  ErrorPanelText: {fileID: 1864336854}
   LogErrorPanel: {fileID: 1576353337}
+  LogErrorText: {fileID: 584287662}
+  errorText: 
+  loginerrorText: 
 --- !u!114 &1352443421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10735,18 +10739,6 @@ MonoBehaviour:
       - m_Target: {fileID: 1352443420}
         m_TargetAssemblyTypeName: LoginSystem, Assembly-CSharp
         m_MethodName: Create
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1352443420}
-        m_TargetAssemblyTypeName: LoginSystem, Assembly-CSharp
-        m_MethodName: Error
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
