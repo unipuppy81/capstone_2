@@ -109,8 +109,7 @@ public class DatabaseManager : MonoBehaviour
         IdUpdate();
 
      
-        // 현재 첫번째 Text UI가 "Loading" 이면,
-        // 즉, 스크립트를 컴포넌트하고있는 게임 오브젝트가 Activeself(true) 이면,
+        
         /*
         if (LoginState.isMain) { 
         if (Rank_score1[0].text == "None")
@@ -216,10 +215,9 @@ public class DatabaseManager : MonoBehaviour
     public void OnClickSaveButton2()
     {
         name = "Game2";
-        readScore(name);
-
-        writeNewUser(userid, score);
-
+        UnityEngine.Debug.Log("PPP");
+        readScore2(name);
+        
     }
 
     public void OnClickSaveButton3()
@@ -300,8 +298,19 @@ public class DatabaseManager : MonoBehaviour
                     Debug.Log("ReadScore :: " + "name : " + personInfo["id"] + ", score: " + personInfo["score"]);
                     co++;
                 }
+                if(name == "Game1") {
+                    findScoreName();
+                }
+                else if(name == "Game2")
+                {
+                    findScoreName2();
+                }
+                else if (name == "Game3")
+                {
+                    findScoreName3();
+                }
 
-                findScoreName();
+                
             }
         });
     }
@@ -318,10 +327,67 @@ public class DatabaseManager : MonoBehaviour
             tmp1 = score1_1.ToString("N2");
         }
 
+
         writeNewUser2(userid, tmp1);
     }
 
+    private void findScoreName2()
+    {
+        UnityEngine.Debug.Log("POW");
+
+        if (score2_2 >= score2_1)
+        {
+            UnityEngine.Debug.Log("score2_2 : " + score2_2);
+            tmp2 = score2_2.ToString();
+        }
+        else if (score2_1 > score2_2)
+        {
+            UnityEngine.Debug.Log("score2_1 : " + score2_1);
+            tmp2 = score2_1.ToString();
+        }
+
+        UnityEngine.Debug.Log(tmp2);
+
+        writeNewUser2(userid, tmp2);
+    }
+    private void findScoreName3()
+    {
+        UnityEngine.Debug.Log("POW");
+
+        if (score3_2 >= score3_1)
+        {
+            tmp3 = score3_2.ToString();
+        }
+        else if (score3_1 > score3_2)
+        {
+            tmp3 = score3_1.ToString();
+        }
+
+
+        writeNewUser2(userid, tmp3);
+    }
     private void findBestScore()
+    {
+        UnityEngine.Debug.Log("POW1");
+        for (int i = 0; i < sarray.Length; i++)
+        {
+            string said = sarray[i].id;
+
+            if (said == userid)
+            {
+                float tmp = sarray[i].score;
+                UnityEngine.Debug.Log("최고 tmp1 : " + tmp);
+                tmp1 = tmp.ToString("N2");
+                tmp2 = tmp.ToString();
+                tmp3 = tmp.ToString();
+                break;
+            }
+        }
+        UnityEngine.Debug.Log("tmp1 : " + tmp1);
+        //writeNewUser2(userid, tmp1);
+    }
+
+    private void findBestScore2()
     {
         UnityEngine.Debug.Log("POW2");
         for (int i = 0; i < sarray.Length; i++)
@@ -331,17 +397,34 @@ public class DatabaseManager : MonoBehaviour
             if (said == userid)
             {
                 float tmp = sarray[i].score;
-                
-                UnityEngine.Debug.Log("최고 tmp : " + tmp);
-                tmp1 = tmp.ToString("N2");
+                int tmp22 = Mathf.FloorToInt(tmp);
+                UnityEngine.Debug.Log("최고 tmp2 : " + tmp22);
+                tmp2 = tmp22.ToString();
                 break;
             }
         }
-        UnityEngine.Debug.Log("tmp1 : " + tmp1);
+        UnityEngine.Debug.Log("tmp2 : " + tmp2);
         //writeNewUser2(userid, tmp1);
     }
+    private void findBestScore3()
+    {
+        UnityEngine.Debug.Log("POW3");
+        for (int i = 0; i < sarray.Length; i++)
+        {
+            string said = sarray[i].id;
 
+            if (said == userid)
+            {
+                float tmp = sarray[i].score;
+                UnityEngine.Debug.Log("최고 tmp3 : " + tmp);
 
+                tmp3 = tmp.ToString();
+                break;
+            }
+        }
+        UnityEngine.Debug.Log("tmp3 : " + tmp3);
+        //writeNewUser2(userid, tmp1);
+    }
     private void readScore2(string name) // 최고기록 받아오는 용도
     {
         databaseReference = FirebaseDatabase.DefaultInstance.GetReference(name);
@@ -379,8 +462,18 @@ public class DatabaseManager : MonoBehaviour
                     Debug.Log("ReadScore :: " + "name : " + personInfo["id"] + ", score: " + personInfo["score"]);
                     co++;
                 }
-                UnityEngine.Debug.Log(sarray.Length);
+                if(name == "Game1") { 
                 findBestScore();
+                }
+                else if (name == "Game2")
+                {
+                    findBestScore2();
+
+                }
+                else if(name == "Game2")
+                {
+                    findBestScore3();
+                }
 
             }
         });

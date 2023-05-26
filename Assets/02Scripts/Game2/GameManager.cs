@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
     public delegate void OnPlay(bool isplay);
     public OnPlay onPlay;
 
+    DatabaseManager databaseManager;
+
     public float gameSpeed = 1;
     public bool isPlay = false;
     public GameObject playbtn;
@@ -42,24 +44,58 @@ public class GameManager : MonoBehaviour
     public GameObject Overbgm;
 
 
-    public int runScore1 = 0;
-    public int runScore2 = 0;
+    public float runScore1 = 0;
+    public float runScore2 = 0;
 
     public TextMeshProUGUI runscore1Text;
     public TextMeshProUGUI runscore2Text;
     public TextMeshProUGUI RunBestScoreText;
+
+    public string bestscore;
 
     public int curStage;
     public int[] stageScore;
     public Stage[] stages;
     private void Start()
     {
+        databaseManager = GameObject.Find("DatabaseManager").GetComponent<DatabaseManager>();
+
+        InvokeRepeating("speedUp", 0, 0.1f);
+        BestUpdate();
         Bgm.SetActive(false);
         Overbgm.SetActive(false);
-        RunBestScoreText.text = PlayerPrefs.GetInt("RunBestScore",0).ToString();
+        //RunBestScoreText.text = PlayerPrefs.GetInt("RunBestScore",0).ToString();
         GameoverPanel.SetActive(false);
         PausePanel.SetActive(false);
         Time.timeScale = 1f;
+    }
+
+    void speedUp()
+    {
+        if (isPlay) { 
+        gameSpeed = gameSpeed + 0.01f;
+        runScore1++;
+        }
+    }
+    void Update()
+    {
+        if (isPlay)
+        {
+            StartCoroutine(AddScore());
+            runscore1Text.text = runScore1.ToString();
+            runscore2Text.text = runScore1.ToString();
+
+            databaseManager.score2_1 = runScore1;
+            databaseManager.score2_2 = float.Parse(databaseManager.tmp2);
+            bestscore = databaseManager.score2_2.ToString();
+        }
+        RunBestScoreText.text = databaseManager.tmp2.ToString();
+    }
+
+    void BestUpdate()
+    {
+        UnityEngine.Debug.Log("PPP111");
+        databaseManager.OnClickSaveButton2();
     }
 
     IEnumerator AddScore()
@@ -72,16 +108,16 @@ public class GameManager : MonoBehaviour
             }
             catch { }
             
-            runScore1++;
-            runScore2++;
-            runscore1Text.text = runScore1.ToString();
-            runscore2Text.text = runScore2.ToString();
-            gameSpeed = gameSpeed + 0.01f;
+            
+            //runscore1Text.text = runScore1.ToString();
+            //runscore2Text.text = runScore2.ToString();
+
             yield return new WaitForSeconds(0.1f);
         }
     }
     public void Playbtn()
     {
+        //StartCoroutine(AddScore());
         playbtn.SetActive(false);
         explainPanel.SetActive(false);
         GameoverPanel.SetActive(false );
@@ -90,15 +126,16 @@ public class GameManager : MonoBehaviour
         isPlay = true;
         onPlay.Invoke(isPlay);
         gameSpeed = 1;
-        runScore1 = 0;
-        runScore2 = 0;
-        runscore1Text.text = runScore1.ToString();
-        runscore2Text.text = runScore2.ToString();
-        StartCoroutine(AddScore());
+        //runScore1 = 0;
+        //runScore2 = 0;
+        //runscore1Text.text = runScore1.ToString();
+        //runscore2Text.text = runScore2.ToString();
+
     }
 
     public void GameOver()
     {
+        databaseManager.readScore("Game2");
         GameoverPanel.SetActive(true);
         Bgm.SetActive(false);
         Overbgm.SetActive(true);
@@ -107,11 +144,13 @@ public class GameManager : MonoBehaviour
         StopCoroutine(AddScore());
         StopCoroutine(GameoverRoutine());
         //최고점수
+        /*
         if (PlayerPrefs.GetInt("RunBestScore", 0) < runScore1)
         {
             PlayerPrefs.SetInt("RunBestScore", runScore1);
             RunBestScoreText.text = runScore1.ToString();
         }
+        */
     }
     public void Pause_btn()
     {
