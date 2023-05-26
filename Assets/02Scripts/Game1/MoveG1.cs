@@ -14,6 +14,12 @@ public class MoveG1 : MonoBehaviour
     public DynamicJoystick joy;
     public FixedJoystick fjoy;
 
+    public AudioClip Walk;
+
+    public AudioSource audioSrc;
+    //public AudioSource audioSrc2;
+
+
     public float speed  = 5f;
     float x;
     float z;
@@ -28,6 +34,7 @@ public class MoveG1 : MonoBehaviour
     float time_tmp;
     public float BombTime = 3.0f;
     public bool isDead;
+    public bool isWalk;
 
     public Vector2 position;
 
@@ -69,6 +76,10 @@ public class MoveG1 : MonoBehaviour
         activeSpriteRenderer = spriteRendererRight;
 
         position = PlayerG1pos;
+
+        audioSrc = GetComponent<AudioSource>();
+        //audioSrc2 = GetComponent<AudioSource>();
+
         isDead = false;
         gameTime = 0.0f;
         
@@ -78,6 +89,9 @@ public class MoveG1 : MonoBehaviour
     {
         gameTime = 0;
         time_tmp = 0;
+        audioSrc.clip = Walk;
+        //audioSrc2.clip = Die;
+        InvokeRepeating("walkAudio", 0, 0.2f);
     }
     void FixedUpdate()
     {
@@ -87,14 +101,18 @@ public class MoveG1 : MonoBehaviour
         Vector2 position = rigidbody.position;
         Vector2 translation = new Vector2(x,z) * speed * Time.fixedDeltaTime;
 
-        rigidbody.MovePosition(position + translation);
 
-        if (moveVec.sqrMagnitude == 0)
+        rigidbody.MovePosition(position + translation);
+        isWalk = true;
+ 
+        if (translation.sqrMagnitude == 0)
         {
-            
+            isWalk = false;
+
             return;
         }
-            
+
+        //walkAudio();
     }
 
     private void Update()
@@ -103,7 +121,7 @@ public class MoveG1 : MonoBehaviour
 
         //BombTimer();
         SetSpeed();
-
+        //walkAudio();
         PControl();
         //JoyControl();
         JoyControl2();
@@ -111,7 +129,23 @@ public class MoveG1 : MonoBehaviour
 
     }
     
+    void walkAudio()
+    {
+        if (isWalk)
+        {
+            for(int i = 0; i< 1; i++) { 
+                audioSrc.Play();
+            }
+            UnityEngine.Debug.Log(isWalk);
+            float audioTime = 0.0f;
+            audioTime += Time.deltaTime;
 
+        }
+        else {
+        UnityEngine.Debug.Log("Not");
+        audioSrc.Stop();
+        }
+    }
     private void SetSpeed()
     {
         if(gameTime >= 0.0f && gameTime < 20.0f)
@@ -327,6 +361,7 @@ public class MoveG1 : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Explosion"))
         {
             DeathSequence();
+
         }
     }
 

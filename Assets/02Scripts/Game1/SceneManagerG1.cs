@@ -20,6 +20,9 @@ public class SceneManagerG1 : MonoBehaviour
     public GameObject PausePanel;
     public GameObject ExplainPanel;
 
+    public GameObject BGM;
+    public GameObject BGM_die;
+
     public TMP_Text bestScoreText;
     public TMP_Text nowScoreText;
 
@@ -36,6 +39,7 @@ public class SceneManagerG1 : MonoBehaviour
     }
     private void Start()
     {
+        BGM_die.SetActive(false);
         isStart = false;
     }
 
@@ -50,8 +54,11 @@ public class SceneManagerG1 : MonoBehaviour
         {
             ///databaseManagerG1.OnClickSaveButton1();
             //nowScore = databaseManagerG1.score1_1.ToString();
-           // bestScore = databaseManagerG1.score.ToString();
+            // bestScore = databaseManagerG1.score.ToString();
+            BGM.SetActive(false);
+            BGM_die.SetActive(true);
             GameOverPanel.SetActive(true);
+            
             isStart = false;
         }
     }

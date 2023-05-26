@@ -17,6 +17,7 @@ public class NuclearB : MonoBehaviour
     public LayerMask explosionLayerMask;
     public float explosionDuration;
     public int explosionRadius = 1;
+    public AudioSource audioSrc;
 
     public void Awake()
     {
@@ -174,5 +175,6 @@ public class NuclearB : MonoBehaviour
         explosion.DestroyAfter(explosionDuration);
 
         Explode(position, direction, length - 1);
+        
     }
 }
