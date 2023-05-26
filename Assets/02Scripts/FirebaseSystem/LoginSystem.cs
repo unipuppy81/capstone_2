@@ -37,6 +37,8 @@ public class LoginSystem : MonoBehaviour
 
     void Start()
     {
+        Invoke("StartLogin", 1.3f);
+
         FirebaseAuthManager.Instance.LoginState += OnChangedState;
        
         //FirebaseAuthManager.Instance.Logout();
@@ -68,6 +70,11 @@ public class LoginSystem : MonoBehaviour
             FirebaseAuthManager.Instance.isLogin = false;
         }
         */
+    }
+
+    public void StartLogin()
+    {
+        LoginPanel.SetActive(true);
     }
 
     private void OnChangedState(bool sign)
