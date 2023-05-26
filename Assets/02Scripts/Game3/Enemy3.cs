@@ -40,7 +40,7 @@ public class Enemy3 : MonoBehaviour
         {
             GameManager3.instance.Score();
             Destroy(this.gameObject);
-            Vector3 pos = this.gameObject.transform.position;
+            Vector3 pos = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y - 0.2f, this.gameObject.transform.position.z);
             Instantiate(fire, pos, Quaternion.identity);
             //animator.SetTrigger("poop");
         }

@@ -29,7 +29,7 @@ public class Player3 : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         //horizontal = Input.GetAxis("Horizontal");
 
@@ -70,25 +70,26 @@ public class Player3 : MonoBehaviour
         if (GameManager3.instance.isStart == true)
         {
             if (TouchMove.instance.isClick1 == true)
-            {
-                Rotation = -1;
-                playerRenderer.flipX = true;
-                //playerRigidbody.AddForce(new Vector2(-speed, 0), ForceMode2D.Force);
-                playerRigidbody.velocity = new Vector2(-1.2f * speed, playerRigidbody.velocity.y);
-            }
-            else if (TouchMove.instance.isClick2 == true)
-            {
-                Rotation = 1;
-                playerRenderer.flipX = false;
-                //playerRigidbody.AddForce(new Vector2(speed, 0), ForceMode2D.Force);
-                playerRigidbody.velocity = new Vector2(1.2f * speed, playerRigidbody.velocity.y);
-            }
+        {
+            Rotation = -1;
+            playerRenderer.flipX = true;
+            //playerRigidbody.AddForce(new Vector2(-speed, 0), ForceMode2D.Force);
+            playerRigidbody.velocity = new Vector2(-1.2f * speed, playerRigidbody.velocity.y);
+        }
+        else if (TouchMove.instance.isClick2 == true)
+        {
+            Rotation = 1;
+            playerRenderer.flipX = false;
+            //playerRigidbody.AddForce(new Vector2(speed, 0), ForceMode2D.Force);
+            playerRigidbody.velocity = new Vector2(1.2f * speed, playerRigidbody.velocity.y);
+        }
             animator.SetFloat("speed", Mathf.Abs(Rotation));
         }
         else
         {
             playerRigidbody.velocity = Vector2.zero;
         }
+
     }
 
     private void ScreenChk()

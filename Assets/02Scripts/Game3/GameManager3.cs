@@ -52,7 +52,7 @@ public class GameManager3 : MonoBehaviour
 
     public bool stopTrigger = true;
 
-    public bool isStart = false;
+    public bool isStart;
 
     private float a;
     private float b;
@@ -102,6 +102,7 @@ public class GameManager3 : MonoBehaviour
 
     public void GameStart()
     {
+        Time.timeScale = 1.0f;
         stopTrigger = true;
         StartCoroutine(e1);
         StartCoroutine(e2);
