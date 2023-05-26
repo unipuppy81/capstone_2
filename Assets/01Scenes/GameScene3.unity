@@ -2576,7 +2576,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -7225372733434141105, guid: 10a24b69fb89f1849aaca712a6b63708, type: 2}
   m_audioClip: {fileID: 8300000, guid: 9c78ef46ea96744feb8650305abf59af, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.267
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2841,6 +2841,7 @@ MonoBehaviour:
   PausePanel: {fileID: 1535243385}
   SettingPanel: {fileID: 0}
   RankPanel: {fileID: 0}
+  MenuPanel: {fileID: 0}
   Game1Btn: {fileID: 0}
   Game2Btn: {fileID: 0}
   Game3Btn: {fileID: 0}
