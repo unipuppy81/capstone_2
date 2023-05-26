@@ -9,6 +9,8 @@ public class ButtonManager : MonoBehaviour
     public GameObject SettingPanel;
     public GameObject RankPanel;
 
+    public GameObject MenuPanel;
+
     public GameObject Game1Btn;
     public GameObject Game2Btn;
     public GameObject Game3Btn;
@@ -23,6 +25,7 @@ public class ButtonManager : MonoBehaviour
     public void RankExit()
     {
         RankPanel.SetActive(false);
+        MenuPanel.SetActive(false);
     }
     public void RankingBtn()
     {
@@ -64,5 +67,10 @@ public class ButtonManager : MonoBehaviour
     public void closeBtn()
     {
         SettingPanel.SetActive(false);
+        MenuPanel.SetActive(false);
+    }
+    public void menuPanel()
+    {
+        MenuPanel.SetActive(true);
     }
 }
