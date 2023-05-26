@@ -32,10 +32,14 @@ public class FirebaseAuthManager
     public string UserId => user.UserId;
 
     public bool isLogin;
+    public bool isSign;
+    public bool isSign2;
 
     public void Init()
     {
         isLogin = false;
+        isSign = true;
+        isSign2 = false;
         loginSystem = GameObject.Find("Canvas").GetComponent<LoginSystem>();
         auth = FirebaseAuth.DefaultInstance;
         auth.StateChanged += OnChanged;
@@ -74,12 +78,15 @@ public class FirebaseAuthManager
             if (task.IsFaulted)
             {
                 // 회원가입 실패 이유 => 이메밀 비정상 / 비번 간단 / 이미 가입된 이메일
+                isSign = false;
                 Debug.LogError("회원가입 실패");
                 return;
             }
-
+            isSign = true;
+            isSign2 = true;
             FirebaseUser newUser = task.Result.User;
             Debug.LogError("회원가입 완료");
+            
             Logout();
         });
     }

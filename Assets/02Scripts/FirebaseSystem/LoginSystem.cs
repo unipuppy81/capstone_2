@@ -20,6 +20,9 @@ public class LoginSystem : MonoBehaviour
     public GameObject LoginPanel;
     public GameObject TPanel;
     public GameObject SignupPanel;
+    public GameObject OkayPanel;
+    public GameObject ErrorPanel;
+    public GameObject LogErrorPanel;
 
     void Awake()
     {
@@ -88,7 +91,14 @@ public class LoginSystem : MonoBehaviour
     public void Login()
     {
         FirebaseAuthManager.Instance.Login(id.text, password.text);
-        LoginPanel.SetActive(false);
+        if(FirebaseAuthManager.Instance.isLogin == false)
+        {
+            LogErrorPanel.SetActive(true) ;
+        }
+        else
+        {
+            LoginPanel.SetActive(false);
+        }
     }
 
     public void LogOut()
@@ -114,5 +124,32 @@ public class LoginSystem : MonoBehaviour
         LoginPanel.SetActive(true);
         SignupPanel.SetActive(false);
 
+    }
+    public void OkcloseBtn()
+    {
+        OkayPanel.SetActive(false);
+        SignupPanel.SetActive(false);
+    }
+    public void ErrorCloseBtn()
+    {
+        ErrorPanel.SetActive(false);
+    }
+    public void LogErrorCloseBtn()
+    {
+        LogErrorPanel.SetActive(false);
+    }
+    public void Error()
+    {
+        if (FirebaseAuthManager.Instance.isSign == false && FirebaseAuthManager.Instance.isSign2 == false) ;
+        {
+            UnityEngine.Debug.Log(FirebaseAuthManager.Instance.isSign);
+            ErrorPanel.SetActive(true);
+            OkayPanel.SetActive(false);
+        }
+        if (FirebaseAuthManager.Instance.isSign == false && FirebaseAuthManager.Instance.isSign2 == true)
+        {
+            OkayPanel.SetActive(true);
+            ErrorPanel.SetActive(false);
+        }
     }
 }
