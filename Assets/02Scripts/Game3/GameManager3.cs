@@ -20,6 +20,9 @@ public class GameManager3 : MonoBehaviour
     }
 
     [SerializeField]
+    DatabaseManager databaseManager;
+
+    [SerializeField]
     private GameObject enemy;
     [SerializeField]
     private GameObject enemy2;
@@ -30,8 +33,10 @@ public class GameManager3 : MonoBehaviour
     [SerializeField]
     private GameObject coin2;
 
-    public int score;
-    public int nowscore;
+    public float nowscore; // nowscore ³¡³ª°í ¶ß´Â ÇöÀç Á¡¼ö
+    public float score1;  // score1 == ½Ç½Ã°£À¸·Î ¿Ã¶ó°¡´Â Á¡¼ö
+    public string bestscore; // ÃÖ°í Á¡¼ö
+
 
     [SerializeField]
     private Text scoreTxt;
@@ -39,7 +44,10 @@ public class GameManager3 : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI nowScoreTxt;
     [SerializeField]
-    private TextMeshProUGUI bestScore;
+    private TextMeshProUGUI score1Text;
+    [SerializeField]
+    private TextMeshProUGUI bestScoreText;
+
 
     [SerializeField]
     private GameObject panel;
@@ -67,7 +75,10 @@ public class GameManager3 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        score = 0;
+        checkBestScore();
+        score1 = 0;
+        
+        databaseManager = GameObject.Find("DatabaseManager").GetComponent<DatabaseManager>();
 
         e1 = CreateEnemyRoutine();
         e2 = CreateEnemy2Routine();
@@ -82,26 +93,48 @@ public class GameManager3 : MonoBehaviour
         isStart = false;
     }
 
+    private void Update()
+    {
+        if (isStart)
+        {
+            score1Text.text = score1.ToString();
+            nowScoreTxt.text = score1.ToString();
+
+
+            databaseManager.score3_1 = score1;
+            databaseManager.score3_2 = float.Parse(databaseManager.tmp3);
+            bestscore = databaseManager.score3_2.ToString();
+        }
+        bestScoreText.text = databaseManager.tmp3.ToString();
+    }
+
+    void checkBestScore()
+    {
+        UnityEngine.Debug.Log("chekBestScore");
+        databaseManager.OnClickSaveButton3();
+    }
+
     public void Score() // 1Á¡ È¹µæ
     {
-        score++;
-        scoreTxt.text = ""+ score;
+        score1++;
+        scoreTxt.text = ""+ score1;
     }
 
     public void Score2() // 2Á¡ È¹µæ
     {
-        score += 2;
-        scoreTxt.text = "" + score;
+        score1 += 2;
+        scoreTxt.text = "" + score1;
     }
 
     public void Score3() // 3Á¡ È¹µæ
     {
-        score += 3;
-        scoreTxt.text = "" + score;
+        score1 += 3;
+        scoreTxt.text = "" + score1;
     }
 
     public void GameStart()
     {
+        Debug.Log("½ÃÀÛ?");
         Time.timeScale = 1.0f;
         stopTrigger = true;
         StartCoroutine(e1);
@@ -118,6 +151,7 @@ public class GameManager3 : MonoBehaviour
 
     public void GameOver()
     {
+        databaseManager.readScore("Game3");
         stopTrigger = false;
 
         StopCoroutine(e1);
@@ -126,6 +160,7 @@ public class GameManager3 : MonoBehaviour
         StopCoroutine(c1);
         StopCoroutine(c2);
 
+        /*
         if (score >= PlayerPrefs.GetInt("BestScore", 0))
         {
             PlayerPrefs.SetInt("BestScore", score);
@@ -133,7 +168,9 @@ public class GameManager3 : MonoBehaviour
 
         nowScoreTxt.text = "" + score;
 
+
         bestScore.text = PlayerPrefs.GetInt("BestScore", 0).ToString();
+                */
         GameoverPanel.SetActive(true);
         Bgm.SetActive(false);
         Overbgm.SetActive(true);
@@ -197,7 +234,7 @@ public class GameManager3 : MonoBehaviour
         a = Random.Range(0.0f, 1.0f);
         Vector3 pos = Camera.main.ViewportToWorldPoint(new Vector3(a, 1.1f, 0));
         pos.z = 0.0f;
-        if(score >= 10)
+        if(score1 >= 10)
         {
             Instantiate(enemy2, pos, Quaternion.identity);
         }
@@ -208,7 +245,7 @@ public class GameManager3 : MonoBehaviour
         a = Random.Range(0.0f, 1.0f);
         Vector3 pos = Camera.main.ViewportToWorldPoint(new Vector3(a, 1.1f, 0));
         pos.z = 0.0f;
-        if (score >= 50)
+        if (score1 >= 50)
         {
             Instantiate(enemy3, pos, Quaternion.identity);
         }
@@ -227,7 +264,7 @@ public class GameManager3 : MonoBehaviour
         b = Random.Range(0.0f, 1.0f);
         Vector3 pos = Camera.main.ViewportToWorldPoint(new Vector3(b, 1.1f, 0));
         pos.z = 0.0f;
-        if(score >= 15)
+        if(score1 >= 15)
         {
             Instantiate(coin2, pos, Quaternion.identity);
         }

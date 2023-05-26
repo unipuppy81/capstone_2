@@ -223,10 +223,8 @@ public class DatabaseManager : MonoBehaviour
     public void OnClickSaveButton3()
     {
         name = "Game3";
-        readScore(name);
- 
-        writeNewUser(userid, score);
-
+        UnityEngine.Debug.Log("OnclickBtn3");
+        readScore2(name);
     }
     /*
     public void OnClickLoadButton()

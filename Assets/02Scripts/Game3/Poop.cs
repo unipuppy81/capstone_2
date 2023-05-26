@@ -28,12 +28,12 @@ public class Poop : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (GameManager3.instance.score >= 30)
+        if (GameManager3.instance.score1 >= 30)
         {
             poopRigidbody.AddForce(Vector2.down * 10f);
         }
 
-        if(GameManager3.instance.score >= 60)
+        if(GameManager3.instance.score1 >= 60)
         {
             poopRigidbody.AddForce(Vector2.down * 15f);
         }

@@ -28,7 +28,7 @@ public class Enemy3 : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (GameManager3.instance.score >= 80)
+        if (GameManager3.instance.score1 >= 80)
         {
             poopRigidbody.AddForce(Vector2.down * 15f);
         }
