@@ -3849,6 +3849,7 @@ MonoBehaviour:
   PausePanel: {fileID: 801361084}
   SettingPanel: {fileID: 0}
   RankPanel: {fileID: 0}
+  MenuPanel: {fileID: 0}
   Game1Btn: {fileID: 0}
   Game2Btn: {fileID: 0}
   Game3Btn: {fileID: 0}

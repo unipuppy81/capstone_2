@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obSpeed: 2
-  StartPosition: {x: 3, y: -0.095}
+  StartPosition: {x: 3, y: -0.203}
 --- !u!60 &6701171953459970434
 PolygonCollider2D:
   m_ObjectHideFlags: 0
