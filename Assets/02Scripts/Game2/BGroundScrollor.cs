@@ -6,7 +6,6 @@ using UnityEngine;
 public class BGroundScrollor : MonoBehaviour
 {
     public SpriteRenderer[] tiles; // 바닥 오브젝트 배열
-    //public Sprite[] groundImg;
 
     public float speed;
     GameManager gm;

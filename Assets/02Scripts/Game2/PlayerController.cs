@@ -38,7 +38,6 @@ public class PlayerController : MonoBehaviour
             ChangeAnim(State.run);
             // »ç¿îµå
         }
-        //jumpPower = 1;
         isGround = true;
     }
 

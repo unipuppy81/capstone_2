@@ -64,7 +64,6 @@ public class GameManager : MonoBehaviour
         BestUpdate();
         Bgm.SetActive(false);
         Overbgm.SetActive(false);
-        //RunBestScoreText.text = PlayerPrefs.GetInt("RunBestScore",0).ToString();
         GameoverPanel.SetActive(false);
         PausePanel.SetActive(false);
         Time.timeScale = 1f;
@@ -107,17 +106,11 @@ public class GameManager : MonoBehaviour
                     curStage++;
             }
             catch { }
-            
-            
-            //runscore1Text.text = runScore1.ToString();
-            //runscore2Text.text = runScore2.ToString();
-
             yield return new WaitForSeconds(0.1f);
         }
     }
     public void Playbtn()
     {
-        //StartCoroutine(AddScore());
         playbtn.SetActive(false);
         explainPanel.SetActive(false);
         GameoverPanel.SetActive(false );
@@ -126,11 +119,6 @@ public class GameManager : MonoBehaviour
         isPlay = true;
         onPlay.Invoke(isPlay);
         gameSpeed = 1;
-        //runScore1 = 0;
-        //runScore2 = 0;
-        //runscore1Text.text = runScore1.ToString();
-        //runscore2Text.text = runScore2.ToString();
-
     }
 
     public void GameOver()
@@ -143,14 +131,6 @@ public class GameManager : MonoBehaviour
         onPlay.Invoke(isPlay);
         StopCoroutine(AddScore());
         StopCoroutine(GameoverRoutine());
-        //최고점수
-        /*
-        if (PlayerPrefs.GetInt("RunBestScore", 0) < runScore1)
-        {
-            PlayerPrefs.SetInt("RunBestScore", runScore1);
-            RunBestScoreText.text = runScore1.ToString();
-        }
-        */
     }
     public void Pause_btn()
     {
