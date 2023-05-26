@@ -51,6 +51,7 @@ public class DatabaseManager : MonoBehaviour
 
     private DatabaseReference databaseReference;
     ScoreG1 scoreg1;
+    SceneManagerG1 smg;
     int count = 1;
 
 
@@ -64,7 +65,7 @@ public class DatabaseManager : MonoBehaviour
     public TMP_Text[] Rank_name3 = new TMP_Text[10];
     public TMP_Text[] Rank_score3 = new TMP_Text[10];
 
-    ScoreArray[] sarray;
+    ScoreArray[] sarray, sarray2;   // srray2 = 게임 끝나고 비교할때
 
     private float[] scoreRankf;
     private string[] scoreRank;
@@ -79,8 +80,8 @@ public class DatabaseManager : MonoBehaviour
 
 
     [Header("Game 1")]
-    public float score1_1; // 원래
-    public float score1_2; // firebase 최고기록
+    public float score1_1; // 기존 최고기록 vs 현재기록
+    public float score1_2; // 이긴놈을 여기에 담아서 등록
     public string tmp1;
 
 
@@ -96,7 +97,6 @@ public class DatabaseManager : MonoBehaviour
 
     private void Start()
     {
-
         if (LoginState.LoginOk == true) { 
             userid = LoginState.LoginId;
         }
@@ -108,6 +108,7 @@ public class DatabaseManager : MonoBehaviour
     {
         IdUpdate();
 
+     
         // 현재 첫번째 Text UI가 "Loading" 이면,
         // 즉, 스크립트를 컴포넌트하고있는 게임 오브젝트가 Activeself(true) 이면,
         /*
@@ -172,19 +173,45 @@ public class DatabaseManager : MonoBehaviour
         string jsonData = JsonUtility.ToJson(userScore);
 
         // DatabseReference 변수에 userId의 자식으로 json 파일 업로드
+        databaseReference.Child(name).Child(userid).SetRawJsonValueAsync(jsonData);
+
+        //databaseReference.Child(name).Child("num" + count.ToString()).SetRawJsonValueAsync(jsonData);
+
+        //databaseReference.Child(userid).SetRawJsonValueAsync(jsonData);
+    }
+    public void writeNewUser2(string userid, string score)
+    {
+        // 클래스 UserScore만들고 받아온 name, userid, score 대입
+        //var userScore = new Data(name, userid ,score);
+        Data userScore = new Data(userid, score);
+
+        //대입시킨 클래스 변수 user를 json 파일로 변환
+        string jsonData = JsonUtility.ToJson(userScore);
+
+        // DatabseReference 변수에 userId의 자식으로 json 파일 업로드
         databaseReference.Child(userid).SetRawJsonValueAsync(jsonData);
 
         //databaseReference.Child(name).Child("num" + count.ToString()).SetRawJsonValueAsync(jsonData);
 
         //databaseReference.Child(userid).SetRawJsonValueAsync(jsonData);
     }
+    public void Onclick()
+    {
+        name = "Game1";
+        writeNewUser(userid, score);
+    }
+    public void FirstSaveButton1()
+    {
+        name = "Game1";
+    }
+
     public void OnClickSaveButton1()
     {
         name = "Game1";
-        readScore(name);
-        writeNewUser(userid, score);
-
+        readScore2(name);
     }
+
+
 
     public void OnClickSaveButton2()
     {
@@ -236,7 +263,86 @@ public class DatabaseManager : MonoBehaviour
 
 
     // 데이터 출력
-    private void readScore(string name)
+    public void readScore(string name) // 게임 끝나고  최고기록이랑 비교
+    {
+        databaseReference = FirebaseDatabase.DefaultInstance.GetReference(name);
+
+        //reference의 자식(userId)를 task로 받음
+        //databaseReference.Child(userid).GetValueAsync().ContinueWith(task =>
+        databaseReference.GetValueAsync().ContinueWith(task =>
+        {
+            if (task.IsFaulted)
+            {
+                // Handle the error
+                Debug.Log("error");
+            }
+            else if (task.IsCompleted)
+            {
+                //DataSnapShot 변수를 선언하여 task의 결과 값을 받음
+                DataSnapshot snapshot = task.Result;
+
+                int co = 0;
+                strLen = snapshot.ChildrenCount;
+                scoreRank = new string[strLen];
+                scoreRankf = new float[strLen];
+                textRank = new string[strLen];
+                sarray2 = new ScoreArray[strLen];
+                //foreach 문으로 각각 데이터를 IDictionary로 변환해 각 이름에 맞게 변수 초기화
+                foreach (DataSnapshot data in snapshot.Children)
+                {
+                    UnityEngine.Debug.Log(strLen);
+                    IDictionary personInfo = (IDictionary)data.Value;
+                    textRank[co] = personInfo["id"].ToString();
+                    scoreRank[co] = personInfo["score"].ToString();
+
+
+                    sarray2[co] = new ScoreArray(textRank[co], float.Parse(scoreRank[co]));
+                    Debug.Log("ReadScore :: " + "name : " + personInfo["id"] + ", score: " + personInfo["score"]);
+                    co++;
+                }
+
+                findScoreName();
+            }
+        });
+    }
+    private void findScoreName()
+    {
+        UnityEngine.Debug.Log("POW");
+
+        if (score1_2 >= score1_1)
+        {
+            tmp1 = score1_2.ToString("N2");
+        }
+        else if (score1_1 > score1_2)
+        {
+            tmp1 = score1_1.ToString("N2");
+        }
+
+        writeNewUser2(userid, tmp1);
+    }
+
+    private void findBestScore()
+    {
+        UnityEngine.Debug.Log("POW2");
+        for (int i = 0; i < sarray.Length; i++)
+        {
+            string said = sarray[i].id;
+
+            if (said == userid)
+            {
+                float tmp = sarray[i].score;
+                
+                UnityEngine.Debug.Log("최고 tmp : " + tmp);
+                tmp1 = tmp.ToString("N2");
+                break;
+            }
+        }
+        UnityEngine.Debug.Log("tmp1 : " + tmp1);
+        //writeNewUser2(userid, tmp1);
+    }
+
+
+    private void readScore2(string name) // 최고기록 받아오는 용도
     {
         databaseReference = FirebaseDatabase.DefaultInstance.GetReference(name);
 
@@ -267,46 +373,23 @@ public class DatabaseManager : MonoBehaviour
                     IDictionary personInfo = (IDictionary)data.Value;
                     textRank[co] = personInfo["id"].ToString();
                     scoreRank[co] = personInfo["score"].ToString();
-                    UnityEngine.Debug.Log("A");
+
 
                     sarray[co] = new ScoreArray(textRank[co], float.Parse(scoreRank[co]));
-                    UnityEngine.Debug.Log("B");
+                    Debug.Log("ReadScore :: " + "name : " + personInfo["id"] + ", score: " + personInfo["score"]);
                     co++;
                 }
-                UnityEngine.Debug.Log("C");
-                findScoreName();
+                UnityEngine.Debug.Log(sarray.Length);
+                findBestScore();
+
             }
         });
+
+       
     }
 
-    private void findScoreName()
-    {
-        UnityEngine.Debug.Log("POW");
-       for(int i = 0; i<sarray.Length; i++)
-       {
-            string said = sarray[i].ToString();
-            int endIndex = said.Length - 4;
-            said = said.Substring(0, endIndex);
+    
 
-            if (said == userid)
-            {
-                score1_2 = sarray[i].score; // 최고기록
-
-                if (score1_2 >= score1_1)
-                {
-                    score = score1_2.ToString();
-                    break;
-                }
-                else
-                {
-                    score = score1_1.ToString();
-                    break;
-                }
-                
-            }
-        }
-
-    }
     public void LoadButton1()
     {
         readUser("Game1");
@@ -331,6 +414,7 @@ public class DatabaseManager : MonoBehaviour
         G3 = true;
     }
 
+    //랭킹
     private void readUser(string name)
     {
         databaseReference = FirebaseDatabase.DefaultInstance.GetReference(name);

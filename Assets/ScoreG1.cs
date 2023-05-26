@@ -26,7 +26,6 @@ public class ScoreG1 : MonoBehaviour
     private void Start()
     {
         BestScoreUpdate();
-
     }
     void Update()
     {
@@ -34,24 +33,17 @@ public class ScoreG1 : MonoBehaviour
             score1 += Time.deltaTime;
             GameScore.text = score1.ToString("N2");
             GameScore2.text = score1.ToString("N2");
+
+            databaseManager.score1_1 = score1;
+            databaseManager.score1_2 = float.Parse(databaseManager.tmp1);
+            bestScore = databaseManager.score1_2.ToString("N2");
         }
-        if (smg.isStart == false) {
-            //BestScoreText.text = "Best";
-            //BestScoreUpdate();
-           
-        }
+        BestScoreText.text = databaseManager.tmp1.ToString();
     }
 
     void BestScoreUpdate()
-    {
-        UnityEngine.Debug.Log("ScoreG1");
+    { 
         databaseManager.OnClickSaveButton1();
-        UnityEngine.Debug.Log("ScoreG2");
-        bestScore = databaseManager.score.ToString();
-        UnityEngine.Debug.Log(bestScore);
-        UnityEngine.Debug.Log("ScoreG3");
-        BestScoreText.text = bestScore;
-        UnityEngine.Debug.Log("ScoreG4");
     }
 
    

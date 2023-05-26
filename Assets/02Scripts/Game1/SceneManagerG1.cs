@@ -48,9 +48,9 @@ public class SceneManagerG1 : MonoBehaviour
     {
         if(moveG1.isDead)
         {
-            databaseManagerG1.OnClickSaveButton1();
-            nowScore = databaseManagerG1.score1_1.ToString();
-            bestScore = databaseManagerG1.score.ToString();
+            ///databaseManagerG1.OnClickSaveButton1();
+            //nowScore = databaseManagerG1.score1_1.ToString();
+           // bestScore = databaseManagerG1.score.ToString();
             GameOverPanel.SetActive(true);
             isStart = false;
         }

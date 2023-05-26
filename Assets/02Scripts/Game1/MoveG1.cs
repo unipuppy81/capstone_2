@@ -347,6 +347,7 @@ public class MoveG1 : MonoBehaviour
     private void OnDeathSquenceEnded()
     {
         isDead = true;
+        databasemanager.readScore("Game1");
         //gameObject.SetActive(false);
     }
 }
