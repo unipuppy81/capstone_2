@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
     public GameObject PausePanel;
     public GameObject Bgm;
     public GameObject Overbgm;
+    public GameObject WinBgm;
 
 
     public float runScore1 = 0;
@@ -64,6 +65,7 @@ public class GameManager : MonoBehaviour
         BestUpdate();
         Bgm.SetActive(false);
         Overbgm.SetActive(false);
+        WinBgm.SetActive(false);
         GameoverPanel.SetActive(false);
         PausePanel.SetActive(false);
         Time.timeScale = 1f;
@@ -131,6 +133,18 @@ public class GameManager : MonoBehaviour
         onPlay.Invoke(isPlay);
         StopCoroutine(AddScore());
         StopCoroutine(GameoverRoutine());
+        /*
+        if(runScore1 != bestscore)
+        {
+            Bgm.SetActive(false);
+            Overbgm.SetActive(true);
+        }
+        else if(runScore1 == bestscore)
+        {
+            Bgm.SetActive(false) ;
+            WinBgm.SetActive(true) ;
+        }
+        */
     }
     public void Pause_btn()
     {
