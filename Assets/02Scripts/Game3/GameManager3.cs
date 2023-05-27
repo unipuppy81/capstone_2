@@ -225,7 +225,7 @@ public class GameManager3 : MonoBehaviour
 
     private void CreateEnemy()
     {
-        a = Random.Range(0.0f, 1.0f);
+        a = Random.Range(0.05f, 0.95f);
         Vector3 pos = Camera.main.ViewportToWorldPoint(new Vector3(a, 1.1f, 0));
         pos.z = 0.0f;
         Instantiate(enemy, pos, Quaternion.identity);
@@ -233,7 +233,7 @@ public class GameManager3 : MonoBehaviour
 
     private void CreateEnemy2()
     {
-        a = Random.Range(0.0f, 1.0f);
+        a = Random.Range(0.05f, 0.95f);
         Vector3 pos = Camera.main.ViewportToWorldPoint(new Vector3(a, 1.1f, 0));
         pos.z = 0.0f;
         if(score1 >= 10)
@@ -244,7 +244,7 @@ public class GameManager3 : MonoBehaviour
 
     private void CreateEnemy3()
     {
-        a = Random.Range(0.0f, 1.0f);
+        a = Random.Range(0.05f, 0.95f);
         Vector3 pos = Camera.main.ViewportToWorldPoint(new Vector3(a, 1.1f, 0));
         pos.z = 0.0f;
         if (score1 >= 50)
@@ -255,7 +255,7 @@ public class GameManager3 : MonoBehaviour
 
     private void CreateCoin()
     {
-        b = Random.Range(0.0f, 1.0f);
+        b = Random.Range(0.05f, 0.95f);
         Vector3 pos = Camera.main.ViewportToWorldPoint(new Vector3(b, 1.1f, 0));
         pos.z = 0.0f;
         Instantiate(coin, pos, Quaternion.identity);
@@ -263,7 +263,7 @@ public class GameManager3 : MonoBehaviour
 
     private void CreateCoin2()
     {
-        b = Random.Range(0.0f, 1.0f);
+        b = Random.Range(0.05f, 0.95f);
         Vector3 pos = Camera.main.ViewportToWorldPoint(new Vector3(b, 1.1f, 0));
         pos.z = 0.0f;
         if(score1 >= 15)
