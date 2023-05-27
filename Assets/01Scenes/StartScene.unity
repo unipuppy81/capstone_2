@@ -3180,8 +3180,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 600525986}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.86428356, y: -0.08807902, z: 0.06390364}
-  m_LocalScale: {x: 2.4157858, y: 3.5987082, z: 1}
+  m_LocalPosition: {x: 0.86, y: -0.08807902, z: 0.06390364}
+  m_LocalScale: {x: 2.5283654, y: 3.5987082, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 242912694}
@@ -3232,8 +3232,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 4.2, y: 2.86}
+  m_DrawMode: 2
+  m_Size: {x: 5.8318715, y: 2.86}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -16027,7 +16027,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!199 &2127604066
 ParticleSystemRenderer:
   serializedVersion: 6
