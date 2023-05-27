@@ -65,6 +65,7 @@ public class SceneManagerG1 : MonoBehaviour
             BGM.SetActive(false);
             BGM_die.SetActive(true);
             GameOverPanel.SetActive(true);
+            Joy.SetActive(false);
             
             isStart = false;
         }
