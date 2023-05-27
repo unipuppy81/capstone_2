@@ -11,6 +11,8 @@ public class SceneManagerG1 : MonoBehaviour
     ScoreG1 scoreG1;
     DatabaseManager databaseManagerG1;
 
+    public GameObject Joy;
+
     //public GameObject MainBtn;
     //public GameObject StartBtn;
     public GameObject PauseBtn;
@@ -47,6 +49,11 @@ public class SceneManagerG1 : MonoBehaviour
     {
         isStarting();
         isDie();
+    }
+
+    public void SetJoy()
+    {
+        Joy.SetActive(true);
     }
     public void isDie()
     {
