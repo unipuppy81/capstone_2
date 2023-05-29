@@ -51,6 +51,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Canvas
+    uniqueID: 4196955515
+    locked: 0
   - name: Particle
     uniqueID: 2895575591
     locked: 0
