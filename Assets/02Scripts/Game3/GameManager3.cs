@@ -59,6 +59,9 @@ public class GameManager3 : MonoBehaviour
     public GameObject Bgm;
     public GameObject Overbgm;
 
+    public ParticleSystem effect;
+    public GameObject particle;
+
     public bool stopTrigger = true;
 
     public bool isStart;
