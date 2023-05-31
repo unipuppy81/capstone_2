@@ -362,12 +362,13 @@ public class DatabaseManager : MonoBehaviour
         if (score3_2 >= score3_1)
         {
             tmp3 = score3_2.ToString();
+            AudioManager.soundPlay2();
+            ParticleSystem particleSystem = Instantiate(starParticle);
         }
         else if (score3_1 > score3_2)
         {
             tmp3 = score3_1.ToString();
-            AudioManager.soundPlay2();
-            ParticleSystem particleSystem = Instantiate(starParticle);
+            
         }
 
 
