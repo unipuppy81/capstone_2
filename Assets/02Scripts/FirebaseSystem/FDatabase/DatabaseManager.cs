@@ -56,6 +56,10 @@ public class DatabaseManager : MonoBehaviour
 
 
     [Header("Ranking")]
+    public string[] Rank_name_1 = new string[10];
+    public string[] Rank_name_2 = new string[10];
+    public string[] Rank_name_3 = new string[10];
+
     public TMP_Text[] Rank_name1 = new TMP_Text[10];
     public TMP_Text[] Rank_score1 = new TMP_Text[10];
 
@@ -553,21 +557,18 @@ public class DatabaseManager : MonoBehaviour
     public void TextLoad()
     {
         textLoadBool = false;
-        /*
-        for(int i = 0; i< Rank.Length; i++)
-        {
-            if(strLen <= i) return;
-            Rank[i].text = scoreRankf[i].ToString();
-        }
-        */
-
+       
         if (G1 == true && G2 == false && G3 == false) { 
             for (int i = 0; i < Rank_name1.Length; i++)
             {
-            if (strLen <= i) return;
-           
-            Rank_name1[i].text = sarray[i].id;
-            Rank_score1[i].text = sarray[i].score.ToString();
+                if (strLen <= i) return;
+
+                Rank_name_1[i] = sarray[i].id;
+                int index = Rank_name_1[i].IndexOf("@");
+                string tmpName = Rank_name_1[i].Substring(0, index);
+                Rank_name_1[i] = tmpName;
+                Rank_name1[i].text = Rank_name_1[i];
+                Rank_score1[i].text = sarray[i].score.ToString();
             }
         }
         else if(G2 == true && G1 == false && G3 == false)
@@ -575,8 +576,13 @@ public class DatabaseManager : MonoBehaviour
             for (int i = 0; i < Rank_name2.Length; i++)
             {
                 if (strLen <= i) return;
-               
-                Rank_name2[i].text = sarray[i].id;
+
+
+                Rank_name_2[i] = sarray[i].id;
+                int index = Rank_name_2[i].IndexOf("@");
+                string tmpName = Rank_name_2[i].Substring(0, index);
+                Rank_name_2[i] = tmpName;
+                Rank_name2[i].text = Rank_name_2[i];
                 Rank_score2[i].text = sarray[i].score.ToString();
             }
         }
@@ -585,8 +591,13 @@ public class DatabaseManager : MonoBehaviour
             for (int i = 0; i < Rank_name3.Length; i++)
             {
                 if (strLen <= i) return;
-                
-                Rank_name3[i].text = sarray[i].id;
+
+
+                Rank_name_3[i] = sarray[i].id;
+                int index = Rank_name_3[i].IndexOf("@");
+                string tmpName = Rank_name_3[i].Substring(0, index);
+                Rank_name_3[i] = tmpName;
+                Rank_name3[i].text = Rank_name_3[i];
                 Rank_score3[i].text = sarray[i].score.ToString();
             }
         }
