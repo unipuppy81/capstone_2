@@ -4425,7 +4425,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &626857810
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12134,7 +12134,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1558226676
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14324,6 +14324,7 @@ MonoBehaviour:
   score3_1: 0
   score3_2: 0
   tmp3: 
+  starParticle: {fileID: 0}
 --- !u!4 &1944359647
 Transform:
   m_ObjectHideFlags: 0
