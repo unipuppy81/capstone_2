@@ -99,6 +99,8 @@ public class DatabaseManager : MonoBehaviour
     public float score3_2;
     public string tmp3;
 
+    public ParticleSystem starParticle;
+
     private void Start()
     {
         if (LoginState.LoginOk == true) { 
@@ -364,6 +366,8 @@ public class DatabaseManager : MonoBehaviour
         else if (score3_1 > score3_2)
         {
             tmp3 = score3_1.ToString();
+            AudioManager.soundPlay2();
+            ParticleSystem particleSystem = Instantiate(starParticle);
         }
 
 

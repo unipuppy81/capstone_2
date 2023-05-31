@@ -1774,6 +1774,39 @@ MonoBehaviour:
   IDField: {fileID: 0}
   text123: {fileID: 0}
   userid: 
+  Rank_name_1:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  Rank_name_2:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  Rank_name_3:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   Rank_name1:
   - {fileID: 0}
   - {fileID: 0}
@@ -1849,6 +1882,7 @@ MonoBehaviour:
   score3_1: 0
   score3_2: 0
   tmp3: 
+  starParticle: {fileID: 2070707954}
 --- !u!4 &364596962
 Transform:
   m_ObjectHideFlags: 0
@@ -5674,7 +5708,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!199 &2070707953
 ParticleSystemRenderer:
   serializedVersion: 6
