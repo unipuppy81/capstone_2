@@ -368,7 +368,6 @@ public class DatabaseManager : MonoBehaviour
         else if (score3_1 > score3_2)
         {
             tmp3 = score3_1.ToString();
-            
         }
 
 
