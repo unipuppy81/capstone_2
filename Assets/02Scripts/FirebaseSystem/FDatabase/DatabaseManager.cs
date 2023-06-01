@@ -364,10 +364,12 @@ public class DatabaseManager : MonoBehaviour
             tmp3 = score3_2.ToString();
             AudioManager.soundPlay2();
             ParticleSystem particleSystem = Instantiate(starParticle);
+            UnityEngine.Debug.Log("기존기록");
         }
         else if (score3_1 > score3_2)
         {
             tmp3 = score3_1.ToString();
+            UnityEngine.Debug.Log("신기록");
         }
 
 

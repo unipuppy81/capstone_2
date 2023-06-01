@@ -74,7 +74,8 @@ public class GameManager3 : MonoBehaviour
     IEnumerator e3;
     IEnumerator c1;
     IEnumerator c2;
-    
+
+    public ParticleSystem starParticle;
 
     // Start is called before the first frame update
     void Start()
@@ -179,6 +180,10 @@ public class GameManager3 : MonoBehaviour
         GameoverPanel.SetActive(true);
         Bgm.SetActive(false);
         Overbgm.SetActive(true);
+
+        AudioManager.soundPlay2();
+        ParticleSystem particleSystem = Instantiate(starParticle);
+        //starParticle.Play();
     }
 
     IEnumerator CreateEnemyRoutine()
