@@ -5410,7 +5410,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 90, y: 0}
+  m_AnchoredPosition: {x: 90, y: 20}
   m_SizeDelta: {x: 400, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &868319502
@@ -7215,6 +7215,39 @@ MonoBehaviour:
   IDField: {fileID: 0}
   text123: {fileID: 0}
   userid: 
+  Rank_name_1:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  Rank_name_2:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  Rank_name_3:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   Rank_name1:
   - {fileID: 0}
   - {fileID: 0}
@@ -7290,6 +7323,7 @@ MonoBehaviour:
   score3_1: 0
   score3_2: 0
   tmp3: 
+  starParticle: {fileID: 0}
 --- !u!4 &1144669488
 Transform:
   m_ObjectHideFlags: 0
