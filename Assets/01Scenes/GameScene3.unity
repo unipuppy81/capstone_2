@@ -1882,7 +1882,7 @@ MonoBehaviour:
   score3_1: 0
   score3_2: 0
   tmp3: 
-  starParticle: {fileID: 0}
+  starParticle: {fileID: 5287299529012872291, guid: 706d7d949a2850f45b555783d2a61430, type: 3}
 --- !u!4 &364596962
 Transform:
   m_ObjectHideFlags: 0
@@ -5691,8 +5691,7 @@ MonoBehaviour:
   particle: {fileID: 0}
   stopTrigger: 1
   isStart: 0
-  starParticle: {fileID: 5287299529012872291, guid: 706d7d949a2850f45b555783d2a61430, type: 3}
-  particleSystem: {fileID: 5287299529012872289, guid: 706d7d949a2850f45b555783d2a61430, type: 3}
+  starParticle: {fileID: 5287299529012872291, guid: 53f6f648f3d5d9d4b90967f498979770, type: 3}
 --- !u!1 &2081946715
 GameObject:
   m_ObjectHideFlags: 0

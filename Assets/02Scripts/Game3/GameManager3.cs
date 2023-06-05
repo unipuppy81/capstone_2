@@ -96,6 +96,8 @@ public class GameManager3 : MonoBehaviour
         Overbgm.SetActive(false);
 
         isStart = false;
+
+        //starParticle = Resources.Load<GameObject>("BestScoreEffect");
     }
 
     private void Update()
@@ -183,7 +185,6 @@ public class GameManager3 : MonoBehaviour
 
         AudioManager.soundPlay2();
         ParticleSystem particleSystem = Instantiate(starParticle);
-        //starParticle.Play();
     }
 
     IEnumerator CreateEnemyRoutine()
