@@ -76,6 +76,7 @@ public class GameManager3 : MonoBehaviour
     IEnumerator c2;
 
     public ParticleSystem starParticle;
+    public bool bestEffect;
 
     // Start is called before the first frame update
     void Start()
@@ -96,6 +97,7 @@ public class GameManager3 : MonoBehaviour
         Overbgm.SetActive(false);
 
         isStart = false;
+        bestEffect = false;
 
         //starParticle = Resources.Load<GameObject>("BestScoreEffect");
     }
@@ -114,6 +116,19 @@ public class GameManager3 : MonoBehaviour
             bestscore = databaseManager.score3_2.ToString();
         }
         bestScoreText.text = databaseManager.tmp3.ToString();
+
+        bestScoreEffect();
+    }
+
+    void bestScoreEffect()
+    {
+        if (score1 >= databaseManager.score3_2 && bestEffect == false)
+        {
+            AudioManager.soundPlay2();
+            ParticleSystem particleSystem = Instantiate(starParticle);
+            Destroy(particleSystem, 3.0f);
+            bestEffect = true;
+        }
     }
 
     void checkBestScore()
@@ -183,8 +198,7 @@ public class GameManager3 : MonoBehaviour
         Bgm.SetActive(false);
         Overbgm.SetActive(true);
 
-        AudioManager.soundPlay2();
-        ParticleSystem particleSystem = Instantiate(starParticle);
+        
     }
 
     IEnumerator CreateEnemyRoutine()

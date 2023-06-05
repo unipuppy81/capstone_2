@@ -5352,7 +5352,7 @@ MonoBehaviour:
   score3_1: 0
   score3_2: 0
   tmp3: 
-  starParticle: {fileID: 0}
+  starParticle: {fileID: 5287299529012872291, guid: 53f6f648f3d5d9d4b90967f498979770, type: 3}
 --- !u!4 &1055294670
 Transform:
   m_ObjectHideFlags: 0
