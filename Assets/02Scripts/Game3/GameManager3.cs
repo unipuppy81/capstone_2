@@ -116,13 +116,11 @@ public class GameManager3 : MonoBehaviour
             bestscore = databaseManager.score3_2.ToString();
         }
         bestScoreText.text = databaseManager.tmp3.ToString();
-
-        bestScoreEffect();
     }
 
-    void bestScoreEffect()
+    void bestScoreEffect()  // 최고기록 시 이펙트
     {
-        if (score1 >= databaseManager.score3_2 && bestEffect == false)
+        if (score1 > databaseManager.score3_2 && bestEffect == false)
         {
             AudioManager.soundPlay2();
             ParticleSystem particleSystem = Instantiate(starParticle);
@@ -198,7 +196,7 @@ public class GameManager3 : MonoBehaviour
         Bgm.SetActive(false);
         Overbgm.SetActive(true);
 
-        
+        bestScoreEffect();
     }
 
     IEnumerator CreateEnemyRoutine()
