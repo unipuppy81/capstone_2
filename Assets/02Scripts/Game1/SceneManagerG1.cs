@@ -36,6 +36,9 @@ public class SceneManagerG1 : MonoBehaviour
     public ParticleSystem starParticle;
     public bool bestEffect;
 
+    float t;
+    float t2;
+
     private void Awake()
     {
         moveG1 = GameObject.Find("Player").GetComponent<MoveG1>();
@@ -44,6 +47,8 @@ public class SceneManagerG1 : MonoBehaviour
     }
     private void Start()
     {
+        t = 0.0f;
+        t2 = 0.0f;
         BGM_die.SetActive(false);
         isStart = false;
         bestEffect = false;
@@ -61,6 +66,7 @@ public class SceneManagerG1 : MonoBehaviour
     }
     public void isDie()
     {
+
         if(moveG1.isDead)
         {
             ///databaseManagerG1.OnClickSaveButton1();
@@ -70,20 +76,67 @@ public class SceneManagerG1 : MonoBehaviour
             BGM_die.SetActive(true);
             GameOverPanel.SetActive(true);
             Joy.SetActive(false);
+
             bestScoreEffect();
 
-            isStart = false;
+            if(t2 >= 1.5f)
+            {
+                t2 += Time.deltaTime;
+                isStart = false;
+            }
+            
         }
     }
 
     void bestScoreEffect()  // 최고기록 시 이펙트
     {
-        if (scoreG1.score1 < databaseManagerG1.score1_2 && bestEffect == false)
+        UnityEngine.Debug.Log("TTTTT");
+        
+        t += Time.deltaTime;
+        if (scoreG1.score1 > databaseManagerG1.score1_2 && bestEffect == false)
         {
             AudioManager.soundPlay2();
             ParticleSystem particleSystem = Instantiate(starParticle);
             bestEffect = true;
         }
+        /*
+        do
+        {
+            AudioManager.soundPlay2();
+            ParticleSystem particleSystem = Instantiate(starParticle);
+            bestEffect = true;
+        }
+        while (scoreG1.score1 < databaseManagerG1.score1_2 && bestEffect == false);
+        */
+        if(t >= 1.5f)
+        {
+            UnityEngine.Debug.Log("AB");
+            isStart = false;
+        }
+
+       
+        /*
+        if (scoreG1.score1 < databaseManagerG1.score1_2 && bestEffect == false)
+        {
+            AudioManager.soundPlay2();
+            ParticleSystem particleSystem = Instantiate(starParticle);
+            bestEffect = true;
+
+            //float t = 0.0f;
+            //t += Time.deltaTime;
+            UnityEngine.Debug.Log("F");
+            if (t >= 2.0f)
+            {
+                UnityEngine.Debug.Log("FALSE");
+                isStart = false;
+            }
+            
+        }
+        else
+        {
+            isStart = false;
+        }
+        */
     }
 
     public void isStarting()

@@ -8,39 +8,29 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:64941542849:android:309c7f73b720760a4b7340",
+        "mobilesdk_app_id": "1:64941542849:ios:aee7d543636190424b7340",
         "android_client_info": {
           "package_name": "com.company.kmukt"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "64941542849-d8k3725srb9lv7qusijnffljlav2jc09.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
       "api_key": [
         {
-          "current_key": "AIzaSyCFHB3Vw8X6kOZKjPfczaMxhxlkMh-YklA"
+          "current_key": "AIzaSyAa-13cqUNA7wrjsyjUQHm4QZ6b-636h9A"
         }
       ],
       "services": {
+        "analytics_service": {
+          "status": 0
+        },
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "64941542849-d8k3725srb9lv7qusijnffljlav2jc09.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "64941542849-s2605tdtdo8qjs98e3a3svo3ugal0d47.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.company.kmukt"
-              }
-            }
-          ]
+          "status": 1
         }
-      }
+      },
+      "oauth_client": [
+        {
+          "client_id": "64941542849-s2605tdtdo8qjs98e3a3svo3ugal0d47.apps.googleusercontent.com"
+        }
+      ]
     }
   ],
   "configuration_version": "1"

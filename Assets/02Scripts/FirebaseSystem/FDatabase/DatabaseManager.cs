@@ -290,14 +290,13 @@ public class DatabaseManager : MonoBehaviour
                 //foreach 문으로 각각 데이터를 IDictionary로 변환해 각 이름에 맞게 변수 초기화
                 foreach (DataSnapshot data in snapshot.Children)
                 {
-                    UnityEngine.Debug.Log(strLen);
                     IDictionary personInfo = (IDictionary)data.Value;
                     textRank[co] = personInfo["id"].ToString();
                     scoreRank[co] = personInfo["score"].ToString();
 
 
                     sarray2[co] = new ScoreArray(textRank[co], float.Parse(scoreRank[co]));
-                    Debug.Log("ReadScore :: " + "name : " + personInfo["id"] + ", score: " + personInfo["score"]);
+                    //Debug.Log("ReadScore :: " + "name : " + personInfo["id"] + ", score: " + personInfo["score"]);
                     co++;
                 }
                 if(name == "Game1") {
@@ -318,7 +317,6 @@ public class DatabaseManager : MonoBehaviour
     }
     private void findScoreName()
     {
-        UnityEngine.Debug.Log("POW");
 
         if (score1_2 >= score1_1)
         {
@@ -373,7 +371,7 @@ public class DatabaseManager : MonoBehaviour
     }
     private void findBestScore()
     {
-        UnityEngine.Debug.Log("POW1");
+
         for (int i = 0; i < sarray.Length; i++)
         {
             string said = sarray[i].id;
@@ -381,20 +379,20 @@ public class DatabaseManager : MonoBehaviour
             if (said == userid)
             {
                 float tmp = sarray[i].score;
-                UnityEngine.Debug.Log("최고 tmp1 : " + tmp);
+                
                 tmp1 = tmp.ToString("N2");
                 tmp2 = tmp.ToString();
                 tmp3 = tmp.ToString();
                 break;
             }
         }
-        UnityEngine.Debug.Log("tmp1 : " + tmp1);
+        
         //writeNewUser2(userid, tmp1);
     }
 
     private void findBestScore2()
     {
-        UnityEngine.Debug.Log("POW2");
+
         for (int i = 0; i < sarray.Length; i++)
         {
             string said = sarray[i].id;
@@ -403,17 +401,17 @@ public class DatabaseManager : MonoBehaviour
             {
                 float tmp = sarray[i].score;
                 int tmp22 = Mathf.FloorToInt(tmp);
-                UnityEngine.Debug.Log("최고 tmp2 : " + tmp22);
+
                 tmp2 = tmp22.ToString();
                 break;
             }
         }
-        UnityEngine.Debug.Log("tmp2 : " + tmp2);
+
         //writeNewUser2(userid, tmp1);
     }
     private void findBestScore3()
     {
-        UnityEngine.Debug.Log("POW3");
+
         for (int i = 0; i < sarray.Length; i++)
         {
             string said = sarray[i].id;
@@ -421,13 +419,13 @@ public class DatabaseManager : MonoBehaviour
             if (said == userid)
             {
                 float tmp = sarray[i].score;
-                UnityEngine.Debug.Log("최고 tmp3 : " + tmp);
+
 
                 tmp3 = tmp.ToString();
                 break;
             }
         }
-        UnityEngine.Debug.Log("tmp3 : " + tmp3);
+
         //writeNewUser2(userid, tmp1);
     }
     private void readScore2(string name) // 최고기록 받아오는 용도
