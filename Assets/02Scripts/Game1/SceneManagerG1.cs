@@ -79,7 +79,7 @@ public class SceneManagerG1 : MonoBehaviour
 
             bestScoreEffect();
 
-            if(t2 >= 1.5f)
+            if(t2 >= 1.3f)
             {
                 t2 += Time.deltaTime;
                 isStart = false;
@@ -108,7 +108,7 @@ public class SceneManagerG1 : MonoBehaviour
         }
         while (scoreG1.score1 < databaseManagerG1.score1_2 && bestEffect == false);
         */
-        if(t >= 1.5f)
+        if(t >= 1.3f)
         {
             UnityEngine.Debug.Log("AB");
             isStart = false;
