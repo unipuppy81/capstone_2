@@ -93,7 +93,7 @@ public class SceneManagerG1 : MonoBehaviour
         UnityEngine.Debug.Log("TTTTT");
         
         t += Time.deltaTime;
-        if (scoreG1.score1 > databaseManagerG1.score1_2 && bestEffect == false)
+        if (scoreG1.score1 >= databaseManagerG1.score1_2 && bestEffect == false)
         {
             AudioManager.soundPlay2();
             ParticleSystem particleSystem = Instantiate(starParticle);

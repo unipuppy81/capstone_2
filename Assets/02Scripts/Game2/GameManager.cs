@@ -130,7 +130,7 @@ public class GameManager : MonoBehaviour
 
     void bestScoreEffect()  // 최고기록 시 이펙트
     {
-        if (runScore1 > databaseManager.score2_2 && bestEffect == false)
+        if (runScore1 >= databaseManager.score2_2 && bestEffect == false)
         {
             AudioManager.soundPlay2();
             ParticleSystem particleSystem = Instantiate(starParticle);
