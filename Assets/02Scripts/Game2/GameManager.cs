@@ -57,6 +57,10 @@ public class GameManager : MonoBehaviour
     public int curStage;
     public int[] stageScore;
     public Stage[] stages;
+
+    public ParticleSystem starParticle;
+    public bool bestEffect;
+
     private void Start()
     {
         databaseManager = GameObject.Find("DatabaseManager").GetComponent<DatabaseManager>();
@@ -69,6 +73,7 @@ public class GameManager : MonoBehaviour
         GameoverPanel.SetActive(false);
         PausePanel.SetActive(false);
         Time.timeScale = 1f;
+        bestEffect = false;
     }
 
     void speedUp()
@@ -123,6 +128,17 @@ public class GameManager : MonoBehaviour
         gameSpeed = 1;
     }
 
+    void bestScoreEffect()  // 최고기록 시 이펙트
+    {
+        if (runScore1 > databaseManager.score2_2 && bestEffect == false)
+        {
+            AudioManager.soundPlay2();
+            ParticleSystem particleSystem = Instantiate(starParticle);
+            Destroy(particleSystem, 3.0f);
+            bestEffect = true;
+        }
+    }
+
     public void GameOver()
     {
         databaseManager.readScore("Game2");
@@ -133,6 +149,7 @@ public class GameManager : MonoBehaviour
         onPlay.Invoke(isPlay);
         StopCoroutine(AddScore());
         StopCoroutine(GameoverRoutine());
+        bestScoreEffect();
         /*
         if(runScore1 != bestscore)
         {
@@ -146,6 +163,7 @@ public class GameManager : MonoBehaviour
         }
         */
     }
+
     public void Pause_btn()
     {
         PausePanel.SetActive(true);
