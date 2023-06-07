@@ -19,6 +19,7 @@ public class ScoreG1 : MonoBehaviour
     public string bestScore;
 
     public int a;
+
     void Awake()
     {
         moveG1 = GameObject.Find("Player").GetComponent<MoveG1>();
@@ -47,6 +48,4 @@ public class ScoreG1 : MonoBehaviour
     { 
         databaseManager.OnClickSaveButton1();
     }
-
-   
 }

@@ -33,6 +33,9 @@ public class SceneManagerG1 : MonoBehaviour
 
     public bool isStart;
 
+    public ParticleSystem starParticle;
+    public bool bestEffect;
+
     private void Awake()
     {
         moveG1 = GameObject.Find("Player").GetComponent<MoveG1>();
@@ -43,6 +46,7 @@ public class SceneManagerG1 : MonoBehaviour
     {
         BGM_die.SetActive(false);
         isStart = false;
+        bestEffect = false;
     }
 
     private void Update()
@@ -66,8 +70,19 @@ public class SceneManagerG1 : MonoBehaviour
             BGM_die.SetActive(true);
             GameOverPanel.SetActive(true);
             Joy.SetActive(false);
-            
+            bestScoreEffect();
+
             isStart = false;
+        }
+    }
+
+    void bestScoreEffect()  // 최고기록 시 이펙트
+    {
+        if (scoreG1.score1 < databaseManagerG1.score1_2 && bestEffect == false)
+        {
+            AudioManager.soundPlay2();
+            ParticleSystem particleSystem = Instantiate(starParticle);
+            bestEffect = true;
         }
     }
 
