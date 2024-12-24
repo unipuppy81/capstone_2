@@ -1,6 +1,8 @@
 # capstone_2
 캡스톤 2차
 
+YouTube Link : https://youtu.be/nkeIDnLEWk8
+
 # 팀 프로젝트: Unity 2D 기반 게임 개발
 
 ## 사용 언어 및 개발 환경
